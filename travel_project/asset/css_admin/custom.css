@@ -1,0 +1,15 @@
+
+
+form input,#addPckgForm  .form-select{
+	height: 2rem;
+}
+
+
+#addPckgForm label{
+	font-size: .7rem;
+	font-weight: bold;
+}
+.redStar{
+	color: red;
+	font-weight: bold;
+}
