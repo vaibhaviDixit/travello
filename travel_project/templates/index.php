@@ -187,12 +187,12 @@
         $cateName=$cateRow['name'];
         $catId=$cateRow['id'];
             for ($i=0; $i <strlen($cateName); $i++) {
-                if($cateName{$i}==" "){
+                if($cateName[$i]==" "){
                   echo "&nbsp;";
                 } 
                 else{
 
-                 echo "<span>".$cateName{$i}."</span>"; 
+                 echo "<span>".$cateName[$i]."</span>"; 
                 }
               }
             ?>

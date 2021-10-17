@@ -3,29 +3,9 @@
 <?php
 
 session_start();
-//in progress
+
 include ('include\database.inc.php');
 
-$msg="";
-if (isset($_POST['submit'])) {
-	$email=htmlspecialchars( $_POST['email'] );
-	$password=htmlspecialchars( $_POST['password'] );
-
-	$sql="select * from userlogin where email='$email' and password='$password' ";
-	$res=mysqli_query($con,$sql);
-
-	if(mysqli_num_rows($res)>0){
-
-		$row=mysqli_fetch_assoc($res);
-		$_SESSION['admin_login']='yes';
-		$_SESSION['admin_name']=$row['name'];
-		redirect('user-panel\index.php');
-
-	}
-	else{
-		$msg="Please enter valid login details";
-	}
-}
 
 
 
@@ -62,28 +42,88 @@ if (isset($_POST['submit'])) {
     <video src="..\asset\img_user\vid-1.mp4" id="video-slider" loop autoplay muted></video>
 </div>
 <div class="container">
+
+  <form method="post" id="loginForm">
   <div class="box">
     <h1>Login</h1>
-    <input type="text" type="email" name="email" placeholder="Enter your email" required autocomplete="off" />
-    <input type="password" type="password" name="password" placeholder="Enter your password" required autocomplete="off" />       
-    <!-- <a href="user_panel\userpanel.php"><button type="submit" id="login-btn" class="login-btn">Login</button></a> -->
+     <span id="msg"></span>
+    <input type="email" type="email" name="email" id="loginEmail" placeholder="Enter your email" required  />
+    <input type="password" type="password" id="loginPass" name="password" placeholder="Enter your password" required  />    
     <div class="text-center mt-3">
+		<button type="submit" id="loginBtn login-btn" class="login-btn"  name="submit" >Sign In</button>
+		</div>
 
-											<input type="submit" class="login-btn" value="Sign In" name="submit" />
-										</div>
     <a href="sign-up.php">Don't have an account? Sign up</a>
     
     <br/><br/>
     <a href="admin_panel/adminlogin.php">ADMIN LOGIN</a>
 
   </div>
+    </form>
 </div>
 
-     <script>
-       document.getElementById("login-btn").onclick = function () {
-                  location.href = "home.php";
-              };
-     </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
+
+<script>
+
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCp0yBkzF012bf7otTruduYppXJSL5rkdk",
+  authDomain: "emailauth-e72dd.firebaseapp.com",
+  projectId: "emailauth-e72dd",
+  storageBucket: "emailauth-e72dd.appspot.com",
+  messagingSenderId: "1009272597079",
+  appId: "1:1009272597079:web:1e8d0ca93ec5f0cd0f1112",
+  measurementId: "G-H3W6S0PM7S"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+
+       
+
+       //check email login
+
+       $("#loginForm").on("submit",function(e){
+
+          let loginEmail=$("#loginEmail").val();
+          let loginPass=$("#loginPass").val();
+
+          $("#loginBtn").attr('disabled',true);
+          $("#loginBtn").html("Loading...");
+
+          firebase.auth().signInWithEmailAndPassword(loginEmail,loginPass).then(function(response){
+            console.log(response);
+            $("#msg").html("<div class='alert alert-success' role='alert'>Login Successfully</div>");
+            $("#loginBtn").attr('disabled',false);
+              $("#loginBtn").html("Sign In");
+              $("#loginForm")[0].reset();
+
+
+          })
+          .catch(function(error){
+            console.log(error);
+             $("#msg").html("<div class='alert alert-danger' role='alert'>Invalid Email or Password !</div>");
+             $("#loginBtn").attr('disabled',false);
+              $("#loginBtn").html("Sign In");
+              $("#loginForm")[0].reset();
+
+          })
+
+          
+
+         e.preventDefault();
+
+       });
+
+
+</script>
 
 
 
