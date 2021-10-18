@@ -1,3 +1,14 @@
+
+<?php
+
+
+
+include ('include\database.inc.php');
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -70,23 +81,47 @@ firebase.analytics();
       $("#signbtn").attr('disabled',true);
       $("#signbtn").html("Loading...");
     
-     let email=$("#signUpEmail").val();
-     let pass=$("#signUpPass").val();
-     let cpass=$("#cPass").val();
+      var email=$("#signUpEmail").val();
+      var pass=$("#signUpPass").val();
+      var cpass=$("#cPass").val();
 
-     firebase.auth().createUserWithEmailAndPassword(email,pass).then(function(response){
 
-        console.log(response);
-        sendingVerifyEmail();
 
+
+      jQuery.ajax({  
+               type:"post",  
+               url:"register.php",  
+               data:"email="+email+"&password="+pass+"&type=signUp", 
+               success:function(result){
+
+                      msg=jQuery.parseJSON(result);
+                  
+
+                     if(msg.status=="success"){
+
+
+                         firebase.auth().createUserWithEmailAndPassword(email,pass).then(function(response){
+                                    sendingVerifyEmail();
+                             
+                         })
+                         .catch(function(error){
+                            $("#msg").html("<div class='alert alert-success' role='alert'>"+error.message+"</div>");
+                            $("#signbtn").attr('disabled',false);
+                            $("#signbtn").html('Sign Up');
+
+                         })
+
+                         
+                     }
+                     if(msg.status=="fail"){
+
+                         $("#msg").html("<div class='alert alert-danger' role='alert'>Email already Registered!</div>");
+                     }
+                     
+              } 
+               
+          });
         
-     })
-     .catch(function(error){
-        $("#msg").html("<div class='alert alert-success' role='alert'>"+error.message+"</div>");
-        $("#signbtn").attr('disabled',false);
-        $("#signbtn").html('Sign Up');
-
-     })
 
     e.preventDefault();
     // alert("hii");
@@ -108,7 +143,9 @@ function sendingVerifyEmail(){
      $("#signbtn").html('Sign Up');
      $("#signUpForm")[0].reset();
 
-     $("#msg").html("<div class='alert alert-success' role='alert'>Thank you for Registration! Verify your Email... </div>");
+     $("#msg").html("<div class='alert alert-success' role='alert'>Thank you for Registration! Verify your Email...then login </div>");
+
+    
 
   })
   .catch(function(error){
@@ -122,7 +159,12 @@ function sendingVerifyEmail(){
 
   })
 
+
+
 }
+
+
+
 
 //check validation
 

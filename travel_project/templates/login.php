@@ -4,8 +4,8 @@
 
 session_start();
 
-include ('include\database.inc.php');
-
+include ('include/database.inc.php');
+include ('include/functions.inc.php');
 
 
 
@@ -34,7 +34,7 @@ include ('include\database.inc.php');
   <button onclick="go_home()" id="home-btn"  class="home-btn"><i class="material-icons">keyboard_arrow_left</i></button>
   <script>
     function go_home(){
-      window.location.href = "home.php";
+      window.location.href = "index.php";
     }
    
   </script>
@@ -100,7 +100,39 @@ firebase.analytics();
 
           firebase.auth().signInWithEmailAndPassword(loginEmail,loginPass).then(function(response){
             console.log(response);
-            $("#msg").html("<div class='alert alert-success' role='alert'>Login Successfully</div>");
+
+            let user=firebase.auth().currentUser;
+
+            if(user!=null){ 
+              let email=user.email;
+              let eVerified=user.emailVerified;
+              if(eVerified){
+
+                 $.ajax({  
+                   type:"POST",  
+                   url:"register.php",  
+                   data:"email="+email+"&password="+loginPass+"&type=login",
+                   success:function(result){
+
+                      msg=jQuery.parseJSON(result);
+
+                     if(msg.status=="success"){
+                       $("#msg").html("<div class='alert alert-success' role='alert'>Login Successfully</div>");
+                       window.location.href="user_panel/userpanel.php";
+                     }
+                     
+                   }
+                   
+                  });
+
+                
+              }else{
+              console.log('email not verified');
+              $("#msg").html("<div class='alert alert-success' role='alert'>Email not verified</div>");
+              }
+          }
+
+            
             $("#loginBtn").attr('disabled',false);
               $("#loginBtn").html("Sign In");
               $("#loginForm")[0].reset();

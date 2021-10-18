@@ -2,6 +2,17 @@
 
 <?php
 
+session_start();
+
+include ('../include/database.inc.php');
+include ('../include/functions.inc.php');
+
+if(!isset($_SESSION['CURRENT_USER'])){
+	redirect("../login.php");
+}
+
+
+
 ?>
 
 
@@ -31,7 +42,7 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="../home.php">
+				<a class="sidebar-brand" href="../index.php">
           <span class="align-middle">Home</span>
         </a>
 
@@ -253,7 +264,7 @@
 								<a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
 								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="../home.php">Log out</a>
+								<a class="dropdown-item" href="logout.php">Log out</a>
 							</div>
 						</li>
 					</ul>
@@ -262,6 +273,8 @@
 
 			<main class="content">
 				<div class="container-fluid p-0">
+
+					<?php echo $_SESSION['CURRENT_USER']; ?>
 
 					<h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
 
