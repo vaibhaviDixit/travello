@@ -1,8 +1,13 @@
 <?php
 
+session_start();
+
 include 'include/database.inc.php';
 include 'include/functions.inc.php';
 include 'include/constants.inc.php';
+
+$favArray=getFavourites();
+$fav_count=count($favArray);
 
 ?>
 
@@ -25,7 +30,8 @@ include 'include/constants.inc.php';
 
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
 
-
+  <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.1/assets/owl.carousel.min.css'>
 <link rel='stylesheet' href='https://themes.audemedia.com/html/goodgrowth/css/owl.theme.default.min.css'>
 <link rel="stylesheet" href="..\asset\css_user\home-css.css">
@@ -39,8 +45,13 @@ include 'include/constants.inc.php';
     <ul class="nav-menu">
         <li class="nav-item"><a href="index.php">Home</a></li>
         <li class="nav-item"><a href="#about">About us</a></li>
-        <li class="nav-item"><a href="login.php"><i class="material-icons">person</i></a></li>
+        <li class="nav-item"><a href="<?php if(isset($_SESSION['CURRENT_USER'])){
+            echo "user_panel/userpanel.php";
+        }else{
+            echo "login.php";
+        } ?>"><i class="material-icons">person</i></a></li>
         <li class="nav-item"><a href="cart.php"><i class="material-icons">shopping_cart</i></a></li>
+        <li class="nav-item" style="position: relative;"><a href="favourites.php"> <i class="material-icons is-liked bouncy">favorite</i></a> <span id="favItems" class="count"><?php echo $fav_count; ?> </li>
 
     </ul>
     <div class="mobile-view">
@@ -61,3 +72,12 @@ include 'include/constants.inc.php';
     </div>
  
 </nav>
+
+
+<div class="alert alert-success w-20 successMsg" id="addToCartSuccess" role="alert" >
+<i class="fas fa-check-circle green-tick"></i>Added to cart successfully!
+</div>
+
+<div class="alert alert-success w-20 successMsg" id="addToFavSuccess" role="alert" >
+<i class="fas fa-check-circle green-tick"></i>Added to Favourites successfully!
+</div>

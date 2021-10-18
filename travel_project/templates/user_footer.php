@@ -45,13 +45,15 @@
 
 </footer>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script type="text/javascript">
       window.addEventListener("scroll",function(){
         var nav =document.querySelector("nav");
         nav.classList.toggle("sticky",window.scrollY>50);
           })
 </script>
-
+<script type="text/javascript" src="../asset/js_user/script.js"></script>
 <button onclick="topFunction()" id="myBtn"  class="scroll"><i class="material-icons">keyboard_arrow_up</i></button>
 
 <script>

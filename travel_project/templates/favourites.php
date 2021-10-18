@@ -1,16 +1,33 @@
-<?php 
-include 'userHeader.php';
+  <?php
+
+        include 'user_header.php';
+
+        $active='add';
+
+    ?>
 
 
-?>
 
-<section class="packages" id="packages">	
-			<main class="content">
+<div class="container-fluid mt-5 pt-5" >
 
-				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Favourites</strong></h1>
+    <section class="packages" id="packages">
+<h1 class="heading">      
+  <span>M</span>
+  <span>y</span>
+  &nbsp;&nbsp;&nbsp;
+  <span>F</span>
+  <span>a</span>
+  <span>v</span>
+  <span>o</span>
+   <span>r</span>
+    <span>i</span>
+     <span>t</span>
+      <span>e</span>
+       <span>s</span>
 
+  <br/><br/>
+</h1>
 
 <div class="box-container">
   <?php
@@ -44,8 +61,8 @@ include 'userHeader.php';
                   <div class="view-like">
                     <a class="view-details" href="destination-details.php"><i class="fa fa-eye"></i> View Details</a>
                     <div class="like-wrapper">
-                     <a href="javascript:void(0);" data-id="<?php echo $pckgRow['id'] ?> " class="like-button <?php
-                        $active='remove';
+                      <a href="javascript:void(0);" data-id="<?php echo $pckgRow['id'] ?> " class="like-button <?php
+
                         foreach ($favArray as $key => $value) {
 
                            $pckgId=$value['pckgId'];
@@ -73,13 +90,9 @@ include 'userHeader.php';
            ?>
 </div>
 
+</section>
+      <?php
 
-					</div>
-					</main>
+        include 'user_footer.php';
 
-					</section>
-
-<?php 
-include 'userFooter.php';
-
-?>
+    ?>

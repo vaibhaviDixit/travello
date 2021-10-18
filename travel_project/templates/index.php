@@ -221,7 +221,14 @@
                   <div class="view-like">
                     <a class="view-details" href="destination-details.php"><i class="fa fa-eye"></i> View Details</a>
                     <div class="like-wrapper">
-                      <a href="javascript:void(0);" class="like-button">
+                      <a href="javascript:void(0);" class="like-button <?php
+                        foreach ($favArray as $key => $value) {
+
+                           $pckgId=$value['pckgId'];
+                           if($pckgRow['id']==$pckgId){ echo "is-active"; }
+                        }
+
+                        ?>" onclick="manageFav('<?php echo $pckgRow['id']; ?>','add')" >
                         <i class="material-icons not-liked bouncy">favorite_border</i>
                         <i class="material-icons is-liked bouncy">favorite</i>
                         <span class="like-overlay"></span>

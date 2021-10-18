@@ -12,7 +12,8 @@ var Swipes = new Swiper('.swiper-container', {
       },
  
 });
-jQuery(document).ready(function($) {
+
+$(document).ready(function() {
     "use strict";
     //  TESTIMONIALS CAROUSEL HOOK
     $('#customers-testimonials').owlCarousel({
@@ -44,3 +45,62 @@ jQuery(document).ready(function(){
   })
 
 })
+
+//favorites
+
+function manageFav(id,operation){
+ 
+
+
+   jQuery.ajax({
+    url:'addToFav.php',
+    type:'post',
+    data:{id : id,operation:operation},
+    success:function(result){
+         
+
+      msg=jQuery.parseJSON(result);
+      if(msg.action=="remove"){
+        console.log("remove");
+          window.location.href="favourites.php";
+      }
+      else{
+
+      setTimeout(function() {
+        $("#addToFavSuccess").fadeIn(200);
+      }, 200);
+
+      setTimeout(function() {
+        $("#addToFavSuccess").fadeOut(200);
+      }, 1000);
+      
+      }
+
+      $("#favItems").html(msg.totalItems);
+
+
+    }
+
+  });
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

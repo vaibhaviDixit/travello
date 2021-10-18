@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 17, 2021 at 07:06 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Host: 127.0.0.1:3307
+-- Generation Time: Oct 18, 2021 at 07:13 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,136 +24,42 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `adminlogin`
+-- Table structure for table `favourites`
 --
 
-CREATE TABLE `adminlogin` (
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `id` int(11) NOT NULL
+CREATE TABLE `favourites` (
+  `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `pckgId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `adminlogin`
+-- Dumping data for table `favourites`
 --
 
-INSERT INTO `adminlogin` (`email`, `password`, `id`) VALUES
-('admin@gmail.com', 'admin', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `category`
---
-
-CREATE TABLE `category` (
-  `id` int(50) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `description` varchar(200) NOT NULL,
-  `status` int(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`id`, `name`, `description`, `status`) VALUES
-(1, 'Sporting', '', 1),
-(2, 'SideSeeing', '', 1),
-(3, 'Religious Places', '', 1),
-(4, 'Day Tours', '', 1),
-(5, 'Camping', '', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reviews`
---
-
-CREATE TABLE `reviews` (
-  `name` varchar(100) NOT NULL,
-  `suggestion` varchar(500) NOT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `userlogin`
---
-
-CREATE TABLE `userlogin` (
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `userlogin`
---
-
-INSERT INTO `userlogin` (`email`, `password`, `id`) VALUES
-('user@gmail.com', 'user', 1);
+INSERT INTO `favourites` (`id`, `userId`, `pckgId`) VALUES
+(2, 2, 2),
+(3, 2, 4);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `adminlogin`
+-- Indexes for table `favourites`
 --
-ALTER TABLE `adminlogin`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- Indexes for table `reviews`
---
-ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- Indexes for table `userlogin`
---
-ALTER TABLE `userlogin`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
+ALTER TABLE `favourites`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `adminlogin`
+-- AUTO_INCREMENT for table `favourites`
 --
-ALTER TABLE `adminlogin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `reviews`
---
-ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `userlogin`
---
-ALTER TABLE `userlogin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `favourites`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
