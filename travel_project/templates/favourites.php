@@ -57,7 +57,7 @@
                       <i class="fa fa-star "></i>
                       <i class="fa fa-star "></i>
                   </div>
-                  <div class="price"> <?php  echo $pckgRow['packagePrice']; ?> </div>
+                  <div class="price">&#8377; <?php  echo $pckgRow['packagePrice']; ?>> <span style="font-size: .4rem;color:gray;">/person /night</span> </div>
                   <div class="view-like">
                     <a class="view-details" href="destination-details.php"><i class="fa fa-eye"></i> View Details</a>
                     <div class="like-wrapper">

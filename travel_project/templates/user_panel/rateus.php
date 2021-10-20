@@ -36,17 +36,20 @@
 								<h5 class="card-title mb-0">Rate Us</h5> 
 							</div>
 
+							<form method="post" id="reviewForm">
+
 						  <div class="rating">
-							<input type="radio" name="rating" id="rating-5">
+							<input type="radio" name="rating5" id="rating-5" >
 							<label for="rating-5"></label>
-							<input type="radio" name="rating" id="rating-4">
+							<input type="radio" name="rating4" id="rating-4" >
 							<label for="rating-4"></label>
-							<input type="radio" name="rating" id="rating-3">
+							<input type="radio" name="rating3" id="rating-3">
 							<label for="rating-3"></label>
-							<input type="radio" name="rating" id="rating-2">
+							<input type="radio" name="rating2" id="rating-2" >
 							<label for="rating-2"></label>
-							<input type="radio" name="rating" id="rating-1">
+							<input type="radio" name="rating1" id="rating-1" >
 							<label for="rating-1"></label>
+
 							<div class="emoji-wrapper">
 							  <div class="emoji">
 								<svg class="rating-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -143,11 +146,11 @@
 					  <div class="clear"></div> 
 					  <hr class="survey-hr"> 
 					<!-- <label for="m_3189847521540640526commentText">Any Other suggestions:</label><br/><br/> -->
-					<h4><strong>Any Other suggestions : </strong></h4>
-					<textarea cols="75" name="commentText" rows="5" ></textarea><br><!--style = 100%-->
+					<h4><strong>Feedback: </strong></h4>
+					<textarea cols="75" name="commentText" rows="5" id="suggestion" required></textarea><br><!--style = 100%-->
 					<br>
 					  <div class="clear"></div> 
-					<input style="background:#43a7d5;color:#fff;padding:12px;border:0" type="submit" value="Submit your review">&nbsp;
+					<input style="background:#43a7d5;color:#fff;padding:12px;border:0" id="submitReview" type="button" value="Submit your review">&nbsp;
 					</form>
 									  </div>
 							   
@@ -162,6 +165,51 @@
 					</div>
 				
 					</main>
+					<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+					<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+					<script type="text/javascript">
+
+							$("#submitReview").on("click",function(e){
+								r1=$("#rating-1").is(":checked");
+								r2=$("#rating-2").is(":checked");
+								r3=$("#rating-3").is(":checked");
+								r4=$("#rating-4").is(":checked");
+								r5=$("#rating-5").is(":checked");
+
+								msg=$("#suggestion").val();
+
+								if(r1){stars=1;}
+								if(r2){stars=2;}
+								if(r3){stars=3;}
+								if(r4){stars=4;}
+								if(r5){stars=5;}
+
+								     jQuery.ajax({
+										    url:'submitRate.php',
+										    type:'post',
+										    data:{stars : stars,msg:msg},
+										    success:function(result){
+										         
+
+										      msg=jQuery.parseJSON(result);
+										      if(msg.status=="success"){
+										        swal("Thank you!", "Your reviews matters for us!", "success");
+										      }
+										      $("#reviewForm")[0].reset();
+
+										      
+										  }
+
+							});
+
+						})
+					
+
+						
+
+
+					</script>
             
 	<?php  
 

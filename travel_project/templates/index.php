@@ -1,5 +1,5 @@
   <?php
-
+        ob_start();
         include 'user_header.php';
 
     ?>
@@ -81,35 +81,46 @@
       <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js'></script><script  src="..\asset\js_user\script.js"></script>
   </section>
 
+
+<?php
+  
+  //store recently viewed data in cookie and fetch if it is present in cookie
+
+    if(isset($_COOKIE['recentlyViewed'])){
+      ?>
 <section class="recently-viewed">
-
-
-  <h1 class="heading"> 
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;     
-    <span>R</span>
-    <span>e</span>
-    <span>c</span>
-    <span>e</span>
-    <span>n</span>
-    <span>t</span>
-    <span>l</span>
-    <span>y</span>
-    &nbsp; &nbsp;
-    <span>V</span>
-    <span>i</span>
-    <span>e</span>
-    <span>w</span>
-    <span>e</span>
-    <span>d</span>
+  <h1 class="heading text-center">    
+    <span>R</span><span>e</span><span>c</span><span>e</span><span>n</span><span>t</span><span>l</span><span>y</span>
+    &nbsp; &nbsp;<span>V</span><span>i</span><span>e</span><span>w</span><span>e</span><span>d</span>
   </h1>
+  <div class="viewed-box">
+      <?php
+
+      $rcarr=unserialize($_COOKIE['recentlyViewed']);
+      $countRc=count($rcarr);
+      $countSt=$countRc-4;
+      if($countRc>4){
+        $rcarr=array_slice($rcarr, $countSt,$countRc);
+      }
+
+      
+
+      foreach ($rcarr as $key => $value) {
+        
+      $rec=mysqli_query($con,"select * from package where id='$value' ");
+
+             if(mysqli_num_rows($rec)>0){
+               while ($rcPckg=mysqli_fetch_assoc($rec)) {
+
+?>
 
 
   <!-- <h2>Recently Viewed</h2> -->
-  <div class="viewed-box">
+  
     <div class="view-items">
-      <img src="..\asset\img_user\p-6.jpg" href="#"> 
+      <img src="<?php echo SITE_PACKAGE_IMAGE.$rcPckg['packagePhoto'];  ?>" href="#"> 
       <div class="item-details">
-        <h4><i id="map" class="fa fa-map-marker"></i> Eypt </h4>
+        <h4><i id="map" class="fa fa-map-marker"></i>  <?php  echo $rcPckg['packageName']; ?>  </h4>
           <div class="stars">
           <i class="fa fa-star checked"></i>
           <i class="fa fa-star checked"></i>
@@ -117,60 +128,27 @@
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
         </div>
-        <div class="price"> $90.00 <span>$120.00</span> </div>   
+        <div class="price">&#8377; <?php  echo $rcPckg['packagePrice']; ?><span style="font-size: .4rem;color:gray;">/person /night</span></div>   
         
-      </div>
-      <button class="book-btn" href="destination-details.php#booknow">Book Now</button>
+      <button class="book-btn" href="destination-details.php?id=<?php echo $rcPckg['id'];  ?>">Book Now</button>
     </div>
-    <div class="view-items">
-      <img src="..\asset\img_user\p-1.jpg"  href="#" >
-      <div class="item-details">
-        <h4><i id="map" class="fa fa-map-marker"></i> Mumbai </h4>
-          <div class="stars">
-          <i class="fa fa-star checked"></i>
-          <i class="fa fa-star checked"></i>
-          <i class="fa fa-star checked"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <div class="price">$90.00 <span>$120.00</span> </div>   
-      </div>
-      <button class="book-btn" href="destination-details.php#booknow">Book Now</button>
-    </div>
-    <div class="view-items">
-      <img src="..\asset\img_user\p-5.jpg"  href="#" >
-      <div class="item-details">
-        <h4><i id="map" class="fa fa-map-marker"></i> Tokyo </h4>
-       
-        <div class="stars">
-          <i class="fa fa-star checked"></i>
-          <i class="fa fa-star checked"></i>
-          <i class="fa fa-star checked"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <div class="price">$90.00 <span>$120.00</span> </div>   
-      </div>
-      <button class="book-btn" href="destination-details.php#booknow">Book Now</button>
-    </div>
-    <div class="view-items">
-      <img src="..\asset\img_user\p-5.jpg"  href="#" >
-      <div class="item-details">
-        <h4><i id="map" class="fa fa-map-marker"></i> Tokyo </h4>
-       
-        <div class="stars">
-          <i class="fa fa-star checked"></i>
-          <i class="fa fa-star checked"></i>
-          <i class="fa fa-star checked"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <div class="price">$90.00 <span>$120.00</span> </div>   
-      </div>
-      <button class="book-btn" href="destination-details.php#booknow">Book Now</button>
-    </div>
+    
  </div>
+
+
+<?php 
+
+  }
+}
+}
+?>
+</div>
 </section>
+<?php
+}
+
+?>
+
 
 <!-- packages section starts  -->
 <section class="packages" id="packages">
@@ -217,7 +195,7 @@
                       <i class="fa fa-star "></i>
                       <i class="fa fa-star "></i>
                   </div>
-                  <div class="price"> <?php  echo $pckgRow['packagePrice']; ?> </div>
+                  <div class="price">&#8377; <?php  echo $pckgRow['packagePrice']; ?><span style="font-size: .4rem;color:gray;">/person /night</span></div>
                   <div class="view-like">
                     <a class="view-details" href="destination-details.php"><i class="fa fa-eye"></i> View Details</a>
                     <div class="like-wrapper">
@@ -235,7 +213,7 @@
                       </a>
                   </div>
                   </div>
-                 <a href="destination-details.php#book"><button class="book-btn">Book Now</button></a>
+                 <a href="destination-details.php?id=<?php echo $pckgRow['id'];  ?>"><button class="book-btn">Book Now</button></a>
               </div>
           </div>
           <!-- box ends -->
@@ -390,67 +368,44 @@
   <div class="container">
 
     <div class="row">
+      <?php 
+        $reviews=mysqli_query($con,"select reviews.*, userlogin.* from reviews,userlogin where  reviews.userId=userlogin.id ");
+        while($ratings=mysqli_fetch_assoc($reviews)){
+
+          ?>
+
+      <!-- card starts -->
       <div class="col-sm-12">
         <div id="customers-testimonials" class="owl-carousel">     
           <div class="item">
             <div class="shadow-effect">
                 <img class="img-circle" src="..\asset\img_user\pic2.png" alt="">
                 <h4 class="testimonial-name">EMILIANO AQUILANI</h4>
-                <p><i class="fa fa-quote-left"></i>Awesome app for booking camps and adventure at an affordable price</p> 
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="shadow-effect">
-                <img class="img-circle" src="..\asset\img_user\profile-2.jpg" alt="">
-                <h4 class="testimonial-name">EMILIANO AQUILANI</h4>
-                <p><i class="fa fa-quote-left"></i>Awesome app for booking camps and adventure at an affordable price</p> 
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="shadow-effect">
-                <img class="img-circle" src="..\asset\img_user\profile-1.jpg" alt="">
-                <h4 class="testimonial-name">EMILIANO AQUILANI</h4>
-                <p><i class="fa fa-quote-left"></i>Awesome app for booking camps and adventure at an affordable price</p> 
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="shadow-effect">
-                <img class="img-circle" src="..\asset\img_user\pic4.png" alt="">
-                <h4 class="testimonial-name">EMILIANO AQUILANI</h4>
-                <p><i class="fa fa-quote-left"></i>Awesome app for booking camps and adventure at an affordable price</p> 
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="shadow-effect">
-                <img class="img-circle" src="..\asset\img_user\pic1.png" alt="">
-                <h4 class="testimonial-name">EMILIANO AQUILANI</h4>
-                <p><i class="fa fa-quote-left"></i>Awesome app for booking camps and adventure at an affordable price</p> 
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="shadow-effect">
-                <img class="img-circle" src="..\asset\img_user\pic2.png" alt="">
-                <h4 class="testimonial-name">EMILIANO AQUILANI</h4>
-                <p><i class="fa fa-quote-left"></i>Awesome app for booking camps and adventure at an affordable price</p> 
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="shadow-effect">
-                <img class="img-circle" src="..\asset\img_user\pic3.png" alt="">
-                <h4 class="testimonial-name">EMILIANO AQUILANI</h4>
-                <p><i class="fa fa-quote-left"></i>Awesome app for booking camps and adventure at an affordable price</p> 
+                <div>
+                <?php 
+                  $st=intval($ratings['stars']);
+                  for ($i=0; $i < $st; $i++) { 
+                    echo "<i class='fas fa-star' style='color:orange;'></i>";
+                  }
+                  $gray=5-$st;
+                  for($j=0;$j<$gray;$j++){
+                    echo "<i class='fas fa-star' style='color:gray;'></i>";
+                  }
+                ?>
+              </div>
+                <p><i class="fa fa-quote-left"></i><?php echo $ratings['description']; ?></p> 
             </div>
           </div>
 
         </div>
-
       </div>
+      <!-- card ends -->
+      <?php
+       }
+
+      ?>
+
+
     </div>
  </div>
  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
@@ -505,6 +460,7 @@
 <?php
 
 include 'user_footer.php';
+ob_flush();
 
 ?>
 

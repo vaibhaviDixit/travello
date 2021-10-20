@@ -50,8 +50,8 @@ include ('include/functions.inc.php');
     <input type="email" type="email" name="email" id="loginEmail" placeholder="Enter your email" required  />
     <input type="password" type="password" id="loginPass" name="password" placeholder="Enter your password" required  />    
     <div class="text-center mt-3">
-		<button type="submit" id="loginBtn login-btn" class="login-btn"  name="submit" >Sign In</button>
-		</div>
+    <button type="submit" id="loginBtn" class="login-btn"  name="submit" >Sign In</button>
+    </div>
 
     <a href="sign-up.php">Don't have an account? Sign up</a>
     
@@ -118,6 +118,9 @@ firebase.analytics();
 
                      if(msg.status=="success"){
                        $("#msg").html("<div class='alert alert-success' role='alert'>Login Successfully</div>");
+                        $("#loginBtn").attr('disabled',false);
+                        $("#loginBtn").html("Sign In");
+                        $("#loginForm")[0].reset();
                        window.location.href="user_panel/userpanel.php";
                      }
                      
@@ -127,15 +130,18 @@ firebase.analytics();
 
                 
               }else{
-              console.log('email not verified');
+             
+               
               $("#msg").html("<div class='alert alert-success' role='alert'>Email not verified</div>");
+               $("#loginBtn").attr('disabled',false);
+              $("#loginBtn").html("Sign In");
+              $("#loginForm")[0].reset();
+
               }
           }
 
             
-            $("#loginBtn").attr('disabled',false);
-              $("#loginBtn").html("Sign In");
-              $("#loginForm")[0].reset();
+          
 
 
           })

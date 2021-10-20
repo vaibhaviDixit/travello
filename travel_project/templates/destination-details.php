@@ -1,37 +1,13 @@
 
+<?php
 
+ob_start();
+        include 'user_header.php';
 
-<!-- ..\     ---    goes 1 folder up -->
+    ?>
 
+<!-- 
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-    <link rel="stylesheet" href="..\asset\css_user\destination-details-css.css"/>
-    
-    <link rel="stylesheet" href="..\asset\css_user\home-css.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-</head>
-<body>
-    <div class="header">
-    
-    <h1>Travel</h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="home.php"><i class='fa fa-home'></i></a>  
-    </div>
-    <button onclick="go_home()" id="home-btn"  class="home-btn"><i class="material-icons">keyboard_arrow_left</i></button>
-    <script>
-      function go_home(){
-        window.location.href = "home.php";
-      }
-     
-    </script>
     
     <div class="fixed-book">
       <div class="go-book">
@@ -135,9 +111,31 @@
      
        
     </div>
+   -->
+
+   <?php
+
+   if(isset($_GET['id'])){
+     $pckId=getSafeVal($_GET['id']);
+      $packages=mysqli_query($con,"select * from package where id='$pckId' ");
+
+      $rec=unserialize($_COOKIE['recentlyViewed']);
+      $rec[]=$pckId;
+      if($key=array_search($pckId, $rec)!==false){
+        unset($rec['$key']);
+      }
+      setcookie('recentlyViewed',serialize($rec),time()+60*60*24*365);
+   }
+   else{
+    redirect("index.php");
+   }
+
+
+ 
+
+   ?>
   
-  
-    <section class="book" id="book">
+    <section class="book pt-2" id="book">
 
       <h1 class="head">
           <span>b</span>
@@ -152,16 +150,16 @@
   
       <div class="content">
           <div class="booking-form">
-            <form action="">
+            <form action="" method="post">
             <p id="red-msg">Please select valid check-in and check-out date</p>
             <div class="dates">
                 <div class="check">
                     <p><i class="fa fa-calendar"></i> Check-in Date </p>
-                    <input type="date" name="check-in-date">
+                    <input type="date" name="check-in-date" id="check-in-date">
                 </div>
                 <div class="check">
                     <p><i class="fa fa-calendar"></i> Check-out Date </p>
-                    <input type="date" name="check-out-date">
+                    <input type="date" name="check-out-date" id="check-out-date">
                 </div> 
             </div>
             <div class="passengers">
@@ -178,13 +176,57 @@
             <div class="display-total">
                 <p>Total Price:</p>
             </div>
-            <button type="submit" name="book-btn" class="book-btn" id="book-btn">BOOK NOW</button>
+            <button type="button" name="book-btn" class="book-btn" id="book-btn">BOOK NOW</button>
           </form>
           </div>
   
       </div>
   
   </section>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+  
+  $("#book-btn").on("click",function(e){
+
+    checkIn=$("#check-in-date").val();
+    checkOut=$("#check-out-date").val();
+
+    alert(checkOut);
+
+
+    e.preventDefault();
+
+  })
+
+$(document).ready(function(){
+
+  date = new Date();
+
+  y=date.getFullYear();
+  m=date.getMonth()+1;
+  d=date.getDate();
+ 
+  if(d<10){
+    d='0'+d;
+  }
+  if(m<10){
+    m='0'+m;
+  }
+  
+   mindt=y+"-"+m+"-"+d;
+
+  alert(mindt);
+  $("#check-in-date").attr("min",mindt);
+
+})
+  
+
+
+</script>
+  <!-- 
   <section class="packages" id="packages">
 
     <h1 class="head">
@@ -254,7 +296,7 @@
       
     <div class="view-more"><a class="view-more-btn" href="viewmore.php">View More</a></div>
     
-  </section>
+  </section> -->
   <!-- book section ends -->
   <!-- <footer class="footer">-->
 
@@ -262,6 +304,7 @@
   <?php
 
   include 'user_footer.php';
+
 
 ?>
   
