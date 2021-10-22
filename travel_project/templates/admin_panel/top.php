@@ -1,7 +1,10 @@
 <?php
+session_start();
+
    include ('..\include\database.inc.php');
    include ('..\include\functions.inc.php');
    include ('..\include\constants.inc.php');
+
    
    ?>
 <!DOCTYPE html>
@@ -25,16 +28,47 @@
       <link rel="shortcut icon" href="..\..\asset\img_user\icon-48x48.png" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
       
+
+
+      <link href="..\..\asset\css_user\reportbootstrap.min.css" rel="stylesheet">
+    <link href="..\..\asset\css_user\reportbootstrap-responsive.min.css" rel="stylesheet">
+    
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="..\..\asset\css_user\reportfont-awesome.css" rel="stylesheet">
+    
+    <link href="..\..\asset\css_user\reportstyle.css" rel="stylesheet">
+    
+    <link href="..\..\asset\css_user\reports.css" rel="stylesheet">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="..\..\asset\img_user\icon-48x48.png" />
+
+	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
+
+
+   <!-- admin profile -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="..\..\asset\img_user\icon-48x48.png" />
+
+	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+	<link href="..\..\asset\css_admin\app.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
       <link rel="canonical" href="https://demo-basic.adminkit.io/" />
       <title>Admin Panel</title>
-      <link href="..\..\asset\css_admin\app.css" rel="stylesheet">
+      <link href="..\..\asset\css_user\app.css" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
    </head>
    <body>
       <div class="wrapper">
       <nav id="sidebar" class="sidebar js-sidebar">
          <div class="sidebar-content js-simplebar">
-            <a class="sidebar-brand" href="..\home.php"><span class="align-middle">Home</span></a>
+            <a class="sidebar-brand" href="..\index.php"><span class="align-middle">Home</span></a>
             <ul class="sidebar-nav">
                <li class="sidebar-header">
                   Pages
@@ -46,7 +80,9 @@
                </li>
                <li class="sidebar-item">
                   <a class="sidebar-link" href="login.php">
-                  <i class="align-middle" data-feather="user"></i> <span class="align-middle">Login</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+							  </svg> <span class="align-middle">Profile</span>
                   </a>
                </li>
                <li class="sidebar-item" >
@@ -61,6 +97,7 @@
                      <span class="align-middle">Reports</span>
                   </a>
                </li>
+               <br/>
                <li class="sidebar-header">
                   Packages
                </li>
@@ -74,6 +111,22 @@
                   <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">List Packages</span>
                   </a>
                </li>
+
+
+               <li class="sidebar-header">
+                  Bookings
+               </li>
+               <li class="sidebar-item ">
+                  <a class="sidebar-link" href="AddBooking.php">
+                  <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Bookings</span>
+                  </a>
+               </li>
+               <li class="sidebar-item ">
+                  <a class="sidebar-link" href="ListBooking.php">
+                  <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">List Bookings</span>
+                  </a>
+               </li>
+
                <li class="sidebar-header">
                   Category
                </li>
@@ -87,6 +140,16 @@
                   <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Catogery List</span>
                   </a>
                </li>
+   
+               <!-- <li class="sidebar-header">
+                  Book
+               </li>
+               <li class="sidebar-item ">
+                  <a class="sidebar-link" href="book.php">
+                  <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Book</span>
+                  </a>
+               </li> -->
+               <br/><br/>
             </ul>
          </div>
       </nav>

@@ -1,141 +1,129 @@
 
-
-
-
-
-
-
-
-<!-- adminprofile and adminlogin this  tables are not different there should only one table of admin 
-when admin log in its email and password only stored in table other fields are empty
-when admin update profile its name bio others will be stored in same table with respect to logged in admin email 
-here u have not separated header footer why???
-leave all development just organise admin panel and share me code i will do other 
-
- -->
-
-
-
-
-
-
-
 <?php
 
-//include ('top.php');
-
- include ('..\include\database.inc.php');
- include ('..\include\functions.inc.php');
- include ('..\include\constants.inc.php');
+include 'top.php';
+session_start();
 
 
-	$msg="";
-	$username="";
-	$name="";
-	$email="";
-	$password="";
-	$bio="";
-	$dob="";
-	$phone="";
-	$id="";
-	$image_status='required';
+$favArray=getFavourites();
+
+if(!isset($_SESSION['CURRENT_USER'])){
+	redirect("../login.php");
+}
 
 
-	if(isset($_GET['id']) && $_GET['id']>0){
-		$id=getSafeVal($_GET['id']);
-
-		$row=mysqli_fetch_assoc( mysqli_query($con,"select * from adminlogin where id='$id' ") );
 
 
-		$username=$row['username'];
-		$name=$row['name'];
-		$email=$row['email'];
-		$password=$row['password'];
-		$bio=$row['bio'];
-		$dob=$row['dob'];
-		$phone=$row['phone'];
-		
+   $msg="";
+   $username="";
+   $name="";
+//    $email="";
+   $password="";
+   $bio="";
+   $dob="";
+   $phone="";
+   $id="";
+   $image_status='required';
+   $result = mysqli_query($con,"SELECT email FROM adminlogin");
+   $row=mysqli_fetch_assoc($result);
+   $email=$row['email'];
 
-		$image_status="";
+   $oldpass = mysqli_query($con,"SELECT password FROM adminlogin");
+   $rowo=mysqli_fetch_assoc($oldpass);
+   $currentpass=$rowo['password'];
 
-	}
+   if(isset($_GET['id']) && $_GET['id']>0){
+	   $id=getSafeVal($_GET['id']);
+
+	   $row=mysqli_fetch_assoc( mysqli_query($con,"select * from adminprofile where id='$id' ") );
+
+	   $username=$row['username'];
+	   $name=$row['name'];
+	   $email=$row['email'];
+	   $password=$row['password'];
+	   $bio=$row['bio'];
+	   $dob=$row['dob'];
+	   $phone=$row['phone'];
+	   
+
+	   $image_status="";
+
+   }
 
 
 if (isset($_POST['submit'])) {
-	$username=getSafeVal($_POST['username']);
-	$name=getSafeVal($_POST['name']);
-	$email=getSafeVal($_POST['email']);
- 	$password=getSafeVal($_POST['password']);
-	$bio=getSafeVal($_POST['bio']);
-	$dob=getSafeVal($_POST['dob']);
- 	$phone=getSafeVal($_POST['phone']);
+   $username=getSafeVal($_POST['username']);
+   $name=getSafeVal($_POST['name']);
+   $email=getSafeVal($_POST['email']);
+   $password=getSafeVal($_POST['password']);
+   $bio=getSafeVal($_POST['bio']);
+   $dob=getSafeVal($_POST['dob']);
+   $phone=getSafeVal($_POST['phone']);
 
 
-        $type=$_FILES['photo']['type'];
-		//if id is not set then insert new package
-		if($id==""){
+	   $type=$_FILES['packagePhoto']['type'];
+	   //if id is not set then insert new package
+	   if($id==""){
 
-			//add validations on image
-			if($type!="image/jpeg" && $type!="image/png" && $type!="image/jpg"){
-				$msg="Invalid image format";
-			}
-			else{
+		   //add validations on image
+		   if($type!="image/jpeg" && $type!="image/png" && $type!="image/jpg"){
+			   $msg="Invalid image format";
+		   }
+		   else{
 
-				$photo=rand(111111111,999999999).'_'.$_FILES['photo']['name'];
-				move_uploaded_file($_FILES['photo']['tmp_name'],SERVER_PACKAGE_IMAGE.$photo);
+			   $packagePhoto=rand(111111111,999999999).'_'.$_FILES['packagePhoto']['name'];
+			   move_uploaded_file($_FILES['packagePhoto']['tmp_name'],SERVER_PACKAGE_IMAGE.$packagePhoto);
 
-			      mysqli_query($con,"INSERT INTO 'adminprofile'('photo', 'username', 'name', 'email', 'password', 'bio', 'dob', 'phone') VALUES ('$photo','$username','$name','$email','$password','$bio','$dob','$phone')");
-			  	
-			     
-				redirect('login.php');
-
-			}
-		}
-		
-		else{
-			//if id is set then update exsting package
-
-			$image_condition="";
-			if($_FILES['photo']['name']!=""){
-
-				//add validations on image
-				if($type!='image/jpeg' && $type!='image/png' && $type!='image/jpg'){
-						$msg="Invalid image format";
-				}
-				else{
-					$photo=rand(111111111,999999999).'_'.$_FILES['photo']['name'];
-					move_uploaded_file($_FILES['photo']['tmp_name'],SERVER_PACKAGE_IMAGE.$photo);
-
-
-					$image_condition=", photo='$photo' ";
-		
-				}
+				 mysqli_query($con,"INSERT INTO `adminprofile`(`packagePhoto`,`username`, `name`, `email`, `password`, `bio`, `dob`, `phone` ) VALUES ('$packagePhoto','$username','$name','$email','$currentpass','$bio','$dob','$phone')");
+				 
 				
+			   redirect('login.php');
 
-			}
-			if($msg==""){
-				mysqli_query($con,"update adminprofile set username='$username',name='$name',email='$email',password='$password',bio='$bio',dob='$dob',phone='$phone' $image_condition where id='$id'  ");
-				redirect('login.php');
-			}
-			
-		}
-		
-		
-	}
+		   }
+	   }
+	   
+	   else{
+		   //if id is set then update exsting package
+
+		   $image_condition="";
+		   if($_FILES['packagePhoto']['name']!=""){
+
+			   //add validations on image
+			   if($type!='image/jpeg' && $type!='image/png' && $type!='image/jpg'){
+					   $msg="Invalid image format";
+			   }
+			   else{
+				   $packagePhoto=rand(111111111,999999999).'_'.$_FILES['packagePhoto']['name'];
+				   move_uploaded_file($_FILES['packagePhoto']['tmp_name'],SERVER_PACKAGE_IMAGE.$packagePhoto);
 
 
+				   $image_condition=", packagePhoto='$packagePhoto' ";
+	   
+			   }
+			   
+
+		   }
+		   if($msg==""){
+			   mysqli_query($con,"update adminprofile set username='$username',name='$name',email='$email',password='$currentpass',bio='$bio',dob='$dob',phone='$phone' $image_condition where id='$id'  ");
+			   redirect('login.php');
+		   }
+		   
+	   }
+	   
+	   
+   }
 
 ?>
 
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="AdminKit">
 	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
@@ -153,6 +141,7 @@ if (isset($_POST['submit'])) {
 	<link href="..\..\asset\css_admin\app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
@@ -174,7 +163,6 @@ if (isset($_POST['submit'])) {
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="login.php">
-						
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
 								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
 							  </svg> <span class="align-middle">Profile</span>
@@ -193,10 +181,9 @@ if (isset($_POST['submit'])) {
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart" viewBox="0 0 16 16">
   <path d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z"/>
 </svg>
-            <span class="align-middle">Reports</span>
+              <!--<i class="align-middle" data-feather="book"></i> --> <span class="align-middle">Reports</span>
             </a>
 					</li>
-
 					<li class="sidebar-header">
                   Packages
                </li>
@@ -210,9 +197,7 @@ if (isset($_POST['submit'])) {
                   <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">List Packages</span>
                   </a>
                </li>
-
-
-					<li class="sidebar-header">
+               <li class="sidebar-header">
                   Category
                </li>
                <li class="sidebar-item">
@@ -239,7 +224,7 @@ if (isset($_POST['submit'])) {
           <i class="hamburger align-self-center"></i>
         </a>
 
-			</nav> 
+			</nav> -->
            
 <!--     PROFILE      -->
 
@@ -264,27 +249,68 @@ if (isset($_POST['submit'])) {
             <div class="tab-pane fade active show" id="account-general">
 
               <div class="card-body media align-items-center">
-                <img src="..\..\asset\img_user\avatar.jpg" alt="" class="d-block ui-w-80">
+				  
+
+			  <p><img id="output" width="150" /></p>
+
+                <!-- <img src="..\..\asset\img_user\avatar.jpg" alt="" class="d-block ui-w-80"> -->
                 <div class="media-body ml-4">
+
 				<div class="col-sm-4 mb-3">
 
 
+								    	<label for="packagePhoto" class="form-label">Package Photo
+								    		<?php if($image_status=='required')
+								     		{
+								     		?> 
+								     		<span class="redStar">*</span>
+								     		<?php
+								     		}
+								     		?>
+										</label>
+								    	<input class="form-control form-control-sm" type="file" id="packagePhoto" name="packagePhoto"  <?php echo $image_status; ?>>
 
-<input class="form-control form-control-sm" type="file" id="photo" name="photo"  <?php echo $image_status; ?>>
 
+								 </div>
+				<!-- <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+ <p><img id="output" width="100" /></p> 
 
-</div> &nbsp;
-                  
+<script>
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+</script> -->
+                    <input type="file" class="account-settings-fileinput">
+                  </label> &nbsp;
+                  <!-- <button type="reset" class="btn btn-default md-btn-flat">Reset</button> -->
 
                   <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
                 </div>
               </div>
+
+
+
+			  <!-- <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+<p><img id="output" width="200" /></p>
+
+<script>
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+</script> -->
+
+
+
               <hr class="border-light m-0">
 
               <div class="card-body">
                 <div class="form-group">
                   <label class="form-label">Username</label>
-                  <input type="text" class="form-control" id="username" required name="username" value="<?php echo $username; ?>">
+				  <input type="text" class="form-control" id="username" required name="username" value="<?php echo $username; ?>">
                 </div>
                 <div class="form-group">
                   <label class="form-label">Name</label>
@@ -310,17 +336,19 @@ if (isset($_POST['submit'])) {
 
                 <div class="form-group">
                   <label class="form-label">Current password</label>
-                  <input type="password" placeholder="Enter current password" class="form-control">
+                  <!-- <input type="text" placeholder="Enter current password" class="form-control"> -->
+				  <input type="text" class="form-control" id="password" required name="password" value="<?php echo $currentpass; ?>">
                 </div>
 
                 <div class="form-group">
                   <label class="form-label">New password</label>
-                  <input type="password" placeholder="Enter new password" class="form-control">
+				  <input type="text" placeholder="Enter current password" class="form-control">
+                  <!-- <input type="password" class="form-control" id="password" required name="password" value="<?php echo $username; ?>"> -->
                 </div>
 
                 <div class="form-group">
                   <label class="form-label">Repeat new password</label>
-                  <input type="password" placeholder="Repeate new password" name="password" class="form-control">
+                  <input type="password" required name="confirmpassword" placeholder="Repeate new password" class="form-control">
                 </div>
 
               </div>
@@ -334,8 +362,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="form-group">
                   <label class="form-label">Birthday</label>
-                  <input type="text" class="form-control" id="dob" name="dob" value="<?php echo $dob; ?>">
-
+                  <input type="text" class="form-control" id="dob" required name="dob" value="<?php echo $dob; ?>">
                 </div>
                 
 
@@ -347,42 +374,13 @@ if (isset($_POST['submit'])) {
                 <h6 class="mb-4">Contacts</h6>
                 <div class="form-group">
                   <label class="form-label">Phone</label>
-                  <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $phone; ?>">
+                  <input type="text" class="form-control" id="phone" required name="phone" value="<?php echo $phone; ?>">
                 </div>
-                <!-- <div class="form-group">
-                  <label class="form-label">Website</label>
-                  <input type="text" class="form-control" value="">
-                </div> -->
 
               </div>
       
             </div>
-            <!-- <div class="tab-pane fade" id="account-social-links">
-              <div class="card-body pb-2">
-
-                <div class="form-group">
-                  <label class="form-label">Twitter</label>
-                  <input type="text" class="form-control" placeholder="https://twitter.com/user">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Facebook</label>
-                  <input type="text" class="form-control" placeholder="https://www.facebook.com/user">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Google+</label>
-                  <input type="text" class="form-control" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">LinkedIn</label>
-                  <input type="text" class="form-control" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Instagram</label>
-                  <input type="text" class="form-control" placeholder="https://www.instagram.com/user">
-                </div>
-
-              </div>
-            </div> -->
+            
            
               </div>
             </div>
@@ -391,7 +389,7 @@ if (isset($_POST['submit'])) {
       </div>
   
     <div class="text-right mt-3">
-	<input type="submit" name="submit" class="btn btn-success" value="Submit">
+	<input type="submit" name="submit" class="btn btn-success" value="Submit">&nbsp;
       <button type="button" class="btn btn-default">Cancel</button>
     </div>
 
@@ -517,14 +515,227 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 
 <script src="..\..\asset\js_admin\app.js"></script>
 
-
-
-
-	<?php
-
-				include 'footer.php';
-
-			?>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
+			var gradient = ctx.createLinearGradient(0, 0, 0, 225);
+			gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
+			gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
+			// Line chart
+			new Chart(document.getElementById("chartjs-dashboard-line"), {
+				type: "line",
+				data: {
+					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+					datasets: [{
+						label: "Sales ($)",
+						fill: true,
+						backgroundColor: gradient,
+						borderColor: window.theme.primary,
+						data: [
+							2115,
+							1562,
+							1584,
+							1892,
+							1587,
+							1923,
+							2566,
+							2448,
+							2805,
+							3438,
+							2917,
+							3327
+						]
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					tooltips: {
+						intersect: false
+					},
+					hover: {
+						intersect: true
+					},
+					plugins: {
+						filler: {
+							propagate: false
+						}
+					},
+					scales: {
+						xAxes: [{
+							reverse: true,
+							gridLines: {
+								color: "rgba(0,0,0,0.0)"
+							}
+						}],
+						yAxes: [{
+							ticks: {
+								stepSize: 1000
+							},
+							display: true,
+							borderDash: [3, 3],
+							gridLines: {
+								color: "rgba(0,0,0,0.0)"
+							}
+						}]
+					}
+				}
+			});
+		});
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			// Pie chart
+			new Chart(document.getElementById("chartjs-dashboard-pie"), {
+				type: "pie",
+				data: {
+					labels: ["Chrome", "Firefox", "IE"],
+					datasets: [{
+						data: [4306, 3801, 1689],
+						backgroundColor: [
+							window.theme.primary,
+							window.theme.warning,
+							window.theme.danger
+						],
+						borderWidth: 5
+					}]
+				},
+				options: {
+					responsive: !window.MSInputMethodContext,
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					cutoutPercentage: 75
+				}
+			});
+		});
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			// Bar chart
+			new Chart(document.getElementById("chartjs-dashboard-bar"), {
+				type: "bar",
+				data: {
+					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+					datasets: [{
+						label: "This year",
+						backgroundColor: window.theme.primary,
+						borderColor: window.theme.primary,
+						hoverBackgroundColor: window.theme.primary,
+						hoverBorderColor: window.theme.primary,
+						data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
+						barPercentage: .75,
+						categoryPercentage: .5
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					scales: {
+						yAxes: [{
+							gridLines: {
+								display: false
+							},
+							stacked: false,
+							ticks: {
+								stepSize: 20
+							}
+						}],
+						xAxes: [{
+							stacked: false,
+							gridLines: {
+								color: "transparent"
+							}
+						}]
+					}
+				}
+			});
+		});
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var markers = [{
+					coords: [31.230391, 121.473701],
+					name: "Shanghai"
+				},
+				{
+					coords: [28.704060, 77.102493],
+					name: "Delhi"
+				},
+				{
+					coords: [6.524379, 3.379206],
+					name: "Lagos"
+				},
+				{
+					coords: [35.689487, 139.691711],
+					name: "Tokyo"
+				},
+				{
+					coords: [23.129110, 113.264381],
+					name: "Guangzhou"
+				},
+				{
+					coords: [40.7127837, -74.0059413],
+					name: "New York"
+				},
+				{
+					coords: [34.052235, -118.243683],
+					name: "Los Angeles"
+				},
+				{
+					coords: [41.878113, -87.629799],
+					name: "Chicago"
+				},
+				{
+					coords: [51.507351, -0.127758],
+					name: "London"
+				},
+				{
+					coords: [40.416775, -3.703790],
+					name: "Madrid "
+				}
+			];
+			var map = new jsVectorMap({
+				map: "world",
+				selector: "#world_map",
+				zoomButtons: true,
+				markers: markers,
+				markerStyle: {
+					initial: {
+						r: 9,
+						strokeWidth: 7,
+						stokeOpacity: .4,
+						fill: window.theme.primary
+					},
+					hover: {
+						fill: window.theme.primary,
+						stroke: window.theme.primary
+					}
+				},
+				zoomOnScroll: false
+			});
+			window.addEventListener("resize", () => {
+				map.updateSize();
+			});
+		});
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
+			var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
+			document.getElementById("datetimepicker-dashboard").flatpickr({
+				inline: true,
+				prevArrow: "<span title=\"Previous month\">&laquo;</span>",
+				nextArrow: "<span title=\"Next month\">&raquo;</span>",
+				defaultDate: defaultDate
+			});
+		});
+	</script>
 
 
 

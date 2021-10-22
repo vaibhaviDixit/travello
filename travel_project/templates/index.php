@@ -89,19 +89,21 @@
     if(isset($_COOKIE['recentlyViewed'])){
       ?>
 <section class="recently-viewed">
-  <h1 class="heading text-center">    
+  <br>
+  <div class="heading text-center">    
     <span>R</span><span>e</span><span>c</span><span>e</span><span>n</span><span>t</span><span>l</span><span>y</span>
     &nbsp; &nbsp;<span>V</span><span>i</span><span>e</span><span>w</span><span>e</span><span>d</span>
-  </h1>
+  </div>
   <div class="viewed-box">
       <?php
 
-      $rcarr=unserialize($_COOKIE['recentlyViewed']);
+       $rcarr=unserialize($_COOKIE['recentlyViewed']);
       $countRc=count($rcarr);
       $countSt=$countRc-4;
       if($countRc>4){
         $rcarr=array_slice($rcarr, $countSt,$countRc);
       }
+     
 
       
 
@@ -129,8 +131,8 @@
           <i class="fa fa-star"></i>
         </div>
         <div class="price">&#8377; <?php  echo $rcPckg['packagePrice']; ?><span style="font-size: .4rem;color:gray;">/person /night</span></div>   
-        
-      <button class="book-btn" href="destination-details.php?id=<?php echo $rcPckg['id'];  ?>">Book Now</button>
+        <div style="margin-top: 1rem;"> <a class="book-btn" href="destination-details.php?id=<?php echo $rcPckg['id'];  ?>">Book Now</a> </div>
+      
     </div>
     
  </div>
@@ -254,7 +256,7 @@
 <!-- packages section ends -->
 
 <section class="services" id="services">
-  <h1 class="heading">
+  <div class="heading">
       <span>s</span>
       <span>e</span>
       <span>r</span>
@@ -263,7 +265,7 @@
       <span>c</span>
       <span>e</span>
       <span>s</span>
-  </h1>
+  </div>
 
   <div class="box-container">
       <div class="box">
@@ -307,7 +309,7 @@
 
 <section class="offers" id="offers">
 
-  <h1 class="heading">
+  <div class="heading">
       <span>E</span>
       <span>x</span>
       <span>c</span>
@@ -323,7 +325,7 @@
       <span>a</span>
       <span>l</span>
       <span>s</span>
-  </h1>
+  </div>
   <p id="o">Checkout for the best discounts and deals here</p>
   <div class="o-card">
     <div class="offer">
@@ -351,7 +353,7 @@
 <!-- gallery section ends -->
 <section class="review" id="review">
 
-  <h1 class="heading">
+  <div class="heading">
       <span>T</span>
       <span>E</span>
       <span>S</span>
@@ -364,19 +366,20 @@
       <span>A</span>
       <span>L</span>
       <span>S</span>
-  </h1>
+  </div>
   <div class="container">
 
     <div class="row">
       <?php 
-        $reviews=mysqli_query($con,"select reviews.*, userlogin.* from reviews,userlogin where  reviews.userId=userlogin.id ");
-        while($ratings=mysqli_fetch_assoc($reviews)){
+        $reviews=mysqli_query($con,"select reviews.*, userlogin.* from reviews,userlogin ");
 
+        while($ratings=mysqli_fetch_assoc($reviews)){
+              
           ?>
 
       <!-- card starts -->
       <div class="col-sm-12">
-        <div id="customers-testimonials" class="owl-carousel">     
+        <div  id="customers-testimonials" class="owl-carousel">     
           <div class="item">
             <div class="shadow-effect">
                 <img class="img-circle" src="..\asset\img_user\pic2.png" alt="">
@@ -400,6 +403,7 @@
         </div>
       </div>
       <!-- card ends -->
+
       <?php
        }
 
@@ -414,7 +418,7 @@
   </section>
   <section class="about" id="about">
 
-    <h1 class="heading">
+    <div class="heading">
         <span>A</span>
         <span>b</span>
         <span>o</span>
@@ -423,7 +427,7 @@
         <span class="space"></span>
         <span>u</span>
         <span>s</span>
-    </h1>
+    </div>
     <p class="about-us">
       From 2012 to 2017, Our leadership team worked with many corporates, colleges, schools and institutions to organise adventure group trips and in these 6 years we understood HOTELS are old and unconventional and people are looking for more experimental places to spend their vacations but hard to discover.
     <br/><br/>After intensive ground work for more than 2 years, we discovered a lot of Camping Sites, Igloos, Homestays, Cottages exist at most uncrowded and virgin destinations , which can't be discovered if you have never been there. We thought to make these stays available by making it more organised keeping in mind amenities, safety and cleanliness.</p>

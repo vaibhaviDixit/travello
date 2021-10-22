@@ -118,6 +118,8 @@ ob_start();
    if(isset($_GET['id'])){
      $pckId=getSafeVal($_GET['id']);
       $packages=mysqli_query($con,"select * from package where id='$pckId' ");
+      $packagesRow=mysqli_fetch_assoc($packages);
+      $price=$packagesRow['packagePrice'];
 
       $rec=unserialize($_COOKIE['recentlyViewed']);
       $rec[]=$pckId;
@@ -125,6 +127,7 @@ ob_start();
         unset($rec['$key']);
       }
       setcookie('recentlyViewed',serialize($rec),time()+60*60*24*365);
+
    }
    else{
     redirect("index.php");
@@ -150,33 +153,40 @@ ob_start();
   
       <div class="content">
           <div class="booking-form">
-            <form action="" method="post">
+
+            <form action="booking.php" method="post">
+
             <p id="red-msg">Please select valid check-in and check-out date</p>
             <div class="dates">
                 <div class="check">
                     <p><i class="fa fa-calendar"></i> Check-in Date </p>
-                    <input type="date" name="check-in-date" id="check-in-date">
+                    <input type="date" name="check-in-date" id="check-in-date" required>
                 </div>
                 <div class="check">
                     <p><i class="fa fa-calendar"></i> Check-out Date </p>
-                    <input type="date" name="check-out-date" id="check-out-date">
+                    <input type="date" name="check-out-date" id="check-out-date" required>
                 </div> 
             </div>
             <div class="passengers">
                 <div class="passenger">
                     <h3 id="p-ac">Adults</h3><p>(18 Years and Above 18Years)</p>
-                    <input type="number" id="adults" name="adults" value="1" min="1">
+                    <input type="number" id="adults" name="adults" value="1" min="1" required>
                 </div>
                 <div class="passenger">
                     <h3 id="p-ac">Children </h3><p>(Below 18Years)</p>
-                    <input type="number" id="children" name="children" value="0" min="0">
+                    <input type="number" id="children" name="children" value="0" min="0" required>
                 </div>
       
             </div>
             <div class="display-total">
-                <p>Total Price:</p>
+                <p>Sub Total: <span id="bookingPrice"> </span></p>
+                <input type="text" name="total" id="total" hidden value="">
+                <input type="text" name="days" id="days" hidden value="">
+                <input type="text" name="adultPrice" id="adultPrice" hidden value="">
+                <input type="text" name="childrenPrice" id="childrenPrice" hidden value="">
+                <input type="text" name="package" id="package" hidden value="<?php echo $pckId; ?>">
             </div>
-            <button type="button" name="book-btn" class="book-btn" id="book-btn">BOOK NOW</button>
+            <button type="submit" name="submit" class="book-btn" id="book-btn">BOOK NOW</button>
           </form>
           </div>
   
@@ -188,19 +198,76 @@ ob_start();
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
-  
-  $("#book-btn").on("click",function(e){
 
+    $("#check-in-date").on("change",function(){
+     bookingData();
+     })
+    $("#check-out-date").on("change",function(){
+      bookingData();
+    })
+    
+    $("#adults").on("change",function(){
+     bookingData();
+     })
+    $("#children").on("change",function(){
+      bookingData();
+    })
+
+  
+  function bookingData(){
     checkIn=$("#check-in-date").val();
     checkOut=$("#check-out-date").val();
+    adults=$("#adults").val();
+    children=$("#children").val();
 
-    alert(checkOut);
+
+        var date1 = new Date(checkIn);
+        var date2 = new Date(checkOut);
+  
+      // calculate the time difference of two dates
+      var Difference_In_Time = date2.getTime() - date1.getTime();
+      // calculate the no. of days between two dates
+      var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
 
-    e.preventDefault();
+     chPrice=0;
+      packagePrice="<?php echo $price; ?>";
+      if(children<1){
+        adultPrice=parseInt(packagePrice)*parseInt(Difference_In_Days)*parseInt(adults);
+        Total=adultPrice;
+      }
+      else{
+        chPrice=parseInt(children)*parseInt(Difference_In_Days)*(parseInt(packagePrice)/2);
+        adultPrice=parseInt(packagePrice)*parseInt(Difference_In_Days)*parseInt(adults);
+        Total=adultPrice+chPrice;
+      }
 
-  })
+      $("#bookingPrice").html(Total);
+      $("#total").val(Total);
+      $("#adultPrice").val(adultPrice);
+      $("#childrenPrice").val(chPrice);
+      $("#days").val(Difference_In_Days);
+         
 
+  
+  }
+
+
+  // $("#book-btn").on("click",function(e){
+
+  //   console.log("Checkin: "+checkIn);
+  //   console.log("checkout: "+checkOut);
+  //    console.log("adults: "+adults);
+  //     console.log("children: "+children);
+  //     console.log("total: "+Total);
+
+
+
+  //   e.preventDefault();
+
+  // })
+
+//disable past dates
 $(document).ready(function(){
 
   date = new Date();
@@ -217,9 +284,8 @@ $(document).ready(function(){
   }
   
    mindt=y+"-"+m+"-"+d;
-
-  alert(mindt);
   $("#check-in-date").attr("min",mindt);
+  $("#check-out-date").attr("min",mindt);
 
 })
   
@@ -309,9 +375,3 @@ $(document).ready(function(){
 ?>
   
 
-
-
-
-
-            </body>
-            </html>

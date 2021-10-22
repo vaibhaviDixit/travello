@@ -1,114 +1,243 @@
 
 <?php
 
+include 'top.php';
+
+
+$msg="";
+$placename="";
+$placelocation="";
+$placedesc="";
+$thingstoknow="";
+$packagecategory="";
+$id="";
+$one_status='required';
+$two_status='required';
+$three_status='required';
+$four_status='required';
+$one_condition='';
+$two_condition='';
+$three_condition='';
+$four_condition='';
+$link="";
+
+
+
+
+if (isset($_POST['submit'])) {
+	$placename=mysqli_real_escape_string( $con,htmlspecialchars( $_POST['packageName'] ) );
+	$location=mysqli_real_escape_string( $con,htmlspecialchars( $_POST['placelocation'] ) );
+	$placedesc=mysqli_real_escape_string( $con,htmlspecialchars( $_POST['placedesc'] ) );
+	$link=mysqli_real_escape_string($con, htmlspecialchars( $_POST['link'] ) );
+
+
+	//photo 1
+	$type=$_FILES['photoone']['type'];
+		//if id is not set then insert new package
+		if($id==""){
+
+			//add validations on image
+			if($type!="image/jpeg" && $type!="image/png" && $type!="image/jpg"){
+				$msg="Invalid image format";
+			}
+			else{
+
+				$photoone=rand(111111111,999999999).'_'.$_FILES['photoone']['name'];
+				move_uploaded_file($_FILES['photoone']['tmp_name'],SERVER_PACKAGE_IMAGE.$photoone);
+
+			    $one_condition=", photoone='$photoone' ";
+
+			}
+		}
+		
+		else{
+			//if id is set then update exsting package
+
+			$one_condition="";
+			if($_FILES['photoone']['name']!=""){
+
+				//add validations on image
+				if($type!='image/jpeg' && $type!='image/png' && $type!='image/jpg'){
+						$msg="Invalid image format";
+				}
+				else{
+					$photoone=rand(111111111,999999999).'_'.$_FILES['photoone']['name'];
+					move_uploaded_file($_FILES['photoone']['tmp_name'],SERVER_PACKAGE_IMAGE.$phototwo);
+
+
+					$one_condition=", photoone='$photoone' ";
+				}
+			}
+		}
+
+
+		// photo 2
+		$type=$_FILES['phototwo']['type'];
+		//if id is not set then insert new package
+		if($id==""){
+
+			//add validations on image
+			if($type!="image/jpeg" && $type!="image/png" && $type!="image/jpg"){
+				$msg="Invalid image format";
+			}
+			else{
+
+				$phototwo=rand(111111111,999999999).'_'.$_FILES['phototwo']['name'];
+				move_uploaded_file($_FILES['phototwo']['tmp_name'],SERVER_PACKAGE_IMAGE.$phototwo);
+
+			    $two_condition=", phototwo='$phototwo' ";
+
+
+			}
+		}
+		
+		else{
+			//if id is set then update exsting package
+
+			$two_condition="";
+			if($_FILES['phototwo']['name']!=""){
+
+				//add validations on image
+				if($type!='image/jpeg' && $type!='image/png' && $type!='image/jpg'){
+						$msg="Invalid image format";
+				}
+				else{
+					$phototwo=rand(111111111,999999999).'_'.$_FILES['phototwo']['name'];
+					move_uploaded_file($_FILES['phototwo']['tmp_name'],SERVER_PACKAGE_IMAGE.$phototwo);
+
+
+					$two_condition=", phototwo='$phototwo' ";
+				}
+			}
+		}
+
+
+
+
+		// photo 3
+		$type=$_FILES['photothree']['type'];
+		//if id is not set then insert new package
+		if($id==""){
+
+			//add validations on image
+			if($type!="image/jpeg" && $type!="image/png" && $type!="image/jpg"){
+				$msg="Invalid image format";
+			}
+			else{
+
+				$photothree=rand(111111111,999999999).'_'.$_FILES['photothree']['name'];
+				move_uploaded_file($_FILES['photothree']['tmp_name'],SERVER_PACKAGE_IMAGE.$photothree);
+
+			    $htree_condition=", photothree='$photothree' ";
+
+			}
+		}
+		
+		else{
+			//if id is set then update exsting package
+
+			$three_condition="";
+			if($_FILES['photothree']['name']!=""){
+
+				//add validations on image
+				if($type!='image/jpeg' && $type!='image/png' && $type!='image/jpg'){
+						$msg="Invalid image format";
+				}
+				else{
+					$photothree=rand(111111111,999999999).'_'.$_FILES['photothree']['name'];
+					move_uploaded_file($_FILES['photothree']['tmp_name'],SERVER_PACKAGE_IMAGE.$phototwo);
+
+
+					$three_condition=", photothree='$photothree' ";
+				}
+			}
+		}
+
+
+
+
+		// photo 4
+		$type=$_FILES['photofour']['type'];
+		//if id is not set then insert new package
+		if($id==""){
+
+			//add validations on image
+			if($type!="image/jpeg" && $type!="image/png" && $type!="image/jpg"){
+				$msg="Invalid image format";
+			}
+			else{
+
+				$photofour=rand(111111111,999999999).'_'.$_FILES['photofour']['name'];
+				move_uploaded_file($_FILES['photofour']['tmp_name'],SERVER_PACKAGE_IMAGE.$phototwo);
+
+			$four_condition=", photofour='$photofour' ";
+
+			}
+		}
+		
+		else{
+			//if id is set then update exsting package
+
+			$four_condition="";
+			if($_FILES['photofour']['name']!=""){
+
+				//add validations on image
+				if($type!='image/jpeg' && $type!='image/png' && $type!='image/jpg'){
+						$msg="Invalid image format";
+				}
+				else{
+					$photofour=rand(111111111,999999999).'_'.$_FILES['photofour']['name'];
+					move_uploaded_file($_FILES['photofour']['tmp_name'],SERVER_PACKAGE_IMAGE.$phototwo);
+
+
+					$four_condition=", photofour='$photofour' ";
+				}
+			}
+		}
+
+
+
+
+	if($id==""){
+		//here id is blank means admin wants to add new category
+		$sql="select * from viewmore where packageId='$placename' ";
+
+	}
+	else{
+		//here id is set means admin wants to edit existing category
+		$sql="select * from viewmore where packageId='$placename' and id!='$id' ";
+
+	}
+
+
+	if(mysqli_num_rows(mysqli_query($con,$sql)) >0 ){
+
+		$msg="Category already exists";
+
+	}
+	else{
+		//if id is not set then insert new category 
+		if($id==""){
+			mysqli_query($con,"INSERT INTO `viewmore`(`packageId`, `location`, `description`, `link`,`photoone`, `phototwo`, `photthree`, `photofour`) VALUES ('$placename','$location','$placedesc','$link','$photoone','$phototwo','$photothree','$photofour')");
+		
+
+		}
+		else{
+			//if id is set then update exsting category
+			mysqli_query($con,"update viewmore set packageId='$placename', location='$location', description='$placedesc', ,link='$link' $one_condition $two_condition $three_condition $four_condition  where id='$id'  ");
+		}
+		// redirect('EditViewMore.php');
+		
+	}	
+}
+
+
+
+
+
+
 ?>
 
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-	<meta name="author" content="AdminKit">
-	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-
-
-    <link href="..\..\asset\css_user\reportbootstrap.min.css" rel="stylesheet">
-    <link href="..\..\asset\css_user\reportbootstrap-responsive.min.css" rel="stylesheet">
-
-
-
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="shortcut icon" href="..\..\asset\img_user\icon-48x48.png" />
-
-	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
-
-	<title>Admin Panel</title>
-
-	<link href="..\..\asset\css_admin\app.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-</head>
-
-<body>
-	<div class="wrapper">
-		<nav id="sidebar" class="sidebar js-sidebar">
-			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="..\home.php">
-          <span class="align-middle">Home</span>
-        </a>
-
-				<ul class="sidebar-nav">
-					<li class="sidebar-header">
-						Pages
-					</li>
-
-					<li class="sidebar-item ">
-						<a class="sidebar-link" href="index.php">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="login.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Login</span>
-            </a>
-					</li>
-
-					<!-- <li class="sidebar-item">
-						<a class="sidebar-link" href="AddCategory.php">
-              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Add Package Catogery</span>
-            </a>
-					</li> -->
-
-					<li class="sidebar-item ">
-						<a class="sidebar-link" href="AddElement.php">
-              <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Elements</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item" >
-						<a class="sidebar-link" href="EditViewMore.php">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Edit View More Page</span>
-            </a>
-
-			<li class="sidebar-item">
-				<a class="sidebar-link" href="reports.php">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart" viewBox="0 0 16 16">
-  <path d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z"/>
-</svg> <span class="align-middle">Reports</span>
-	</a>
-					</li>
-				</ul>
-
-
-				<ul class="sidebar-nav">
-					<li class="sidebar-header">
-						Category
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="AddCategory.php">
-              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Add Package Catogery</span>
-            </a>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="listCategory.php">
-              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Catogery List</span>
-            </a>
-					</li>
-				</ul>
-			</div>
-		</nav>
-
-		<div class="main">
-			<nav class="navbar navbar-expand navbar-light navbar-bg">
-				<a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
-			</nav>
 
 			<main class="content">
 				<div class="container-fluid p-0">
@@ -128,37 +257,50 @@
 						<main class="content">
 				<div class="container-fluid p-0">
 
-					<!-- <div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Add Element in Packages</h1>
-				
-					</div>
-					<hr> -->
-
-					
-
-
+	
 					<form method="post" enctype="multipart/form-data">
 						<div class="row">
-							 <div class="col-sm-6 mb-3">
-								 <h5>Place Name</h5>
-							    	<!-- <label for="packageName" class="form-label">Place Name</label> -->
-							       <input type="text" class="form-control" rows="3" id="packageName" required name="packageName">
+							  <div class="col-sm-6 mb-3">
+							    	
+							    	<label for="pc" class="form-label">Package Name<span class="redStar">*</span></label>
+							       		<select class="form-select mb-3" id="packageName" name="packageName" required onchange="nameChange()">
+											  <?php
+											  	$pck=mysqli_query($con,"select * from package");
+											    if(mysqli_num_rows($pck)>0){
+											      while ($pckRow=mysqli_fetch_assoc($pck)) {
+
+												      	if($pckRow['id']==$packageName){
+												      		echo "<option selected value='".$pckRow['id']."'>".$pckRow['packageName']."</option>";
+												    	}
+												    	else{
+												    		echo "<option  value='".$pckRow['id']."'>".$pckRow['packageName']."</option>";
+												    	}
+													}
+												}
+											  ?>
+								
+											  
+									</select> 
+							       	
+							 </div>
+
+							  <div class="col mb-3">
+                                
+                                 	<label for="placelocation" class="form-label">Location<span class="redStar">*</span></label>
+							    	<!-- <label for="packageDesc" class="form-label">Things To Know About The Place</label> -->
+							       <input class="form-control" rows="3" id="placelocation" name="placelocation" required>
 							 </div>
 
                              
-							 <div class="col-sm-6 mb-3">
-                                 <h5>Place Location</h5>
-							    	<!-- <label for="packagePrice" class="form-label">Place Location</label> -->
-							       <input type="text" class="form-control" rows="3" id="packagePrice" required name="packagePrice">
-							 </div>
+							 
 
 						</div>
 
 						<div class="row">
 							 <div class="col mb-3">
-                                 <h5>Place Description</h5>
+                                 <h5>Description</h5>
 							    	<!-- <label for="packageDesc" class="form-label">Place Description</label> -->
-							       <textarea class="form-control" rows="3" id="packageDesc" name="packageDesc" required></textarea>
+							       <textarea class="form-control" rows="3" id="placedesc" name="placedesc" required></textarea>
 							 </div>
 						</div>
 
@@ -166,88 +308,91 @@
 							 <div class="col mb-3">
                                  <h5>Things To Know About The Place</h5>
 							    	<!-- <label for="packageDesc" class="form-label">Things To Know About The Place</label> -->
-							       <textarea class="form-control" rows="3" id="packageDesc" name="packageDesc" required></textarea>
+							       <textarea class="form-control" rows="3" id="thingstoknow" name="thingstoknow" required></textarea>
 							 </div>
 						</div>
 
 						<div class="row">
-							 
 
-							 <!-- <div class="col-sm-4 mb-3">
-							    	<label for="packageSubscription" class="form-label">package Subscription<span class="redStar">*</span></label>
-							      	<select class="form-select mb-3" id="packageSubscription" name="packageSubscription" required>
-										
-									</select>
-							 </div> -->
-					
-								
+								<!-- photo 1 -->
 								<div class="col-sm-4 mb-3">
-                                    <h5>Package Category</h5>
-										<!-- <label for="packageType" class="form-label">Package Category</label> -->
-									      	<select class="form-select mb-3" id="packageType" name="packageType" required>
-											  <option value="select">Select</option>
-											    <option value="sporting">Sporting</option>
-    											<option value="sideseeing">Sideseeing</option>
-    											<option value="religiousplaces">Religious Places</option>
-    											<option value="daytours">Day Tours</option>
-												<option value="camping">Camping</option>	
-											</select> 
+
+
+								    	<label for="packagePhoto" class="form-label">Package Photo 1
+								    		<?php if($one_status=='required')
+								     		{
+								     		?> 
+								     		<span class="redStar">*</span>
+								     		<?php
+								     		}
+								     		?>
+										</label>
+								    	<input class="form-control form-control-sm" type="file" id="photoone" name="photoone"  <?php echo $one_status; ?>>
+
+
 								</div>
+							
+<!-- photo 2 -->
+<div class="col-sm-4 mb-3">
+
+
+<label for="phototwo" class="form-label">Package Photo 2
+	<?php if($two_status=='required')
+	 {
+	 ?> 
+	 <span class="redStar">*</span>
+	 <?php
+	 }
+	 ?>
+</label>
+<input class="form-control form-control-sm" type="file" id="phototwo" name="phototwo"  <?php echo $two_status; ?>>
+
+
 </div>
-<div class="row">
-								 <div class="col-sm-4 mb-3">
 
-<h5>Place Photo 1</h5>
-								    	<!-- <label for="packagePhoto" class="form-label">Package Photo
-										</label> -->
-								    	<input class="form-control form-control-sm" type="file" id="packagePhoto" name="packagePhoto">
+<!-- photo 3 -->
+<div class="col-sm-4 mb-3">
 
 
-								 </div>
-
-                                 <div class="col-sm-4 mb-3">
-
-<h5>Place Photo 2</h5>
-								    	<!-- <label for="packagePhoto" class="form-label">Package Photo
-										</label> -->
-								    	<input class="form-control form-control-sm" type="file" id="packagePhoto" name="packagePhoto">
-
-
-								 </div>
-
-                                 <div class="col-sm-4 mb-3">
-
-<h5>Place Photo 3</h5>
-								    	<!-- <label for="packagePhoto" class="form-label">Package Photo
-										</label> -->
-								    	<input class="form-control form-control-sm" type="file" id="packagePhoto" name="packagePhoto">
+<label for="photothree" class="form-label">Package Photo 3
+	<?php if($three_status=='required')
+	 {
+	 ?> 
+	 <span class="redStar">*</span>
+	 <?php
+	 }
+	 ?>
+</label>
+<input class="form-control form-control-sm" type="file" id="photothree" name="photothree"  <?php echo $three_status; ?>>
 
 
-								 </div>
-								 <br/>
+</div>
 
-                                 <div class="col-sm-4 mb-3">
-
-<h5>Place Photo 4</h5>
-								    	<!-- <label for="packagePhoto" class="form-label">Package Photo
-										</label> -->
-								    	<input class="form-control form-control-sm" type="file" id="packagePhoto" name="packagePhoto">                                    
+<!-- photo 4 -->
+<div class="col-sm-4 mb-3">
 
 
-								 </div>
+<label for="photofour" class="form-label">Package Photo 4
+	<?php if($four_status=='required')
+	 {
+	 ?> 
+	 <span class="redStar">*</span>
+	 <?php
+	 }
+	 ?>
+</label>
+<input class="form-control form-control-sm" type="file" id="photofour" name="photofour"  <?php echo $four_status; ?>>
 
-								 <div class="col-sm-6 mb-3">
-                                 <h5>Video URL</h5>
+
+</div>
+<div class="col-sm-6 mb-3">
+                                 <h5>Youtube video link</h5>
 							    	<!-- <label for="packagePrice" class="form-label">Place Location</label> -->
-							       <input type="text" class="form-control" rows="3" id="packagePrice" required name="packagePrice">
+							       <input type="text" class="form-control" id="link" required name="link">
 							 </div>
-							</div>
-
-						
                             </div>
 					
-							 <input type="submit" name="submit" class="btn btn-success" value="Submit">
-
+							<input type="submit" name="submit" class="btn btn-success" value="Submit">
 					</form>
 
 
@@ -272,227 +417,11 @@
 
 	<script src="..\..\asset\js_admin\app.js"></script>
 
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
-			var gradient = ctx.createLinearGradient(0, 0, 0, 225);
-			gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
-			gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
-			// Line chart
-			new Chart(document.getElementById("chartjs-dashboard-line"), {
-				type: "line",
-				data: {
-					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-					datasets: [{
-						label: "Sales ($)",
-						fill: true,
-						backgroundColor: gradient,
-						borderColor: window.theme.primary,
-						data: [
-							2115,
-							1562,
-							1584,
-							1892,
-							1587,
-							1923,
-							2566,
-							2448,
-							2805,
-							3438,
-							2917,
-							3327
-						]
-					}]
-				},
-				options: {
-					maintainAspectRatio: false,
-					legend: {
-						display: false
-					},
-					tooltips: {
-						intersect: false
-					},
-					hover: {
-						intersect: true
-					},
-					plugins: {
-						filler: {
-							propagate: false
-						}
-					},
-					scales: {
-						xAxes: [{
-							reverse: true,
-							gridLines: {
-								color: "rgba(0,0,0,0.0)"
-							}
-						}],
-						yAxes: [{
-							ticks: {
-								stepSize: 1000
-							},
-							display: true,
-							borderDash: [3, 3],
-							gridLines: {
-								color: "rgba(0,0,0,0.0)"
-							}
-						}]
-					}
-				}
-			});
-		});
-	</script>
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			// Pie chart
-			new Chart(document.getElementById("chartjs-dashboard-pie"), {
-				type: "pie",
-				data: {
-					labels: ["Chrome", "Firefox", "IE"],
-					datasets: [{
-						data: [4306, 3801, 1689],
-						backgroundColor: [
-							window.theme.primary,
-							window.theme.warning,
-							window.theme.danger
-						],
-						borderWidth: 5
-					}]
-				},
-				options: {
-					responsive: !window.MSInputMethodContext,
-					maintainAspectRatio: false,
-					legend: {
-						display: false
-					},
-					cutoutPercentage: 75
-				}
-			});
-		});
-	</script>
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			// Bar chart
-			new Chart(document.getElementById("chartjs-dashboard-bar"), {
-				type: "bar",
-				data: {
-					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-					datasets: [{
-						label: "This year",
-						backgroundColor: window.theme.primary,
-						borderColor: window.theme.primary,
-						hoverBackgroundColor: window.theme.primary,
-						hoverBorderColor: window.theme.primary,
-						data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
-						barPercentage: .75,
-						categoryPercentage: .5
-					}]
-				},
-				options: {
-					maintainAspectRatio: false,
-					legend: {
-						display: false
-					},
-					scales: {
-						yAxes: [{
-							gridLines: {
-								display: false
-							},
-							stacked: false,
-							ticks: {
-								stepSize: 20
-							}
-						}],
-						xAxes: [{
-							stacked: false,
-							gridLines: {
-								color: "transparent"
-							}
-						}]
-					}
-				}
-			});
-		});
-	</script>
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			var markers = [{
-					coords: [31.230391, 121.473701],
-					name: "Shanghai"
-				},
-				{
-					coords: [28.704060, 77.102493],
-					name: "Delhi"
-				},
-				{
-					coords: [6.524379, 3.379206],
-					name: "Lagos"
-				},
-				{
-					coords: [35.689487, 139.691711],
-					name: "Tokyo"
-				},
-				{
-					coords: [23.129110, 113.264381],
-					name: "Guangzhou"
-				},
-				{
-					coords: [40.7127837, -74.0059413],
-					name: "New York"
-				},
-				{
-					coords: [34.052235, -118.243683],
-					name: "Los Angeles"
-				},
-				{
-					coords: [41.878113, -87.629799],
-					name: "Chicago"
-				},
-				{
-					coords: [51.507351, -0.127758],
-					name: "London"
-				},
-				{
-					coords: [40.416775, -3.703790],
-					name: "Madrid "
-				}
-			];
-			var map = new jsVectorMap({
-				map: "world",
-				selector: "#world_map",
-				zoomButtons: true,
-				markers: markers,
-				markerStyle: {
-					initial: {
-						r: 9,
-						strokeWidth: 7,
-						stokeOpacity: .4,
-						fill: window.theme.primary
-					},
-					hover: {
-						fill: window.theme.primary,
-						stroke: window.theme.primary
-					}
-				},
-				zoomOnScroll: false
-			});
-			window.addEventListener("resize", () => {
-				map.updateSize();
-			});
-		});
-	</script>
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
-			var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
-			document.getElementById("datetimepicker-dashboard").flatpickr({
-				inline: true,
-				prevArrow: "<span title=\"Previous month\">&laquo;</span>",
-				nextArrow: "<span title=\"Next month\">&raquo;</span>",
-				defaultDate: defaultDate
-			});
-		});
-	</script>
+	
+<?php
+
+include 'footer.php';
+?>
 
 
     </body>

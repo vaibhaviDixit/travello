@@ -38,22 +38,22 @@ if($type=="signUp"){
 
 }
 
-if($type=="login"){
+if($type=="checkMobile"){
 
 
-		$email=$_POST['email'];
-		$pass=$_POST['password'];
+		$mobile=$_POST['mobile'];
 
-		$check=mysqli_query($con,"select * from userlogin where email='$email' and password='$pass' ");
+		$check=mysqli_query($con,"select * from user where mobile='$mobile' ");
 
 		if(mysqli_num_rows($check)>0){
-			$_SESSION['CURRENT_USER']=$email;
-			$arr=array("status"=>"success");
+			$arr=array("status"=>"success","msg"=>"Enter OTP sent to ".$mobile);
 		    echo json_encode($arr);
 		}
+		else{
+			$arr=array("status"=>"fail","msg"=>"Mobile no. not registered ");
+		    echo json_encode($arr);
 
-			
-
+		}
 		
 
 

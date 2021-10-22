@@ -7,20 +7,20 @@
 
   <div class="box-container">
     <div class="box">
-      <h3>Stay Connected With Us</h3>
+      <h5>Stay Connected With Us</h5>
       <i id="s-icon" class="fa fa-facebook-square" style="color:#4267B2"></i>
       <i id="s-icon" class="fa fa-twitter-square"  style="color:#1DA1F2"></i>
       <i  id="s-icon" class="fa fa-linkedin-square"  style="color:#0077b5"></i>
       <i  id="s-icon" class="fa fa-instagram" style="color:#e1306c"></i>
       <i  id="s-icon" class="fa fa-whatsapp"  style="color:#25D366"></i>
-      <h3>Address</h3>
+      <h5>Address</h5>
       <p class="address">
         Corporate Office :
         Doon House, B-275(A),<br>First floor Sector-57,<br>Shushant Lok 3 Near Hong Kong Bazzar,<br>Gurugram Pin 122001, Haryana.
        <br><i class="fa fa-phone"></i> +91-9122588799</p>
     </div>
       <div class="box">
-        <h3>Quick Links</h3>
+        <h5>Quick Links</h5>
         <a href="home.php">Home</a>
         <a href="home.php#packages">Destinations</a>
         <a href="home.php#services">Services</a>
@@ -29,7 +29,7 @@
         <a href="home.php#about">About us</a>
       </div>
       <div class="box">
-        <h3>Discuss Your Queries with us</h3>
+        <h5>Discuss Your Queries with us</h5>
         <form method="POST" action="">
           <input type="text" name="email" id="email" placeholder="Email Address">
           <textarea name="query" id="query" cols="30" rows="10" placeholder="Any Query.."></textarea>
@@ -44,10 +44,13 @@
   <p class="credit"> created by <span> Bodhi Technology </span> | all rights reserved! </p>
 
 </footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+<script src="../asset/firebase.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.9/swiper-bundle.min.js" integrity="sha512-bPNHwutl0bNsjHtw+AtR2xvp0BLtpm9mN6LcqzDZifcQSYv/dPVvND245WZVst+m7GhYHX647RoaL9w6VVraxw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../asset/bootstrap.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -84,7 +87,6 @@ document.documentElement.scrollTop = 0;
 }
   </script>
   
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
 

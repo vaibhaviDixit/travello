@@ -1,11 +1,11 @@
 
 
-form input,#addPckgForm  .form-select{
+form input,form  .form-select{
 	height: 2rem;
 }
 
 
-#addPckgForm label{
+form label{
 	font-size: .7rem;
 	font-weight: bold;
 }

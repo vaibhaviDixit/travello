@@ -39,12 +39,16 @@ include ('include\database.inc.php');
      
         <h1>Sign Up</h1>
 
-         <span id="msg"></span>
-        
-        <input type="email" name="signUpEmail" id="signUpEmail" placeholder="Email Address">
-        <input type="password" name="create-password" id="signUpPass" placeholder="Password">
-        <input type="password" name="password" id="cPass"  placeholder="Confirm Password">
-        <button type="submit"  id="signbtn" class="sign-up-btn" onclick="return valid()">Sign Up</button>
+       <span id="msg"></span>
+        <div id="mainSignUpForm " style="display: flex;flex-direction: column;">
+        <input type="text" name="signUpName" id="signUpName" placeholder="Name" required>
+        <input type="text" name="signUpMob" id="signUpMob" placeholder="Mobile" required>
+        <input type="text" name="signUpAdd" id="signUpAdd"  placeholder="Address" required>
+        <div id="recaptcha-container"></div>
+      </div>
+
+        <input type="text" name="signUpOTP" id="signUpOTP" placeholder="OTP" style="display: none;">
+        <button type="submit"  id="signbtn" class="sign-up-btn" onclick="return signUpvalidation()" >Sign Up</button>
 
         <a href="login.php">Already have an account? Login</a>
         
@@ -52,156 +56,30 @@ include ('include\database.inc.php');
   </form>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
+<script src="../asset/firebase.js"></script>
 
 <script>
 
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCp0yBkzF012bf7otTruduYppXJSL5rkdk",
-  authDomain: "emailauth-e72dd.firebaseapp.com",
-  projectId: "emailauth-e72dd",
-  storageBucket: "emailauth-e72dd.appspot.com",
-  messagingSenderId: "1009272597079",
-  appId: "1:1009272597079:web:1e8d0ca93ec5f0cd0f1112",
-  measurementId: "G-H3W6S0PM7S"
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCp0yBkzF012bf7otTruduYppXJSL5rkdk",
+//   authDomain: "emailauth-e72dd.firebaseapp.com",
+//   projectId: "emailauth-e72dd",
+//   storageBucket: "emailauth-e72dd.appspot.com",
+//   messagingSenderId: "1009272597079",
+//   appId: "1:1009272597079:web:1e8d0ca93ec5f0cd0f1112",
+//   measurementId: "G-H3W6S0PM7S"
+// };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// // Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
 
   
   
-
-  $("#signUpForm").on("submit",function(e){
-
-      $("#signbtn").attr('disabled',true);
-      $("#signbtn").html("Loading...");
-    
-      var email=$("#signUpEmail").val();
-      var pass=$("#signUpPass").val();
-      var cpass=$("#cPass").val();
-
-
-
-
-      jQuery.ajax({  
-               type:"post",  
-               url:"register.php",  
-               data:"email="+email+"&password="+pass+"&type=signUp", 
-               success:function(result){
-
-                      msg=jQuery.parseJSON(result);
-                  
-
-                     if(msg.status=="success"){
-
-
-                         firebase.auth().createUserWithEmailAndPassword(email,pass).then(function(response){
-                                    sendingVerifyEmail();
-                             
-                         })
-                         .catch(function(error){
-                            $("#msg").html("<div class='alert alert-success' role='alert'>"+error.message+"</div>");
-                            $("#signbtn").attr('disabled',false);
-                            $("#signbtn").html('Sign Up');
-
-                         })
-
-                         
-                     }
-                     if(msg.status=="fail"){
-
-                         $("#msg").html("<div class='alert alert-danger' role='alert'>Email already Registered!</div>");
-                     }
-                     
-              } 
-               
-          });
-        
-
-    e.preventDefault();
-    // alert("hii");
-
-  });
-
-
-//sen email 
-function sendingVerifyEmail(){
-
-  $("#signbtn").attr('disabled',true);
-      $("#signbtn").html("Loading...");
-
-
-  firebase.auth().currentUser.sendEmailVerification().then(function(response){
-    console.log(response);
-
-     $("#signbtn").attr('disabled',false);
-     $("#signbtn").html('Sign Up');
-     $("#signUpForm")[0].reset();
-
-     $("#msg").html("<div class='alert alert-success' role='alert'>Thank you for Registration! Verify your Email...then login </div>");
-
-    
-
-  })
-  .catch(function(error){
-    console.log(error);
-
-     $("#signbtn").attr('disabled',false);
-     $("#signbtn").html('Sign Up');
-     $("#signUpForm")[0].reset();
-
-     $("#msg").html("<div class='alert alert-success' role='alert'>"+error.message+"</div>");
-
-  })
-
-
-
-}
-
-
-
-
-//check validation
-
-  function valid(){
-
-    $("#msg").html("");
-
-    let email=$("#signUpEmail").val();
-    let pass=$("#signUpPass").val();
-    let cpass=$("#cPass").val();
-
-    if(email==""){
-      $("#msg").html("<div class='alert alert-danger' role='alert'>Please enter your email</div>");
-      return false;
-    }
-
-    if(pass=="" || cpass==""){
-      $("#msg").html("<div class='alert alert-danger' role='alert'>Please enter your Password</div>");
-      return false;
-    }
-
-    if(pass.length <7){
-      $("#msg").html("<div class='alert alert-danger' role='alert'>Password too short! It must be atleast 6 characters!</div>");
-      return false;
-    }
-    if(pass!=cpass){
-      $("#msg").html("<div class='alert alert-danger' role='alert'>Passwords not matching</div>");
-      return false;
-    }
-
-    return true;
-
-
-  }
-
-
-
   </script>
 
 

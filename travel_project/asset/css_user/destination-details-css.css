@@ -254,7 +254,9 @@ cursor: pointer;
 }
 .book .content  .booking-form .display-total p{
   text-align: right;
-  color:#3b5057;
+    color: #0a4356;
+    font-weight: bold;
+    font-size: .8rem;
 }
 
 .destination .to-do{
@@ -306,6 +308,25 @@ cursor: pointer;
 
 
 }
+
+#bookingProcess{
+  margin:0+ 1rem;
+}
+.bookingInfo img{
+  width: 170px;
+  height: 110px;
+  object-fit: cover;
+}
+
+.bookingInfo{
+  border: 1px solid #c7c7c7;
+  padding-bottom: 5px;
+}
+.bookingInfo .tbl{
+      padding: 0 20px;
+}
+
+
 @media only screen and (max-width: 768px){
 
   .book{

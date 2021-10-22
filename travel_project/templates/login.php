@@ -29,6 +29,7 @@ include ('include/functions.inc.php');
 <link rel="stylesheet" href="..\asset\css_user\login-signup-css.css">
 
 
+
 </head>
 <body>
   <button onclick="go_home()" id="home-btn"  class="home-btn"><i class="material-icons">keyboard_arrow_left</i></button>
@@ -43,122 +44,35 @@ include ('include/functions.inc.php');
 </div>
 <div class="container">
 
-  <form method="post" id="loginForm">
+  <form method="post" class="loginForm">
   <div class="box">
     <h1>Login</h1>
      <span id="msg"></span>
-    <input type="email" type="email" name="email" id="loginEmail" placeholder="Enter your email" required  />
+    <input type="text" name="phone" id="loginPhone" placeholder="Enter your Phone" required  />
     <input type="password" type="password" id="loginPass" name="password" placeholder="Enter your password" required  />    
     <div class="text-center mt-3">
     <button type="submit" id="loginBtn" class="login-btn"  name="submit" >Sign In</button>
     </div>
-
+</form>
     <a href="sign-up.php">Don't have an account? Sign up</a>
     
     <br/><br/>
     <a href="admin_panel/adminlogin.php">ADMIN LOGIN</a>
 
   </div>
-    </form>
+    
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
+<script src="../asset/firebase.js"></script>
+
 
 <script>
 
 
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCp0yBkzF012bf7otTruduYppXJSL5rkdk",
-  authDomain: "emailauth-e72dd.firebaseapp.com",
-  projectId: "emailauth-e72dd",
-  storageBucket: "emailauth-e72dd.appspot.com",
-  messagingSenderId: "1009272597079",
-  appId: "1:1009272597079:web:1e8d0ca93ec5f0cd0f1112",
-  measurementId: "G-H3W6S0PM7S"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-
-
-       
-
-       //check email login
-
-       $("#loginForm").on("submit",function(e){
-
-          let loginEmail=$("#loginEmail").val();
-          let loginPass=$("#loginPass").val();
-
-          $("#loginBtn").attr('disabled',true);
-          $("#loginBtn").html("Loading...");
-
-          firebase.auth().signInWithEmailAndPassword(loginEmail,loginPass).then(function(response){
-            console.log(response);
-
-            let user=firebase.auth().currentUser;
-
-            if(user!=null){ 
-              let email=user.email;
-              let eVerified=user.emailVerified;
-              if(eVerified){
-
-                 $.ajax({  
-                   type:"POST",  
-                   url:"register.php",  
-                   data:"email="+email+"&password="+loginPass+"&type=login",
-                   success:function(result){
-
-                      msg=jQuery.parseJSON(result);
-
-                     if(msg.status=="success"){
-                       $("#msg").html("<div class='alert alert-success' role='alert'>Login Successfully</div>");
-                        $("#loginBtn").attr('disabled',false);
-                        $("#loginBtn").html("Sign In");
-                        $("#loginForm")[0].reset();
-                       window.location.href="user_panel/userpanel.php";
-                     }
-                     
-                   }
-                   
-                  });
-
-                
-              }else{
-             
-               
-              $("#msg").html("<div class='alert alert-success' role='alert'>Email not verified</div>");
-               $("#loginBtn").attr('disabled',false);
-              $("#loginBtn").html("Sign In");
-              $("#loginForm")[0].reset();
-
-              }
-          }
-
-            
-          
-
-
-          })
-          .catch(function(error){
-            console.log(error);
-             $("#msg").html("<div class='alert alert-danger' role='alert'>Invalid Email or Password !</div>");
-             $("#loginBtn").attr('disabled',false);
-              $("#loginBtn").html("Sign In");
-              $("#loginForm")[0].reset();
-
-          })
-
-          
-
-         e.preventDefault();
-
-       });
 
 
 </script>

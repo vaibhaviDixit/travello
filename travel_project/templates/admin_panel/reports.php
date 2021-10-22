@@ -1,40 +1,7 @@
 
 <?php
-
+include ('top.php');
 ?>
-
-
-
-<html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-	<meta name="author" content="AdminKit">
-	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-
-    <link href="..\..\asset\css_user\reportbootstrap.min.css" rel="stylesheet">
-    <link href="..\..\asset\css_user\reportbootstrap-responsive.min.css" rel="stylesheet">
-    
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
-    <link href="..\..\asset\css_user\reportfont-awesome.css" rel="stylesheet">
-    
-    <link href="..\..\asset\css_user\reportstyle.css" rel="stylesheet">
-    
-    <link href="..\..\asset\css_user\reports.css" rel="stylesheet">
-
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="shortcut icon" href="..\..\asset\img_user\icon-48x48.png" />
-
-	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
-
-	<title>Admin Panel</title>
-
-	<link href="..\..\asset\css_admin\app.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-</head>
 
 
 
@@ -43,87 +10,10 @@
 
 
 <body>
-	<div class="wrapper">
-		<nav id="sidebar" class="sidebar js-sidebar">
-			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="..\home.php">
-          <span class="align-middle">Home</span>
-        </a>
 
-				<ul class="sidebar-nav">
-					<li class="sidebar-header">
-						Pages
-					</li>
-
-					<li class="sidebar-item ">
-						<a class="sidebar-link" href="index.php">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="login.php">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-							  </svg> <span class="align-middle">Profile</span>
-            </a>
-					</li>
-
-					<!-- <li class="sidebar-item">
-						<a class="sidebar-link" href="AddCategory.php">
-              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Add Package Catogery</span>
-            </a>
-					</li> -->
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="AddElement.php">
-              <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Elements</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="EditViewMore.php">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Edit View More Page</span>
-            </a>
-
-			<li class="sidebar-item ">
-				<a class="sidebar-link" href="reports.php">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart" viewBox="0 0 16 16">
-  <path d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z"/>
-</svg><span class="align-middle">Reports</span>
-	</a>
-					</li>
-				</ul>
-
-
-
-				<ul class="sidebar-nav">
-					<li class="sidebar-header">
-						Category
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="AddCategory.php">
-              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Add Package Catogery</span>
-            </a>
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="listCategory.php">
-              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Catogery List</span>
-            </a>
-					</li>
-				</ul>
-
-
-
-			</div>
-		</nav>
 
 		<div class="main">
-			<nav class="navbar navbar-expand navbar-light navbar-bg">
-				<a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
-
+			
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
 						<li class="nav-item dropdown">
@@ -453,7 +343,7 @@
 
 			<script src="..\..\asset\js_admin\app.js"></script>
 
-	<script>
+	<!-- <script>
 		document.addEventListener("DOMContentLoaded", function() {
 			var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
 			var gradient = ctx.createLinearGradient(0, 0, 0, 225);
@@ -673,7 +563,14 @@
 				defaultDate: defaultDate
 			});
 		});
-	</script>
+	</script> -->
+
+
+	
+<?php
+
+include 'footer.php';
+?>
 
 
 

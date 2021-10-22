@@ -74,9 +74,10 @@ if (isset($_POST['submit'])) {
 
                     <h1 class="h3 mb-3"><strong>Add Package Catogery</strong></h1>
 
-
+					
 					<div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
 						<div class="card flex-fill w-100">
+						<main class="content">
 			
 					<?php 
 					if(strlen( $msg ) > 0){
@@ -108,7 +109,7 @@ if (isset($_POST['submit'])) {
 						<input type="submit" name="submit" class="btn btn-success" value="Submit">
 					</form>
 
-
+					</main>
 							
 						</div>
 					</div>

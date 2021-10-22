@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3309
--- Generation Time: Oct 20, 2021 at 09:05 AM
+-- Generation Time: Oct 22, 2021 at 11:58 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -28,17 +28,44 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `adminlogin` (
+  `id` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `id` int(11) NOT NULL
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `adminlogin`
 --
 
-INSERT INTO `adminlogin` (`email`, `password`, `id`) VALUES
-('admin@gmail.com', 'admin', 1);
+INSERT INTO `adminlogin` (`id`, `email`, `password`) VALUES
+(1, 'admin@gmail.com', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking`
+--
+
+CREATE TABLE `booking` (
+  `id` int(11) NOT NULL,
+  `packageId` int(11) NOT NULL,
+  `packagePrice` int(11) NOT NULL,
+  `checkIn` date NOT NULL,
+  `checkOut` date NOT NULL,
+  `adults` int(11) NOT NULL,
+  `children` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `paid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`id`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `adults`, `children`, `total`, `paid`) VALUES
+(1, 0, 0, '0000-00-00', '0000-00-00', 0, 0, 0, 0),
+(2, 0, 0, '0000-00-00', '0000-00-00', 0, 0, 0, 0),
+(3, 0, 0, '0000-00-00', '0000-00-00', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -81,7 +108,8 @@ CREATE TABLE `favourites` (
 
 INSERT INTO `favourites` (`id`, `userId`, `pckgId`) VALUES
 (2, 2, 2),
-(3, 2, 4);
+(3, 2, 4),
+(4, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -94,6 +122,7 @@ CREATE TABLE `package` (
   `packageName` varchar(255) NOT NULL,
   `packageDesc` varchar(255) NOT NULL,
   `packagePrice` int(11) NOT NULL,
+  `discount` float NOT NULL,
   `packageType` int(11) NOT NULL,
   `packagePhoto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -102,14 +131,14 @@ CREATE TABLE `package` (
 -- Dumping data for table `package`
 --
 
-INSERT INTO `package` (`id`, `packageName`, `packageDesc`, `packagePrice`, `packageType`, `packagePhoto`) VALUES
-(1, 'Mumbai', 'Mumbai is the perfect blend of culture, customs and lifestyles. Mumbai is India\'s most cosmopolitan city, its financial powerhouse and the nerve center of India\'s fashion industry.', 38200, 2, '521659650_download (7).jpg'),
-(2, 'Tokyo', 'Tokyo (東京, Tōkyō) is Japan\'s capital and the world\'s most populous metropolis. It is also one of Japan\'s 47 prefectures, consisting of 23 central city wards and multiple cities, towns and villages west of the city center. The Izu and Ogasawara Islands are', 55000, 2, '382915934_download (8).jpg'),
-(3, 'Tirupati', 'The very name Tirupati is enough to evoke strong spiritual feelings, and while the name ‘God’s Abode’ indeed does justice to the place, Tirupati has quite a few other tourist attractions as well that make it a city worth visiting.', 37000, 3, '839544455_TIRUPATI.jpg'),
-(4, 'Vaishno Devi', 'This town is the holy cave temple of Mata Vaishnodevi, with spirituality and vibrancy lingering in the atmosphere. It is considered one of the most sacred holy places in India.', 42000, 3, '136245396_download (9).jpg'),
-(5, 'Spiti Valley, Himachal Pradesh', 'First on our list is, Spiti Valley nestled in the Keylong district of Himachal Pradesh. It is one of the best camping sites in India. Adventure enthusiasts and trekkers from all over the world come here to explore this untouched region in the Himalayas. T', 80000, 5, '471898054_spiti-valley-himachal-pradesh.jpg'),
-(6, 'Solang Valley, Manali', 'One of the best camping sites in India, Solang Valley in Manali attracts visitors from the far ends of the world. The verdant spread of lush greenery, the gurgling of a stream nearby and the host of thrilling adventures, makes camping all the more fun. En', 84000, 5, '302561381_solang-valley-manali.jpg'),
-(13, 'Hollant Beach:Goa', ' A Picture-Perfect Destination! The curvy bay lined with rustic boats, the clean, golden sand, the colorful shacks on one side, and the mesmerizing views of the sunset make this beach an absolute favorite for all photographers . It is also a great place f', 7500, 4, '244305377_Goa-Beach-Hollant.jpg');
+INSERT INTO `package` (`id`, `packageName`, `packageDesc`, `packagePrice`, `discount`, `packageType`, `packagePhoto`) VALUES
+(1, 'Mumbai', 'Mumbai is the perfect blend of culture, customs and lifestyles. Mumbai is India\'s most cosmopolitan city, its financial powerhouse and the nerve center of India\'s fashion industry.', 38200, 0, 2, '521659650_download (7).jpg'),
+(2, 'Tokyo', 'Tokyo (東京, Tōkyō) is Japan\'s capital and the world\'s most populous metropolis. It is also one of Japan\'s 47 prefectures, consisting of 23 central city wards and multiple cities, towns and villages west of the city center. The Izu and Ogasawara Islands are', 55000, 0, 2, '382915934_download (8).jpg'),
+(3, 'Tirupati', 'The very name Tirupati is enough to evoke strong spiritual feelings, and while the name ‘God’s Abode’ indeed does justice to the place, Tirupati has quite a few other tourist attractions as well that make it a city worth visiting.', 37000, 0, 3, '839544455_TIRUPATI.jpg'),
+(4, 'Vaishno Devi', 'This town is the holy cave temple of Mata Vaishnodevi, with spirituality and vibrancy lingering in the atmosphere. It is considered one of the most sacred holy places in India.', 42000, 0, 3, '136245396_download (9).jpg'),
+(5, 'Spiti Valley, Himachal Pradesh', 'First on our list is, Spiti Valley nestled in the Keylong district of Himachal Pradesh. It is one of the best camping sites in India. Adventure enthusiasts and trekkers from all over the world come here to explore this untouched region in the Himalayas. T', 80000, 0, 5, '471898054_spiti-valley-himachal-pradesh.jpg'),
+(6, 'Solang Valley, Manali', 'One of the best camping sites in India, Solang Valley in Manali attracts visitors from the far ends of the world. The verdant spread of lush greenery, the gurgling of a stream nearby and the host of thrilling adventures, makes camping all the more fun. En', 84000, 0, 5, '302561381_solang-valley-manali.jpg'),
+(13, 'Hollant Beach:Goa', ' A Picture-Perfect Destination! The curvy bay lined with rustic boats, the clean, golden sand, the colorful shacks on one side, and the mesmerizing views of the sunset make this beach an absolute favorite for all photographers . It is also a great place f', 7500, 0, 4, '244305377_Goa-Beach-Hollant.jpg');
 
 -- --------------------------------------------------------
 
@@ -129,26 +158,22 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `userId`, `description`, `stars`) VALUES
-(1, 1, 'Very nice service! Amazing tours deals in affordable price.', 5);
+(1, 1, 'Very nice service! Amazing tours deals in affordable price.', 5),
+(2, 1, 'Nice service!', 4),
+(4, 1, 'very nice', 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userlogin`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `userlogin` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `mobile` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `userlogin`
---
-
-INSERT INTO `userlogin` (`id`, `email`, `password`) VALUES
-(1, 'vaibhavidixit511@gmail.com', 'password');
 
 -- --------------------------------------------------------
 
@@ -157,17 +182,23 @@ INSERT INTO `userlogin` (`id`, `email`, `password`) VALUES
 --
 
 CREATE TABLE `viewmore` (
-  `id` int(100) NOT NULL,
-  `placename` varchar(200) NOT NULL,
-  `placelocation` varchar(200) NOT NULL,
-  `placedesc` varchar(500) NOT NULL,
-  `thingstoknow` varchar(900) NOT NULL,
-  `packagecategory` varchar(200) NOT NULL,
-  `photoone` varchar(500) NOT NULL,
-  `phototwo` varchar(500) NOT NULL,
-  `photothree` varchar(500) NOT NULL,
-  `photofour` varchar(500) NOT NULL
+  `id` int(11) NOT NULL,
+  `packageId` int(11) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `photoone` varchar(255) NOT NULL,
+  `phototwo` varchar(255) NOT NULL,
+  `photthree` varchar(255) NOT NULL,
+  `photofour` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `viewmore`
+--
+
+INSERT INTO `viewmore` (`id`, `packageId`, `location`, `description`, `photoone`, `phototwo`, `photthree`, `photofour`, `link`) VALUES
+(1, 2, 'japan', 'idk', '712144922_download (3).jpg', '919435937_download (1).jpg', '507743692_Goa-Beach-Hollant.jpg', '491869502_download (9).jpg', 'https://www.youtube.com/watch?v=Jx6b0isD0jk');
 
 --
 -- Indexes for dumped tables
@@ -179,6 +210,12 @@ CREATE TABLE `viewmore` (
 ALTER TABLE `adminlogin`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `category`
@@ -206,18 +243,16 @@ ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `userlogin`
+-- Indexes for table `user`
 --
-ALTER TABLE `userlogin`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `viewmore`
 --
 ALTER TABLE `viewmore`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -230,6 +265,12 @@ ALTER TABLE `adminlogin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
@@ -239,7 +280,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `favourites`
 --
 ALTER TABLE `favourites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `package`
@@ -251,19 +292,19 @@ ALTER TABLE `package`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `userlogin`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `userlogin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `viewmore`
 --
 ALTER TABLE `viewmore`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
