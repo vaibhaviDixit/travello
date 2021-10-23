@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3309
--- Generation Time: Oct 22, 2021 at 11:58 AM
+-- Generation Time: Oct 23, 2021 at 07:03 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -24,21 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `adminlogin`
+-- Table structure for table `admin`
 --
 
-CREATE TABLE `adminlogin` (
+CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `website` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `adminlogin`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `adminlogin` (`id`, `email`, `password`) VALUES
-(1, 'admin@gmail.com', 'admin');
+INSERT INTO `admin` (`id`, `name`, `phone`, `email`, `address`, `location`, `website`) VALUES
+(1, 'Admin', '8985456545', 'admin@gmail.com', 'Solapur', 'Solapur', 'https://www.youtube.com/');
 
 -- --------------------------------------------------------
 
@@ -48,6 +52,8 @@ INSERT INTO `adminlogin` (`id`, `email`, `password`) VALUES
 
 CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
   `packageId` int(11) NOT NULL,
   `packagePrice` int(11) NOT NULL,
   `checkIn` date NOT NULL,
@@ -57,15 +63,6 @@ CREATE TABLE `booking` (
   `total` int(11) NOT NULL,
   `paid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `booking`
---
-
-INSERT INTO `booking` (`id`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `adults`, `children`, `total`, `paid`) VALUES
-(1, 0, 0, '0000-00-00', '0000-00-00', 0, 0, 0, 0),
-(2, 0, 0, '0000-00-00', '0000-00-00', 0, 0, 0, 0),
-(3, 0, 0, '0000-00-00', '0000-00-00', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -175,6 +172,13 @@ CREATE TABLE `user` (
   `address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `mobile`, `address`) VALUES
+(1, 'vaibhavi', '9284552192', 'sangola');
+
 -- --------------------------------------------------------
 
 --
@@ -205,11 +209,10 @@ INSERT INTO `viewmore` (`id`, `packageId`, `location`, `description`, `photoone`
 --
 
 --
--- Indexes for table `adminlogin`
+-- Indexes for table `admin`
 --
-ALTER TABLE `adminlogin`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `booking`
@@ -259,9 +262,9 @@ ALTER TABLE `viewmore`
 --
 
 --
--- AUTO_INCREMENT for table `adminlogin`
+-- AUTO_INCREMENT for table `admin`
 --
-ALTER TABLE `adminlogin`
+ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -298,7 +301,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `viewmore`

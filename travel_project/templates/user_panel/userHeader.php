@@ -8,7 +8,7 @@ include '../include/constants.inc.php';
 
 $favArray=getFavourites();
 
-if(!isset($_SESSION['CURRENT_USER'])){
+if(!isset($_SESSION['CURRENT_USER_ID'])){
 	redirect("../login.php");
 }
 
@@ -39,7 +39,7 @@ if(!isset($_SESSION['CURRENT_USER'])){
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
 	<title>User Panel</title>
-
+      <link href="..\..\asset\bootstrap.min.css" rel="stylesheet">
 	<link href="..\..\asset\css_admin\app.css" rel="stylesheet">
 	<link href="..\..\asset\css_user\cards.css" rel="stylesheet">
 	<link href="..\..\asset\css_user\rateus.css" rel="stylesheet">
@@ -262,14 +262,14 @@ if(!isset($_SESSION['CURRENT_USER'])){
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="..\..\asset\img_user\avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo $_SESSION['CURRENT_USER']; ?></span>
+                <img src="..\..\asset\img_user\avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo getCurrentUserName(); ?></span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="profile.php"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-								<!-- <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a> -->
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="logout.php">Log out</a>
 							</div>

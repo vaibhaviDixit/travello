@@ -73,6 +73,24 @@ if (isset($_POST['submit'])) {
 
 
 					<form method="post" >
+
+						<div class="row">
+							 <div class="col-sm-6 mb-3">
+							    	
+							    	<label for="name" class="form-label">Customer Name<span class="redStar">*</span></label>
+							       	<input type="text" class="form-control" rows="3" id="name" required name="name"  value="">
+										 
+							       	
+							 </div>
+						
+
+							 <div class="col-sm-6 mb-3">
+							    	<label for="mobile" class="form-label">Customer Mobile<span class="redStar">*</span></label>
+							       <input type="text" class="form-control" rows="3" id="mobile" required name="mobile"  value="">
+							 </div>
+
+						</div>
+
 						<div class="row">
 							 <div class="col-sm-6 mb-3">
 							    	
@@ -97,19 +115,7 @@ if (isset($_POST['submit'])) {
 									</select> 
 							       	
 							 </div>
-						
-
-							 <div class="col-sm-6 mb-3">
-							    	<label for="packagePrice" class="form-label">Package Price<span class="redStar">*</span></label>
-							       <input type="text" class="form-control" rows="3" id="packagePrice" required name="packagePrice" readonly value="">
-							 </div>
-
-						</div>
-
-
-						<div class="row">
-							 
-									
+							
 							<div class="col-sm-3 mb-3">
 				           		   <label for="checkIn" class="form-label">Check In<span class="redStar">*</span></label>
 				                    <input type="date" name="checkIn" id="checkIn" required>
@@ -119,34 +125,92 @@ if (isset($_POST['submit'])) {
 				                    <label for="checkOut" class="form-label">Check Out<span class="redStar">*</span></label>
 				                    <input type="date" name="checkOut" id="checkOut" required>
 				             </div> 
-				         
-				      
+
+
+						</div>
+
+
+						<div class="row">
+
+							 <div class="col-sm-3 mb-3">
+							    	<label for="ptype" class="form-label">Payment Mode<span class="redStar">*</span></label>
+							    	<select name="ptype" id="ptype">
+				           		   	 <option>Cash</option>
+				           		   	 <option>UPI</option>
+				           		   	 <option>Online Transfer</option>
+				           		   </select>
+							 </div>
+				       
 				                <div class="col-sm-3 mb-3">
 				                    <label for="adults" class="form-label">Adults<span class="redStar">*</span></label>
-				                    <input type="number" id="adults" name="adults" value="1" min="1" required>
+				                    <input type="number" id="adults" name="adults" value="1" min="1" required readonly>
 				                </div>
 				                <div class="col-sm-3 mb-3">
 				                   <label for="children" class="form-label">Children<span class="redStar">*</span></label>
-				                    <input type="number" id="children" name="children" value="0" min="0" required>
+				                    <input type="number" id="children" name="children" value="0" min="0" required readonly>
 				                </div>
 				     
 										
+						</div>
+						<div class="row">
+
+							<div class="col-sm-12 mb-3">
+								<hr>
+								<div class="table-responsive">
+								<table class="table table-sm ">
+								  <thead class="">
+								    <tr>
+								      <th scope="col">Sr No.</th>
+								      <th scope="col">Name</th>
+								      <th scope="col">Type</th>
+								      <th scope="col">Amt</th>
+								      <th scope="col">Action</th>
+
+								    </tr>
+								  </thead>
+								  <tbody>
+								    <tr>
+								      <th scope="row"><input type="number" id="sr" name="sr" readonly></th>
+								      <td><input type="text" id="pname" name="pname"></td>
+								      <td><select id="ptype"><option>Child</option><option>Adult</option></select></td>
+								      <td><input type="text" id="pamt" name="pamt" readonly></td>
+								      <td><button type="button" class="btn btn-danger">Delete</button></td>
+								    </tr>
+
+								    
+								  </tbody>
+								</table>
+
+							   </div>
+								<button type="button" class="btn btn-primary" >Add</button>
+
+							    	
+							 </div>
+						
 						</div>
 
 						<div class="row">
 							<div class="col-sm-3 mb-3">
 				           		   <label for="totalPrice" class="form-label">Total Amount<span class="redStar">*</span></label>
-				                    <input type="text" name="totalPrice" id="totalPrice" required >
+				                    <input type="text" name="totalPrice" id="totalPrice" required readonly>
 				                
 				            </div>
 							<div class="col-sm-3 mb-3">
-				           		   <label for="payamt" class="form-label">Pay Amount<span class="redStar">*</span></label>
-				                    <input type="text" name="payamt" id="payamt" required>
+				           		   <label for="dis" class="form-label">Discount<span class="redStar">*</span></label>
+				                    <input type="text" name="dis" id="dis" required>
 				                
 				            </div>
-				            	<div class="col-sm-3 mb-3">
-				           		   <label for="amtLeft" class="form-label">Left Amount<span class="redStar">*</span></label>
-				                    <input type="text" name="amtLeft" id="amtLeft" required readonly >
+				            <div class="col-sm-3 mb-3">
+				           		   <label for="distype" class="form-label">Dis Type<span class="redStar">*</span></label>
+				           		   <select name="distype" id="distype">
+				           		   	 <option>Cash (&#8377;)</option>
+				           		   	 <option>Per (%)</option>
+				           		   </select>
+				                
+				            </div>
+				            <div class="col-sm-3 mb-3">
+				           		   <label for="grtotal" class="form-label">Grand Total<span class="redStar">*</span></label>
+				                    <input type="text" name="grtotal" id="grtotal" required readonly >
 				                
 				            </div>
 

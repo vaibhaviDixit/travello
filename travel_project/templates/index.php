@@ -215,7 +215,19 @@
                       </a>
                   </div>
                   </div>
-                 <a href="destination-details.php?id=<?php echo $pckgRow['id'];  ?>"><button class="book-btn">Book Now</button></a>
+                  <?php 
+                      if(isset($_SESSION['CURRENT_USER_ID'])){
+                  ?>
+                   
+                      <?php
+                    }
+                    else{
+                      ?>
+                       <a href="login.php"><button class="book-btn">Book Now</button></a>
+                      <?php
+                    }
+                  ?>
+                 
               </div>
           </div>
           <!-- box ends -->
@@ -371,7 +383,7 @@
 
     <div class="row">
       <?php 
-        $reviews=mysqli_query($con,"select reviews.*, userlogin.* from reviews,userlogin ");
+        $reviews=mysqli_query($con,"select reviews.*, user.* from reviews,user ");
 
         while($ratings=mysqli_fetch_assoc($reviews)){
               
@@ -383,7 +395,7 @@
           <div class="item">
             <div class="shadow-effect">
                 <img class="img-circle" src="..\asset\img_user\pic2.png" alt="">
-                <h4 class="testimonial-name">EMILIANO AQUILANI</h4>
+                <h4 class="testimonial-name"><?php echo $ratings['name']; ?></h4>
                 <div>
                 <?php 
                   $st=intval($ratings['stars']);

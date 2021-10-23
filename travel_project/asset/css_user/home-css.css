@@ -1166,9 +1166,9 @@ section .heading{
 
 
 .successMsg{
-    position: absolute; 
-    font-weight: bold;
+
     top: 90%;
+    font-size: .7rem;
     left: 50%;
     transform: translateX(-50%);
     position: fixed;

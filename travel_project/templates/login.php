@@ -44,16 +44,25 @@ include ('include/functions.inc.php');
 </div>
 <div class="container">
 
-  <form method="post" class="loginForm">
   <div class="box">
+    
+  <form method="post" class="loginForm">
     <h1>Login</h1>
      <span id="msg"></span>
-    <input type="text" name="phone" id="loginPhone" placeholder="Enter your Phone" required  />
-    <input type="password" type="password" id="loginPass" name="password" placeholder="Enter your password" required  />    
+     <div id="mainLoginForm" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <input type="text" name="phone" id="loginPhone" placeholder="Enter your Phone" required  />   
     <div class="text-center mt-3">
-    <button type="submit" id="loginBtn" class="login-btn"  name="submit" >Sign In</button>
+    <button type="submit" id="loginBtn" class="login-btn"  name="submit" >Continue</button>
     </div>
-</form>
+   </div>
+   </form>
+    <div class="loginVerify" style="display: none; flex-direction: column; justify-content: center; align-items: center;">
+      <div id="recaptcha-container"></div>
+      <input type="text" id="logotp" name="logotp" placeholder="OTP" required  /> 
+      <button type="submit" id="verifyLoginOtp" class="login-btn"  name="submit" >Verify</button>
+    </div>
+
+
     <a href="sign-up.php">Don't have an account? Sign up</a>
     
     <br/><br/>
@@ -68,14 +77,6 @@ include ('include/functions.inc.php');
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
 <script src="../asset/firebase.js"></script>
 
-
-<script>
-
-
-
-
-
-</script>
 
 
 

@@ -9,30 +9,24 @@ $type=$_POST['type'];
 if($type=="signUp"){
 
 
-		$email=$_POST['email'];
-		$pass=$_POST['password'];
+		$name=$_POST['name'];
+		$mobile=$_POST['mobile'];
+		$add=$_POST['add'];
 
-		$check=mysqli_query($con,"select * from userlogin where email='$email' ");
+
+		$check=mysqli_query($con,"INSERT INTO `user`(`name`, `mobile`, `address`) VALUES ('$name','$mobile','$add') ");
 
 		if(mysqli_num_rows($check)>0){
-			$arr=array("status"=>"fail");
+			$arr=array("status"=>"success","msg"=>"Registered successfully!");
+			$check=mysqli_query($con,"select * from user where mobile='$mobile' ");
+			$row=mysqli_fetch_assoc($check);
+			$_SESSION['CURRENT_USER_ID']=$row['id'];
 		   echo json_encode($arr);
 		}
 		else{
 
-				$result=mysqli_query($con,"INSERT INTO `userlogin`(`email`, `password`) VALUES ('$email','$pass')");
-
-				if($result){
-
-				$arr=array("status"=>"success");
-				echo json_encode($arr);
-
-				}
-				else{
-					$arr=array("status"=>"fail");
-				    echo json_encode($arr);
-				}
-
+		  $arr=array("status"=>"fail","msg"=>"Please Try Again");
+		   echo json_encode($arr);
 		}
 
 
@@ -60,6 +54,29 @@ if($type=="checkMobile"){
 
 }
 
+if($type=="login"){
+
+
+		$mobile=$_POST['mobile'];
+
+		$check=mysqli_query($con,"select * from user where mobile='$mobile' ");
+
+		if(mysqli_num_rows($check)>0){
+			$row=mysqli_fetch_assoc($check);
+			$_SESSION['CURRENT_USER_ID']=$row['id'];
+			$arr=array("status"=>"success","msg"=>"login successfully");
+		    echo json_encode($arr);
+		}
+		else{
+			$arr=array("status"=>"fail","msg"=>"Unable to login!");
+		    echo json_encode($arr);
+
+		}
+		
+
+
+
+}
 
 
 

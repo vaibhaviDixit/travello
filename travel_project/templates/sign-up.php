@@ -40,15 +40,19 @@ include ('include\database.inc.php');
         <h1>Sign Up</h1>
 
        <span id="msg"></span>
-        <div id="mainSignUpForm " style="display: flex;flex-direction: column;">
+        <div id="mainSignUpForm" style="display: flex;flex-direction: column; align-items: center;">
         <input type="text" name="signUpName" id="signUpName" placeholder="Name" required>
         <input type="text" name="signUpMob" id="signUpMob" placeholder="Mobile" required>
         <input type="text" name="signUpAdd" id="signUpAdd"  placeholder="Address" required>
-        <div id="recaptcha-container"></div>
-      </div>
-
-        <input type="text" name="signUpOTP" id="signUpOTP" placeholder="OTP" style="display: none;">
         <button type="submit"  id="signbtn" class="sign-up-btn" onclick="return signUpvalidation()" >Sign Up</button>
+       </div>
+       <div id="OTP" style="display: none;">
+        <div id="recaptcha-container"></div>
+        <input type="text" name="signUpOTP" id="signUpOTP" placeholder="OTP" >
+        <button type="submit"   id="verifybtn" class="sign-up-btn" >Verify</button>
+        </div>
+
+        
 
         <a href="login.php">Already have an account? Login</a>
         
@@ -60,30 +64,6 @@ include ('include\database.inc.php');
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
 <script src="../asset/firebase.js"></script>
-
-<script>
-
-
-// const firebaseConfig = {
-//   apiKey: "AIzaSyCp0yBkzF012bf7otTruduYppXJSL5rkdk",
-//   authDomain: "emailauth-e72dd.firebaseapp.com",
-//   projectId: "emailauth-e72dd",
-//   storageBucket: "emailauth-e72dd.appspot.com",
-//   messagingSenderId: "1009272597079",
-//   appId: "1:1009272597079:web:1e8d0ca93ec5f0cd0f1112",
-//   measurementId: "G-H3W6S0PM7S"
-// };
-
-// // Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
-
-  
-  
-  </script>
-
-
-
 
 
 </body>

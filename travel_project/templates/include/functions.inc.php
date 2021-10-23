@@ -33,8 +33,8 @@ function manageFav($uemail,$pckgId){
 
     global $con;
   
-   $getUid=mysqli_fetch_assoc(mysqli_query($con,"select * from userlogin where email='$uemail' "));
-    $uid=$getUid['id'];
+    $uid=$_SESSION['CURRENT_USER_ID'];
+
 
     $res=mysqli_query($con,"select * from favourites where userId='$uid' and pckgId='$pckgId'  ");
 
@@ -49,10 +49,7 @@ function manageFav($uemail,$pckgId){
 function getUserFav(){
     global $con;
     $arr=array();
-    $uemail=$_SESSION['CURRENT_USER'];
-    $getUid=mysqli_fetch_assoc(mysqli_query($con,"select * from userlogin where email='$uemail' "));
-
-    $uid=$getUid['id'];
+    $uid=$_SESSION['CURRENT_USER_ID'];
 
     $res=mysqli_query($con,"select * from favourites where userId='$uid' ");
     while ($row=mysqli_fetch_assoc($res) ) {
@@ -65,7 +62,7 @@ function getUserFav(){
 function getFavourites(){
     $fav_array=array(); //store fav
 
-if(isset($_SESSION['CURRENT_USER'])){
+if(isset($_SESSION['CURRENT_USER_ID'])){
   //if user is logged in get fav of user from database
   $getUserFav=getUserFav();
 
@@ -90,6 +87,13 @@ return $fav_array;
 
 }
 
+function getCurrentUserName(){
+     global $con;
+    $uid=$_SESSION['CURRENT_USER_ID'];
+    $getname=mysqli_fetch_assoc(mysqli_query($con,"select * from user where id ='$uid' "));
+    $name=$getname['name'];
+    return $name;
+}
 
 
 ?>

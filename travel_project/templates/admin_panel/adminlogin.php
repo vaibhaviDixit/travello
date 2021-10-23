@@ -23,7 +23,7 @@
   <button onclick="go_home()" id="home-btn"  class="home-btn"><i class="material-icons">keyboard_arrow_left</i></button>
   <script>
     function go_home(){
-      window.location.href = "../home.php";
+      window.location.href = "../index.php";
     }
    
   </script>
@@ -33,27 +33,26 @@
 <div class="container">
   <div class="box">
     <h1>Admin Login</h1>
-    <input type="text" name="email-id" id="email-id" placeholder="Email Address">
-    <input type="password" name="password" id="password" placeholder="Password">        
-    <a href="index.php"><button type="submit" id="login-btn" class="login-btn">Login</button></a>
-    <!-- <a href="sign-up.php">Don't have an account? Sign up</a>
-    <br/><br/>
-    <a href="admin_panel/index.php">ADMIN LOGIN</a> -->
+    <form method="post" class="loginForm">
+   <span id="msg"></span>
+     <div id="mainLoginForm" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <input type="text" name="phone" id="loginPhone" placeholder="Enter your Phone" required  />   
+    <div class="text-center mt-3">
+    <button type="submit" id="loginBtn" class="login-btn"  name="submit" >Continue</button>
+    </div>
 
-  </div>
+    <div class="loginVerify " style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <div id="recaptcha-container"></div>
+      <input type="text" id="loginOTP" name="loginOTP" placeholder="OTP" required  /> 
+      <button type="submit" id="verifyLoginOtp" class="login-btn"  name="submit" >Verify</button>
+    </div>
+
+  
 </div>
-
-     <script>
-       document.getElementById("login-btn").onclick = function () {
-                  location.href = "home.php";
-              };
-     </script>
-
-
-
-
-
-
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+<script src="../../asset/firebase.js"></script>
 
 
 </body>

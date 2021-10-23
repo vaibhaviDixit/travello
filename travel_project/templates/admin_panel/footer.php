@@ -1,4 +1,4 @@
-  <!-- <footer class="footer">
+<footer class="footer">
         <div class="container-fluid">
           <div class="row text-muted">
             <div class="col-6 text-start">
@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-      </footer> -->
+</footer>
       <!-- footer ends here -->
       
     </div>
@@ -34,6 +34,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
   <script src="//cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <link href="..\..\asset\bootstrap.min.js" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
   <script type="text/javascript">

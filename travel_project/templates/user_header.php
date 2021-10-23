@@ -53,11 +53,23 @@ $fav_count=count($favArray);
     <ul class="nav-menu">
         <li class="nav-item"><a href="index.php">Home</a></li>
         <li class="nav-item"><a href="#about">About us</a></li>
-        <li class="nav-item"><a href="<?php if(isset($_SESSION['CURRENT_USER'])){
+        <li class="nav-item"><a href="<?php if(isset($_SESSION['CURRENT_USER_ID'])){
             echo "user_panel/userpanel.php";
         }else{
             echo "login.php";
-        } ?>"><i class="material-icons">person</i></a></li>
+        } ?>">
+
+        <?php if(isset($_SESSION['CURRENT_USER_ID']))
+              { ?>Hi, <?php echo getCurrentUserName(); }
+              else{
+                ?>
+
+        <i class="material-icons">person</i>
+                <?php
+              }
+
+        ?>
+        </a></li>
         <li class="nav-item"><a href="cart.php"><i class="material-icons">shopping_cart</i></a></li>
         <li class="nav-item" style="position: relative;"><a href="favourites.php"> <i class="material-icons is-liked bouncy">favorite</i></a> <span id="favItems" class="count"><?php echo $fav_count; ?> </li>
 
