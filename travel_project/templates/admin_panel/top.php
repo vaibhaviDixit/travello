@@ -5,6 +5,11 @@ session_start();
    include ('..\include\functions.inc.php');
    include ('..\include\constants.inc.php');
 
+
+if(!isset($_SESSION['ADMIN'])){
+   redirect("adminlogin.php");
+}
+
    
    ?>
 <!DOCTYPE html>

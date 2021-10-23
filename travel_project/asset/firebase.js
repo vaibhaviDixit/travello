@@ -237,7 +237,7 @@ $("#verifybtn").on("click",function(e){
 // verify login otp
 $("#verifyLoginOtp").on("click",function(e){
 
-
+  // isAdmin=$("#verifyLoginOtp").attr("id");
   
 
   $("#verifyLoginOtp").attr("disabled",true);
@@ -282,4 +282,105 @@ $("#verifyLoginOtp").on("click",function(e){
 
 });
 
+
+
+       $("#adminloginForm").on("submit",function(e){
+     
+         
+              phone=$("#adminloginPhone").val();
+              console.log(phone);
+          if(isNaN(phone)){
+               $(this).find("#msg").html("<div class='alert alert-success' role='alert'>Invalid Mobile</div>");
+          }else{
+
+              $("#loginBtn").attr('disabled',true);
+              $("#loginBtn").html("Loading...");
+
+                 $.ajax({  
+                   type:"POST",  
+                   url:"../templates/register_login.php",  
+                   data:"mobile="+phone+"&type=checkAdminMobile",
+                   success:function(result){
+                       console.log(result)
+                      msg=jQuery.parseJSON(result);
+
+                     if(msg.status=="success"){
+                        $("#loginBtn").attr('disabled',false);
+                        $("#loginBtn").html("Sign In");
+                        $(".adminloginVerify").css("display","flex");
+                        $("#mainLoginForm").hide();
+                        //send otp here
+                        cverify=window.recaptchaVerifier;
+
+                        firebase.auth().signInWithPhoneNumber("+91"+phone,cverify).then(function(response){
+                          window.confirmationResult = response;
+                          $("#msg").html("<div class='alert alert-success' role='alert'>Enter OTP sent to "+phone+"</div>");
+                          console.log(response);
+                        }).catch(function(error){
+                            console.log(error);
+                        })
+                      
+                     }
+                     if(msg.status=="fail"){
+                        $("#msg").html("<div class='alert alert-danger' role='alert'>"+msg.msg+"</div>");
+                        $("#loginBtn").attr('disabled',false);
+                        $("#loginBtn").html("Sign In");
+                     }
+                     
+                   }
+                   
+                  });
+
+          }
+
+          
+
+         e.preventDefault();
+
+       });
+// ---------------------
+ // verify admin login otp
+$("#verifyAdminLoginOtp").on("click",function(e){  
+
+  $("#verifyAdminLoginOtp").attr("disabled",true);
+  $("#verifyAdminLoginOtp").html("Loading..");
+  phone=$("#adminloginPhone").val();
+  otp=$("#adminloginOTP").val();
+
+  confirmationResult.confirm(otp).then(function(response){
+      
+         
+           $.ajax({  
+                   type:"POST",  
+                   url:"../templates/register_login.php",  
+                   data:"mobile="+phone+"&type=adminlogin",
+                   success:function(result){
+                console.log(result)
+                      msg=jQuery.parseJSON(result);
+
+                     if(msg.status=="success"){
+                        window.location.href="../templates/admin_panel/index.php";
+                        $("#signbtn").attr('disabled',false);
+                        $("#signbtn").html("Sign Up");
+                      
+                     }
+                     if(msg.status=="fail"){
+
+                       $("#msg").html("<div class='alert alert-danger' role='alert'>"+msg.msg+"</div>");
+                        $("#signbtn").attr('disabled',false);
+                        $("#signbtn").html("Sign Up");
+                     }
+                     
+                     
+                   }
+                   
+          });
+         
+  }).catch(function(error){
+    $("#msg").html("<div class='alert alert-danger' role='alert'>Invalid OTP</div>");
+
+  })
+  e.preventDefault();
+
+});
 

@@ -46,7 +46,7 @@ include ('include/functions.inc.php');
 
   <div class="box">
     
-  <form method="post" class="loginForm">
+  <form method="post" class="loginForm text-center">
     <h1>Login</h1>
      <span id="msg"></span>
      <div id="mainLoginForm" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
