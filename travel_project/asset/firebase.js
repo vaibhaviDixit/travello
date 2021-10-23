@@ -286,7 +286,7 @@ $("#verifyLoginOtp").on("click",function(e){
 
        $("#adminloginForm").on("submit",function(e){
      
-         
+            $("#msg").html("");
               phone=$("#adminloginPhone").val();
               console.log(phone);
           if(isNaN(phone)){
@@ -359,7 +359,7 @@ $("#verifyAdminLoginOtp").on("click",function(e){
                       msg=jQuery.parseJSON(result);
 
                      if(msg.status=="success"){
-                        window.location.href="../templates/admin_panel/index.php";
+                        window.location.href="admin_panel/index.php";
                         $("#signbtn").attr('disabled',false);
                         $("#signbtn").html("Sign Up");
                       

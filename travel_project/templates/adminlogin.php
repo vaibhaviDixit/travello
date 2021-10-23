@@ -13,9 +13,9 @@
 <link href='https://fonts.googleapis.com/css?family=Galada' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="..\..\asset\css_user\login-signup-css.css">
+<link rel="stylesheet" href="..\asset\css_user\login-signup-css.css">
 <link rel='stylesheet' href='https://unpkg.com/aos@2.3.0/dist/aos.css'>
-<link rel="stylesheet" href="..\..\asset\css_user\login-signup-css.css">
+<link rel="stylesheet" href="..\asset\css_user\login-signup-css.css">
 
 
 </head>
@@ -28,7 +28,7 @@
    
   </script>
   <div class="video-container">
-    <video src="..\..\asset\img_user\vid-1.mp4" id="video-slider" loop autoplay muted></video>
+    <video src="..\asset\img_user\vid-1.mp4" id="video-slider" loop autoplay muted></video>
 </div>
 <div class="container">
 
@@ -55,7 +55,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
-<script src="../../asset/firebase.js"></script>
+<script src="../asset/firebase.js"></script>
 
 
 </body>

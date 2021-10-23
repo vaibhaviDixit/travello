@@ -66,7 +66,7 @@ include ('include/functions.inc.php');
     <a href="sign-up.php">Don't have an account? Sign up</a>
     
     <br/><br/>
-    <a href="admin_panel/adminlogin.php">ADMIN LOGIN</a>
+    <a href="adminlogin.php">ADMIN LOGIN</a>
 
   </div>
     

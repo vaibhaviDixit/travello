@@ -82,7 +82,7 @@ if($type=="adminlogin"){
 
 		$mobile=$_POST['mobile'];
 
-		$check=mysqli_query($con,"select * from admin where mobile='$mobile' ");
+		$check=mysqli_query($con,"select * from admin where phone='$mobile' ");
 
 		if(mysqli_num_rows($check)>0){
 			$row=mysqli_fetch_assoc($check);
@@ -104,7 +104,7 @@ if($type=="checkAdminMobile"){
 
 	$mobile=$_POST['mobile'];
 
-		$check=mysqli_query($con,"select * from admin where mobile='$mobile' ");
+		$check=mysqli_query($con,"select * from admin where phone='$mobile' ");
 
 		if(mysqli_num_rows($check)>0){
 			$arr=array("status"=>"success","msg"=>"Enter OTP sent to ".$mobile);
