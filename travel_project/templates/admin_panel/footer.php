@@ -30,8 +30,8 @@
     </div>
   </div>
 
-   <script src="..\..\asset\js_admin\app.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+   <script src="..\..\asset\js_admin\app.js"></script>
   <script src="//cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <link href="..\..\asset\bootstrap.min.js" rel="stylesheet">

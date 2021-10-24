@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3309
--- Generation Time: Oct 23, 2021 at 07:03 AM
+-- Generation Time: Oct 24, 2021 at 07:43 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -42,7 +42,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `phone`, `email`, `address`, `location`, `website`) VALUES
-(1, 'Admin', '8985456545', 'admin@gmail.com', 'Solapur', 'Solapur', 'https://www.youtube.com/');
+(1, 'Admin', '9284552192', 'admin@gmail.com', 'Solapur', 'Solapur', 'https://www.youtube.com/');
 
 -- --------------------------------------------------------
 
@@ -52,17 +52,29 @@ INSERT INTO `admin` (`id`, `name`, `phone`, `email`, `address`, `location`, `web
 
 CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
+  `bookId` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `packageId` int(11) NOT NULL,
   `packagePrice` int(11) NOT NULL,
   `checkIn` date NOT NULL,
   `checkOut` date NOT NULL,
+  `payMode` varchar(255) NOT NULL,
   `adults` int(11) NOT NULL,
   `children` int(11) NOT NULL,
+  `subTotal` int(11) NOT NULL,
+  `discount` int(11) NOT NULL,
   `total` int(11) NOT NULL,
-  `paid` int(11) NOT NULL
+  `paid` int(11) NOT NULL,
+  `rem` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`id`, `bookId`, `name`, `phone`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `payMode`, `adults`, `children`, `subTotal`, `discount`, `total`, `paid`, `rem`) VALUES
+(4, 'yeabv', 'Shrawani Dixit', '9865986585', 3, 37000, '2021-10-24', '2021-10-26', 'UPI', 2, 2, 222000, 5000, 217000, 10000, 207000);
 
 -- --------------------------------------------------------
 
@@ -162,6 +174,29 @@ INSERT INTO `reviews` (`id`, `userId`, `description`, `stars`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tourmembers`
+--
+
+CREATE TABLE `tourmembers` (
+  `id` int(11) NOT NULL,
+  `bookId` varchar(100) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tourmembers`
+--
+
+INSERT INTO `tourmembers` (`id`, `bookId`, `name`, `type`, `amount`) VALUES
+(15, 'yeabv', 'Monu', 'child', 18500),
+(16, 'yeabv', 'riya', 'adult', 37000),
+(17, 'yeabv', 'abhi', 'child', 18500);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -218,7 +253,8 @@ ALTER TABLE `admin`
 -- Indexes for table `booking`
 --
 ALTER TABLE `booking`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `bookId` (`bookId`);
 
 --
 -- Indexes for table `category`
@@ -243,6 +279,12 @@ ALTER TABLE `package`
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tourmembers`
+--
+ALTER TABLE `tourmembers`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -271,7 +313,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -296,6 +338,12 @@ ALTER TABLE `package`
 --
 ALTER TABLE `reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tourmembers`
+--
+ALTER TABLE `tourmembers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user`

@@ -95,5 +95,30 @@ function getCurrentUserName(){
     return $name;
 }
 
+function bookings(){
+  global $con;
+  $bookings=mysqli_num_rows(mysqli_query($con,"select * from booking"));
+  return $bookings;
+
+}
+function earnings(){
+  global $con;
+  $earn=mysqli_fetch_assoc(mysqli_query($con,"SELECT sum(total) from `booking`"));
+  return $earn['sum(total)'];
+
+}
+function packages(){
+  global $con;
+  $pkg=mysqli_num_rows(mysqli_query($con,"select * from package"));
+  return $pkg;
+
+}
+function payDues(){
+  global $con;
+  $rem=mysqli_num_rows(mysqli_query($con,"SELECT count(rem) FROM `booking` WHERE rem <> 0"));
+  return $rem;
+
+}
+
 
 ?>

@@ -93,7 +93,7 @@ if(!isset($_SESSION['ADMIN'])){
                </li>
                <li class="sidebar-item" >
                   <a class="sidebar-link" href="EditViewMore.php">
-                  <i class="align-middle" data-feather="book"></i> <span class="align-middle">Edit View More Page</span>
+                  <i class="align-middle" data-feather="edit-3"></i> <span class="align-middle">Edit View More Page</span>
                   </a>
                <li class="sidebar-item">
                   <a class="sidebar-link" href="reports.php">
@@ -109,12 +109,12 @@ if(!isset($_SESSION['ADMIN'])){
                </li>
                <li class="sidebar-item ">
                   <a class="sidebar-link" href="AddElement.php">
-                  <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Package</span>
+                  <i class="align-middle" data-feather="plus-square"></i> <span class="align-middle">Add Package</span>
                   </a>
                </li>
                <li class="sidebar-item ">
                   <a class="sidebar-link" href="ListElement.php">
-                  <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">List Packages</span>
+                  <i class="align-middle" data-feather="list"></i> <span class="align-middle">List Packages</span>
                   </a>
                </li>
 
@@ -124,12 +124,12 @@ if(!isset($_SESSION['ADMIN'])){
                </li>
                <li class="sidebar-item ">
                   <a class="sidebar-link" href="AddBooking.php">
-                  <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Bookings</span>
+                  <i class="align-middle" data-feather="plus-circle"></i> <span class="align-middle">Add Bookings</span>
                   </a>
                </li>
                <li class="sidebar-item ">
                   <a class="sidebar-link" href="ListBooking.php">
-                  <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">List Bookings</span>
+                  <i class="align-middle" data-feather="list"></i> <span class="align-middle">List Bookings</span>
                   </a>
                </li>
 
@@ -138,12 +138,12 @@ if(!isset($_SESSION['ADMIN'])){
                </li>
                <li class="sidebar-item">
                   <a class="sidebar-link" href="AddCategory.php">
-                  <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Add Package Catogery</span>
+                  <i class="align-middle" data-feather="plus"></i> <span class="align-middle">Add Package Catogery</span>
                   </a>
                </li>
                <li class="sidebar-item">
                   <a class="sidebar-link" href="listCategory.php">
-                  <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Catogery List</span>
+                  <i class="align-middle" data-feather="list"></i> <span class="align-middle">Catogery List</span>
                   </a>
                </li>
    
@@ -153,7 +153,7 @@ if(!isset($_SESSION['ADMIN'])){
       </nav>
     
 <!-- admin navbar starts -->
-      <div class="main">
+     <div class="main">
          <nav class="navbar navbar-expand navbar-light navbar-bg">
             <a class="sidebar-toggle js-sidebar-toggle">
           <i class="hamburger align-self-center"></i>
@@ -173,7 +173,7 @@ if(!isset($_SESSION['ADMIN'])){
                            4 New Notifications
                         </div>
                         <div class="list-group">
-                           <a href="#" class="list-group-item">
+                           <a href="notifications.php" class="list-group-item">
                               <div class="row g-0 align-items-center">
                                  <div class="col-2">
                                     <i class="text-danger" data-feather="alert-circle"></i>
@@ -185,7 +185,7 @@ if(!isset($_SESSION['ADMIN'])){
                                  </div>
                               </div>
                            </a>
-                           <a href="#" class="list-group-item">
+                           <a href="notifications.php" class="list-group-item">
                               <div class="row g-0 align-items-center">
                                  <div class="col-2">
                                     <i class="text-warning" data-feather="bell"></i>
@@ -197,7 +197,7 @@ if(!isset($_SESSION['ADMIN'])){
                                  </div>
                               </div>
                            </a>
-                           <a href="#" class="list-group-item">
+                           <a href="notifications.php" class="list-group-item">
                               <div class="row g-0 align-items-center">
                                  <div class="col-2">
                                     <i class="text-primary" data-feather="home"></i>
@@ -208,7 +208,7 @@ if(!isset($_SESSION['ADMIN'])){
                                  </div>
                               </div>
                            </a>
-                           <a href="#" class="list-group-item">
+                           <a href="notifications.php" class="list-group-item">
                               <div class="row g-0 align-items-center">
                                  <div class="col-2">
                                     <i class="text-success" data-feather="user-plus"></i>
@@ -222,7 +222,7 @@ if(!isset($_SESSION['ADMIN'])){
                            </a>
                         </div>
                         <div class="dropdown-menu-footer">
-                           <a href="#" class="text-muted">Show all notifications</a>
+                           <a href="notifications.php" class="text-muted">Show all notifications</a>
                         </div>
                      </div>
                   </li>
@@ -242,7 +242,7 @@ if(!isset($_SESSION['ADMIN'])){
                            <a href="#" class="list-group-item">
                               <div class="row g-0 align-items-center">
                                  <div class="col-2">
-                                    <img src="img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
+                                    <img src="..\..\asset\img_user\avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
                                  </div>
                                  <div class="col-10 ps-2">
                                     <div class="text-dark">Vanessa Tucker</div>
@@ -254,7 +254,7 @@ if(!isset($_SESSION['ADMIN'])){
                            <a href="#" class="list-group-item">
                               <div class="row g-0 align-items-center">
                                  <div class="col-2">
-                                    <img src="img/avatars/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="William Harris">
+                                    <img src="..\..\asset\img_user\avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="William Harris">
                                  </div>
                                  <div class="col-10 ps-2">
                                     <div class="text-dark">William Harris</div>
@@ -266,7 +266,7 @@ if(!isset($_SESSION['ADMIN'])){
                            <a href="#" class="list-group-item">
                               <div class="row g-0 align-items-center">
                                  <div class="col-2">
-                                    <img src="img/avatars/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Christina Mason">
+                                    <img src="..\..\asset\img_user\avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Christina Mason">
                                  </div>
                                  <div class="col-10 ps-2">
                                     <div class="text-dark">Christina Mason</div>
@@ -278,7 +278,7 @@ if(!isset($_SESSION['ADMIN'])){
                            <a href="#" class="list-group-item">
                               <div class="row g-0 align-items-center">
                                  <div class="col-2">
-                                    <img src="img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
+                                    <img src="..\..\asset\img_user\avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
                                  </div>
                                  <div class="col-10 ps-2">
                                     <div class="text-dark">Sharon Lessman</div>
@@ -299,10 +299,14 @@ if(!isset($_SESSION['ADMIN'])){
               </a>
 
                      <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                            <span class="text-dark">  <?php  echo $_SESSION['admin_name']; ?> </span>
-                        </a>
+                <img src="..\..\asset\img_user\avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo getCurrentUserName(); ?></span>
+              </a>
                      <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+                        <a class="dropdown-item" href="profile.php"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+                        <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="index.php"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
+                        <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout.php">Log out</a>
                      </div>
@@ -310,4 +314,4 @@ if(!isset($_SESSION['ADMIN'])){
                </ul>
             </div>
          </nav>
-         <!-- admin navbar ends -->
+         <!--  -->
