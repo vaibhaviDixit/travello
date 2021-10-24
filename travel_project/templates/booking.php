@@ -52,43 +52,7 @@ if(isset($_POST['submit'])){
 <div class="accordion accordion-flush" id="accordionExample">
 
 
-	<!-- login starts -->
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-        Login/Register
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingTwo">
-      <div class="accordion-body">
-      	<div class="container">
-			  <form method="post" id="signUpForm">
-			    <div class="box">
-			     
-			        <h1>Sign Up</h1>
 
-			       <span id="msg"></span>
-			        <div id="mainSignUpForm " style="display: flex;flex-direction: column;">
-			        <input type="text" name="signUpName" id="signUpName" placeholder="Name" required>
-			        <input type="text" name="signUpMob" id="signUpMob" placeholder="Mobile" required>
-			        <input type="text" name="signUpAdd" id="signUpAdd"  placeholder="Address" required>
-			        <div id="recaptcha-container"></div>
-			      </div>
-
-			        <input type="text" name="signUpOTP" id="signUpOTP" placeholder="OTP" style="display: none;">
-			        <button type="submit"  id="signbtn" class="sign-up-btn" onclick="return signUpvalidation()" >Sign Up</button>
-
-			        <a href="login.php">Already have an account? Login</a>
-			        
-			    </div>
-			  </form>
-		</div>
-
-
-      </div>
-    </div>
-  </div>
-  <!-- login acrodian ends -->
 
 <!-- Address Details starts -->
   <div class="accordion-item">

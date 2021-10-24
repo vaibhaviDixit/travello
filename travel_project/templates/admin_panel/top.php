@@ -7,7 +7,7 @@ session_start();
 
 
 if(!isset($_SESSION['ADMIN'])){
-   redirect("adminlogin.php");
+   redirect("../adminlogin.php");
 }
 
    
@@ -36,7 +36,7 @@ if(!isset($_SESSION['ADMIN'])){
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link rel="shortcut icon" href="..\..\asset\img_user\icon-48x48.png" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <!-- font awesome cdn link  -->
 
       <link href="..\..\asset\css_user\reportbootstrap.min.css" rel="stylesheet">

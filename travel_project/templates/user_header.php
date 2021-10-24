@@ -48,7 +48,7 @@ $fav_count=count($favArray);
 <body>
   <nav class="navbar">
     <div class="logo">
-        <h1>Travel</h1>
+        <img src="../asset/img_user/logo.png">
     </div>         
     <ul class="nav-menu">
         <li class="nav-item"><a href="index.php">Home</a></li>
