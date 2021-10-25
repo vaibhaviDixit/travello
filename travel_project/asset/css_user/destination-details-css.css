@@ -100,12 +100,13 @@ display: none; /* for Chrome, Safari, and Opera */
 
 }
 .book{
-  padding-top: 10%;
+  padding-top: 15%;
   width: 100%;
   background: #131419;
  
 }
 .book .head{
+  font-size: 1.5rem;
   text-align: center;
   text-transform: uppercase;
   font-weight: 600;
@@ -330,7 +331,7 @@ cursor: pointer;
 @media only screen and (max-width: 768px){
 
   .book{
-  padding-top: 18%;
+  padding-top: 30%;
 }
   .fixed-book{
     display: block;

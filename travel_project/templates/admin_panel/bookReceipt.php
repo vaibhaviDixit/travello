@@ -1,6 +1,6 @@
 <?php 
 
-include ('..\include\database.inc.php');
+   include ('..\include\database.inc.php');
    include ('..\include\functions.inc.php');
    include ('..\include\constants.inc.php');
 
@@ -81,6 +81,16 @@ $html='<!DOCTYPE html>
 		 	
 		 	$diff=date_diff(date_create($row['checkIn']),date_create($row['checkOut']));
 			$days=$diff->format("%a");
+
+			$disType=$row['distype']; 
+			if($disType=='cash')
+			{
+				$sign="&#8377;";
+		    }
+		    if($disType=='per')
+		    {
+		    	$sign="%";
+			}
 		 }
 
 		  	$html.='<tbody>
@@ -89,6 +99,10 @@ $html='<!DOCTYPE html>
 		        	<td>Name: </td><td>'.$row['name'].'</td>
 		        	<td>Mobile: </td><td>'.$row['phone'].'</td>
 		        </tr>
+		        <tr>
+		        	<td>Address: </td><td>'.$row['address'].'</td>
+		        </tr>
+
 		        <tr>
 		        	<td>Package: </td><td>'.$row['packageName'].'</td>
 		        	<td>Payment Mode: </td><td>'.$row['payMode'].'</td>
@@ -135,17 +149,17 @@ $html='<!DOCTYPE html>
 				<tr class="btm">
 					<td></td><td></td><td></td>
 					<td>Subtotal</td>
-					<td>'.$row['subTotal'].'</td>
+					<td>'.$sign.$row['subTotal'].'</td>
 				</tr>
 				<tr class="btm">
 					<td></td><td></td><td></td>
 					<td>Discount</td>
-					<td>'.$row['discount'].'</td>
+					<td>'.$sign.$row['discount'].'</td>
 				</tr>
 				<tr class="btm">
 					<td></td><td></td><td></td>
 					<td class="table-active">Grand Total</td>
-					<td class="table-active">'.$row['total'].'</td>
+					<td class="table-active">'.$sign.$row['total'].'</td>
 				</tr>
 
 			</tbody>

@@ -1,314 +1,190 @@
 	<?php  
 
-					include 'userHeader.php';
-			?>
+	include 'userHeader.php';
+
+
+$msg="";
+                          
+ 
+
+//update admin profile
+if(isset($_FILES['userProfile'])){
+
+  $type=$_FILES['userProfile']['type'];
+
+  if($type!="image/jpeg" && $type!="image/png" && $type!="image/jpg"){
+        $msg="Invalid image format";
+      }
+      else{
+
+        $userProfile=rand(111111111,999999999).'_'.$_FILES['userProfile']['name'];
+        move_uploaded_file($_FILES['userProfile']['tmp_name'],SERVER_PROFILE_IMAGE.$userProfile);
+        $uid=$row['id'];
+        mysqli_query($con,"update user set profile='$userProfile' where id='$uid' ");
+          echo "update user set profile='$userProfile' where id='$uid' ";
+           
+        redirect('profile.php');
+
+      }
+
+  
+}
+
+
+?>
 
 <!--     PROFILE      -->
 
 <main class="content">
-  <div class="container-fluid p-0">
+<div class="container-fluid">
 
 
-<div class="container light-style flex-grow-1 container-p-y">
-
-        <div class="card overflow-hidden">
-      <div class="row no-gutters row-bordered row-border-light">
-        <div class="col-md-3 pt-0">
-          <div class="list-group list-group-flush account-settings-links">
-            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-info">Info</a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-social-links">Social links</a>
+          <div class="mb-3">
+            <h1 class="h3 d-inline align-middle">Profile</h1>
+          
           </div>
-        </div>
-        <div class="col-md-9">
-          <div class="tab-content">
-            <div class="tab-pane fade active show" id="account-general">
+          <div class="row">
+              <?php 
+                    if(strlen( $msg ) > 0){
+                    ?>
+                    <div class="alert alert-danger" role="alert" >  <?php echo $msg;  ?> </div>
+                    <?php
+                      }
 
-              <div class="card-body media align-items-center">
-                <img src="..\..\asset\img_user\avatar.jpg" alt="" class="d-block ui-w-80">
-                <div class="media-body ml-4">
-                  <label class="btn btn-outline-primary">
-                    Upload new photo
-                    <input type="file" class="account-settings-fileinput">
-                  </label> &nbsp;
-                  <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+                  ?>    
+            <div class="col-md-4 col-xl-3">
+              <div class="card mb-3">
+                  
+                <div class="card-header">
+                  <h5 class="card-title mb-0">Profile</h5>
+                </div>
+                <div class="card-body text-center">
 
-                  <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                  <a target="_blank" href="<?php echo SITE_PROFILE_IMAGE.$row['profile']; ?>">
+                    <img src="<?php  echo SITE_PROFILE_IMAGE.$row['profile']; ?>" alt="user" class="img-fluid  mb-2 img-thumbnail" />
+                  </a>
+
+                  <h5 class="card-title mb-0"><?php   echo $row['name']; ?></h5>
+
+               
+                  <form method="post" enctype="multipart/form-data">
+                    <input class="form-control form-control-sm" type="file" id="userProfile" name="userProfile" >
+                     <label for="userProfile" ><button type="submit" class="btn btn-success btn-sm mt-3 p-1"><span data-feather="user"></span> Change Profile</button> </label>
+                  </form>
+
+                </div>
+                
+                
+                
+              </div>
+            </div>
+
+            <div class="col-md-8 col-xl-9">
+              <div class="card mb-3">
+                <div class="card-header">
+                  <h5 class="card-title mb-0">Basic Infromation</h5>
+                </div>
+                  <div class="card-body text-center">
+
+                  <table class="table" style="text-align: left;">
+                    <tbody>
+                      
+                      <tr>
+                        <th scope="row">Name</th>
+                        <td><?php   echo $row['name']; ?></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Phone Number</th>
+                        <td><?php   echo $row['mobile']; ?></td>
+                      </tr>
+                       <tr>
+                        <th scope="row">Address</th>
+                        <td><?php   echo $row['address']; ?></td>
+                      </tr>
+
+                  
+
+
+                    </tbody>
+                  </table>
+                  
+
                 </div>
               </div>
-              <hr class="border-light m-0">
 
-              <div class="card-body">
-                <div class="form-group">
-                  <label class="form-label">Username</label>
-                  <input type="text" class="form-control mb-1" value="Enter Username">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Name</label>
-                  <input type="text" class="form-control" value="Enter full name">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">E-mail</label>
-                  <input type="text" class="form-control mb-1" value="Enter email address">
-                  <div class="alert alert-warning mt-3">
-                    Your email is not confirmed. Please check your inbox.<br>
-                    <a href="javascript:void(0)">Resend confirmation</a>
+          
+            </div>
+
+          </div>
+    <div class="col-md-8 col-xl-12">
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                Edit Profile
+              </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+            
+
+                        <div class="card">
+                    
+                    <div class="card-body h-100">
+
+                           <form method="post" id="userFrom">
+                            <div class="row">
+                                <div class="col-sm-6 mb-3">
+                                  <label for="userName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" name="userName" id="userName" value="<?php   echo $row['name']; ?>">
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                  <label for="userPhone" class="form-label">Phone</label>
+                                  <input type="text" class="form-control" name="userPhone" id="userPhone" value="<?php   echo $row['mobile']; ?>">
+                                </div>
+                             </div>
+
+                            <div class="row">
+                                <div class="col mb-3">
+                                  <label for="userAddress" class="form-label">Location</label>
+                                  <textarea class="form-control" rows="3" id="userAddress" name="userAddress">
+                                    <?php   echo $row['address']; ?>
+                                  </textarea>
+                                </div>
+                              </div>
+
+
+
+                            <button class="btn btn-success" name="submit" type="submit">Save Changes</button>
+
+                            </form>
+                         </div>
+                      </div> 
+                      <!-- card ends -->
+
                   </div>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Company</label>
-                  <input type="text" class="form-control" value="Company Ltd.">
-                </div>
-              </div>
+           </div>
+         </div>
 
-            </div>
-            <div class="tab-pane fade" id="account-change-password">
-              <div class="card-body pb-2">
-
-                <div class="form-group">
-                  <label class="form-label">Current password</label>
-                  <input type="password" class="form-control">
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">New password</label>
-                  <input type="password" class="form-control">
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">Repeat new password</label>
-                  <input type="password" class="form-control">
-                </div>
-
-              </div>
-            </div>
-            <div class="tab-pane fade" id="account-info">
-              <div class="card-body pb-2">
-
-                <div class="form-group">
-                  <label class="form-label">Bio</label>
-                  <textarea class="form-control" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc arcu, dignissim sit amet sollicitudin iaculis, vehicula id urna. Sed luctus urna nunc. Donec fermentum, magna sit amet rutrum pretium, turpis dolor molestie diam, ut lacinia diam risus eleifend sapien. Curabitur ac nibh nulla. Maecenas nec augue placerat, viverra tellus non, pulvinar risus.</textarea>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Birthday</label>
-                  <input type="text" class="form-control" value="Enter your birthdate">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Country</label>
-                  <select class="custom-select">
-                    <option selected="">USA</option>
-                    <option>Canada</option>
-                    <option>UK</option>
-                    <option>Germany</option>
-                    <option>France</option>
-                    <option>Afghanistan</option>
-                    <option>Albania</option>
-                    <option>Algeria</option>
-                    <option>Andorra</option>
-                    <option>Angola</option>
-                    <option>Antigua and Barbuda</option>
-                    <option>Argentina</option>
-                    <option>Armenia</option>
-                    <option>Australia</option>
-                    <option>Austria</option>
-                    <option>Austrian Empire</option>
-                    <option>Azerbaijan</option>
-                    <option>Iceland</option>
-                    <option>India</option>
-                    <option>Indonesia</option>
-                    <option>Iran</option>
-                    <option>Iraq</option>
-                    <option>Ireland</option>
-                    <option>Israel</option>
-                    <option>Italy</option>
-                    <option>Korea</option>
-                    <option>Kosovo</option>
-                    <option>Kuwait</option>
-                    <option>Vanuatu</option>
-                    <option>Venezuela</option>
-                    <option>Vietnam</option>
-                    <option>Württemberg</option>
-                    <option>Yemen</option>
-                    <option>Zambia</option>
-                    <option>Zimbabwe</option>
-                  </select>
-                </div>
+</div>
+<!--  -->
 
 
-              </div>
-              <hr class="border-light m-0">
-              <div class="card-body pb-2">
 
-                <h6 class="mb-4">Contacts</h6>
-                <div class="form-group">
-                  <label class="form-label">Phone</label>
-                  <input type="text" class="form-control" value="Enter your phone number">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Website</label>
-                  <input type="text" class="form-control" value="">
-                </div>
 
-              </div>
-      
-            </div>
-            <div class="tab-pane fade" id="account-social-links">
-              <div class="card-body pb-2">
-
-                <div class="form-group">
-                  <label class="form-label">Twitter</label>
-                  <input type="text" class="form-control" value="https://twitter.com/user">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Facebook</label>
-                  <input type="text" class="form-control" value="https://www.facebook.com/user">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Google+</label>
-                  <input type="text" class="form-control" value="">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">LinkedIn</label>
-                  <input type="text" class="form-control" value="">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Instagram</label>
-                  <input type="text" class="form-control" value="https://www.instagram.com/user">
-                </div>
-
-              </div>
-            </div>
-           
-              </div>
-            </div>
+        
+              
           </div>
-        </div>
-      </div>
-  
-    <div class="text-right mt-3">
-      <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
-      <button type="button" class="btn btn-default">Cancel</button>
-    </div>
 
- 
+
 
 </div>
 </main>
 
-<style type="text/css">
-body{
-    background: #f5f5f5;
-    margin-top:20px;
-}
-
-.ui-w-80 {
-    width: 80px !important;
-    height: auto;
-}
-
-.btn-default {
-    border-color: rgba(24,28,33,0.1);
-    background: rgba(0,0,0,0);
-    color: #4E5155;
-}
-
-label.btn {
-    margin-bottom: 0;
-}
-
-.btn-outline-primary {
-    border-color: #26B4FF;
-    background: transparent;
-    color: #26B4FF;
-}
-
-.btn {
-    cursor: pointer;
-}
-
-.text-light {
-    color: #babbbc !important;
-}
-
-.btn-facebook {
-    border-color: rgba(0,0,0,0);
-    background: #3B5998;
-    color: #fff;
-}
-
-.btn-instagram {
-    border-color: rgba(0,0,0,0);
-    background: #000;
-    color: #fff;
-}
-
-.card {
-  width: 100%;
-  justify-self: right;
-    background-clip: padding-box;
-    box-shadow: 0 1px 4px rgba(24,28,33,0.012);
-}
-
-.row-bordered {
-    overflow: hidden;
-}
-
-.account-settings-fileinput {
-    position: absolute;
-    visibility: hidden;
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-}
-.account-settings-links .list-group-item.active {
-    font-weight: bold !important;
-}
-html:not(.dark-style) .account-settings-links .list-group-item.active {
-    background: transparent !important;
-}
-.account-settings-multiselect ~ .select2-container {
-    width: 100% !important;
-}
-.light-style .account-settings-links .list-group-item {
-    padding: 0.85rem 1.5rem;
-    border-color: rgba(24, 28, 33, 0.03) !important;
-}
-.light-style .account-settings-links .list-group-item.active {
-    color: #000000 !important;
-}
-.material-style .account-settings-links .list-group-item {
-    padding: 0.85rem 1.5rem;
-    border-color: rgba(24, 28, 33, 0.03) !important;
-}
-.material-style .account-settings-links .list-group-item.active {
-    color: #000000 !important;
-}
-.dark-style .account-settings-links .list-group-item {
-    padding: 0.85rem 1.5rem;
-    border-color: rgba(255, 255, 255, 0.03) !important;
-}
-.dark-style .account-settings-links .list-group-item.active {
-    color: #fff !important;
-}
-.light-style .account-settings-links .list-group-item.active {
-    color: #4E5155 !important;
-}
-.light-style .account-settings-links .list-group-item {
-    padding: 0.85rem 1.5rem;
-    border-color: rgba(24,28,33,0.03) !important;
-}
-
-
-
-</style>
-
-<script type="text/javascript">
-
-</script>
 
 
 	<?php  
 
-					include 'userFooter.php';
-			?>
+		include 'userFooter.php';
+	?>

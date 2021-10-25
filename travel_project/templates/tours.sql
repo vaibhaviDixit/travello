@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3309
--- Generation Time: Oct 24, 2021 at 07:43 PM
+-- Generation Time: Oct 25, 2021 at 04:49 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -55,6 +55,7 @@ CREATE TABLE `booking` (
   `bookId` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `packageId` int(11) NOT NULL,
   `packagePrice` int(11) NOT NULL,
   `checkIn` date NOT NULL,
@@ -64,6 +65,7 @@ CREATE TABLE `booking` (
   `children` int(11) NOT NULL,
   `subTotal` int(11) NOT NULL,
   `discount` int(11) NOT NULL,
+  `distype` varchar(10) NOT NULL,
   `total` int(11) NOT NULL,
   `paid` int(11) NOT NULL,
   `rem` int(11) NOT NULL
@@ -73,8 +75,9 @@ CREATE TABLE `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`id`, `bookId`, `name`, `phone`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `payMode`, `adults`, `children`, `subTotal`, `discount`, `total`, `paid`, `rem`) VALUES
-(4, 'yeabv', 'Shrawani Dixit', '9865986585', 3, 37000, '2021-10-24', '2021-10-26', 'UPI', 2, 2, 222000, 5000, 217000, 10000, 207000);
+INSERT INTO `booking` (`id`, `bookId`, `name`, `phone`, `address`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `payMode`, `adults`, `children`, `subTotal`, `discount`, `distype`, `total`, `paid`, `rem`) VALUES
+(4, 'yeabv', 'Shrawani Dixit', '9865986585', 'Solapur', 3, 37000, '2021-10-24', '2021-10-26', 'UPI', 2, 2, 222000, 5000, 'cash', 217000, 10000, 207000),
+(5, 'ijdbc', 'Shriyansh Mahamuni', '876743102', 'Vasud Road, Sangola                                       ', 5, 7000, '2021-11-01', '2021-11-03', 'OnlineTransfer', 2, 1, 35000, 5, 'per', 33250, 250, 33000);
 
 -- --------------------------------------------------------
 
@@ -132,6 +135,7 @@ CREATE TABLE `package` (
   `packageDesc` varchar(255) NOT NULL,
   `packagePrice` int(11) NOT NULL,
   `discount` float NOT NULL,
+  `disType` varchar(10) NOT NULL,
   `packageType` int(11) NOT NULL,
   `packagePhoto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -140,14 +144,14 @@ CREATE TABLE `package` (
 -- Dumping data for table `package`
 --
 
-INSERT INTO `package` (`id`, `packageName`, `packageDesc`, `packagePrice`, `discount`, `packageType`, `packagePhoto`) VALUES
-(1, 'Mumbai', 'Mumbai is the perfect blend of culture, customs and lifestyles. Mumbai is India\'s most cosmopolitan city, its financial powerhouse and the nerve center of India\'s fashion industry.', 38200, 0, 2, '521659650_download (7).jpg'),
-(2, 'Tokyo', 'Tokyo (東京, Tōkyō) is Japan\'s capital and the world\'s most populous metropolis. It is also one of Japan\'s 47 prefectures, consisting of 23 central city wards and multiple cities, towns and villages west of the city center. The Izu and Ogasawara Islands are', 55000, 0, 2, '382915934_download (8).jpg'),
-(3, 'Tirupati', 'The very name Tirupati is enough to evoke strong spiritual feelings, and while the name ‘God’s Abode’ indeed does justice to the place, Tirupati has quite a few other tourist attractions as well that make it a city worth visiting.', 37000, 0, 3, '839544455_TIRUPATI.jpg'),
-(4, 'Vaishno Devi', 'This town is the holy cave temple of Mata Vaishnodevi, with spirituality and vibrancy lingering in the atmosphere. It is considered one of the most sacred holy places in India.', 42000, 0, 3, '136245396_download (9).jpg'),
-(5, 'Spiti Valley, Himachal Pradesh', 'First on our list is, Spiti Valley nestled in the Keylong district of Himachal Pradesh. It is one of the best camping sites in India. Adventure enthusiasts and trekkers from all over the world come here to explore this untouched region in the Himalayas. T', 80000, 0, 5, '471898054_spiti-valley-himachal-pradesh.jpg'),
-(6, 'Solang Valley, Manali', 'One of the best camping sites in India, Solang Valley in Manali attracts visitors from the far ends of the world. The verdant spread of lush greenery, the gurgling of a stream nearby and the host of thrilling adventures, makes camping all the more fun. En', 84000, 0, 5, '302561381_solang-valley-manali.jpg'),
-(13, 'Hollant Beach:Goa', ' A Picture-Perfect Destination! The curvy bay lined with rustic boats, the clean, golden sand, the colorful shacks on one side, and the mesmerizing views of the sunset make this beach an absolute favorite for all photographers . It is also a great place f', 7500, 0, 4, '244305377_Goa-Beach-Hollant.jpg');
+INSERT INTO `package` (`id`, `packageName`, `packageDesc`, `packagePrice`, `discount`, `disType`, `packageType`, `packagePhoto`) VALUES
+(1, 'Mumbai', 'Mumbai is the perfect blend of culture, customs and lifestyles. Mumbai is India\'s most cosmopolitan city, its financial powerhouse and the nerve center of India\'s fashion industry.', 3400, 200, 'cash', 2, '521659650_download (7).jpg'),
+(2, 'Tokyo', 'Tokyo (東京, Tōkyō) is Japan\'s capital and the world\'s most populous metropolis. It is also one of Japan\'s 47 prefectures.', 55000, 2, 'per', 2, '382915934_download (8).jpg'),
+(3, 'Tirupati', 'The very name Tirupati is enough to evoke strong spiritual feelings, and while the name ‘God’s Abode’ indeed does justice to the place.', 37000, 0, 'per', 3, '839544455_TIRUPATI.jpg'),
+(4, 'Vaishno Devi', 'This town is the holy cave temple of Mata Vaishnodevi, with spirituality and vibrancy lingering in the atmosphere. ', 5000, 5, 'per', 3, '136245396_download (9).jpg'),
+(5, 'Spiti Valley, Himachal Pradesh', 'First on our list is, Spiti Valley nestled in the Keylong district of Himachal Pradesh. It is one of the best camping sites in India. ', 7000, 2, 'per', 5, '471898054_spiti-valley-himachal-pradesh.jpg'),
+(6, 'Solang Valley, Manali', 'One of the best camping sites in India, Solang Valley in Manali attracts visitors from the far ends of the world. ', 4000, 300, 'cash', 5, '302561381_solang-valley-manali.jpg'),
+(13, 'Hollant Beach:Goa', ' A Picture-Perfect Destination! The curvy bay lined with rustic boats, the clean, golden sand, the colorful shacks on one side.', 7500, 0, 'per', 4, '244305377_Goa-Beach-Hollant.jpg');
 
 -- --------------------------------------------------------
 
@@ -192,7 +196,11 @@ CREATE TABLE `tourmembers` (
 INSERT INTO `tourmembers` (`id`, `bookId`, `name`, `type`, `amount`) VALUES
 (15, 'yeabv', 'Monu', 'child', 18500),
 (16, 'yeabv', 'riya', 'adult', 37000),
-(17, 'yeabv', 'abhi', 'child', 18500);
+(17, 'yeabv', 'abhi', 'child', 18500),
+(18, 'wvbjs', 'Abhi', 'child', 3500),
+(19, 'wvbjs', 'Rehan', 'adult', 7000),
+(20, 'ijdbc', 'Abhi', 'child', 3500),
+(21, 'ijdbc', 'Rehan', 'adult', 7000);
 
 -- --------------------------------------------------------
 
@@ -204,15 +212,16 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `mobile` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL
+  `address` varchar(255) NOT NULL,
+  `profile` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `mobile`, `address`) VALUES
-(1, 'vaibhavi', '9284552192', 'sangola');
+INSERT INTO `user` (`id`, `name`, `mobile`, `address`, `profile`) VALUES
+(1, 'vaibhavi', '9284552192', 'sangola', '441666487_mech.jpeg');
 
 -- --------------------------------------------------------
 
@@ -313,7 +322,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -343,7 +352,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `tourmembers`
 --
 ALTER TABLE `tourmembers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user`

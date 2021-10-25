@@ -138,7 +138,7 @@ ob_start();
 
    ?>
   
-    <section class="book pt-2" id="book">
+    <section class="book " id="book">
 
       <h1 class="head">
           <span>b</span>
@@ -154,7 +154,7 @@ ob_start();
       <div class="content">
           <div class="booking-form">
 
-            <form action="booking.php" method="post">
+            <form action="checkout.php" method="post">
 
             <p id="red-msg">Please select valid check-in and check-out date</p>
             <div class="dates">
@@ -169,22 +169,22 @@ ob_start();
             </div>
             <div class="passengers">
                 <div class="passenger">
-                    <h3 id="p-ac">Adults</h3><p>(18 Years and Above 18Years)</p>
+                    <h6 id="p-ac">Adults</h6><p>(18 Years and Above 18Years)</p>
                     <input type="number" id="adults" name="adults" value="1" min="1" required>
                 </div>
                 <div class="passenger">
-                    <h3 id="p-ac">Children </h3><p>(Below 18Years)</p>
+                    <h6 id="p-ac">Children </h6><p>(Below 18Years)</p>
                     <input type="number" id="children" name="children" value="0" min="0" required>
                 </div>
       
             </div>
             <div class="display-total">
                 <p>Sub Total: <span id="bookingPrice"> </span></p>
-                <input type="text" name="total" id="total" hidden value="">
-                <input type="text" name="days" id="days" hidden value="">
-                <input type="text" name="adultPrice" id="adultPrice" hidden value="">
-                <input type="text" name="childrenPrice" id="childrenPrice" hidden value="">
-                <input type="text" name="package" id="package" hidden value="<?php echo $pckId; ?>">
+                <input type="text" name="total" id="total" hidden value="" required>
+                <input type="text" name="days" id="days" hidden value="" required>
+                <input type="text" name="adultPrice" id="adultPrice" hidden value="" required>
+                <input type="text" name="childrenPrice" id="childrenPrice" hidden value="" required>
+                <input type="text" name="package" id="package" hidden value="<?php echo $pckId; ?>" required>
             </div>
             <button type="submit" name="submit" class="book-btn" id="book-btn">BOOK NOW</button>
           </form>

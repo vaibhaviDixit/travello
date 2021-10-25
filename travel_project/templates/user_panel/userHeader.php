@@ -7,6 +7,7 @@ include '../include/functions.inc.php';
 include '../include/constants.inc.php';
 
 $favArray=getFavourites();
+$row=getCurrentUserDetails();
 
 if(!isset($_SESSION['CURRENT_USER_ID'])){
 	redirect("../login.php");
@@ -59,11 +60,11 @@ if(!isset($_SESSION['CURRENT_USER_ID'])){
 						Pages
 					</li>
 
-					<li class="sidebar-item ">
+					<!-- <li class="sidebar-item ">
 						<a class="sidebar-link" href="userpanel.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
-					</li>
+					</li> -->
 
 					<li class="sidebar-item ">
 						<a class="sidebar-link" href="profile.php">
@@ -262,7 +263,7 @@ if(!isset($_SESSION['CURRENT_USER_ID'])){
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="..\..\asset\img_user\avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo getCurrentUserName(); ?></span>
+                <img src="<?php  echo SITE_PROFILE_IMAGE.$row['profile']; ?>" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo getCurrentUserName(); ?></span>
               </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="profile.php"><i class="align-middle me-1" data-feather="user"></i> Profile</a>

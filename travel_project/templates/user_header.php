@@ -8,6 +8,7 @@ include 'include/constants.inc.php';
 
 $favArray=getFavourites();
 $fav_count=count($favArray);
+$currentUserDetails=getCurrentUserDetails();
 
 ?>
 
@@ -54,7 +55,7 @@ $fav_count=count($favArray);
         <li class="nav-item"><a href="index.php">Home</a></li>
         <li class="nav-item"><a href="#about">About us</a></li>
         <li class="nav-item"><a href="<?php if(isset($_SESSION['CURRENT_USER_ID'])){
-            echo "user_panel/userpanel.php";
+            echo "user_panel/profile.php";
         }else{
             echo "login.php";
         } ?>">

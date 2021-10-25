@@ -20,8 +20,6 @@ include 'userHeader.php';
 
         $pckgId=$value['pckgId'];
         // pra($favArray);
-
-
             $packages=mysqli_query($con,"select * from package where id='$pckgId' ");
 
              if(mysqli_num_rows($packages)>0){
@@ -40,7 +38,7 @@ include 'userHeader.php';
                       <i class="fa fa-star "></i>
                       <i class="fa fa-star "></i>
                   </div>
-                  <div class="price">&#8377; <?php  echo $pckgRow['packagePrice']; ?> ><span style="font-size: .4rem;color:gray;">/person /night</span></div>
+                  <div class="price">&#8377; <?php  echo $pckgRow['packagePrice']; ?> <span style="font-size: .4rem;color:gray;">/person /night</span></div>
                   <div class="view-like">
                     <a class="view-details" href="destination-details.php"><i class="fa fa-eye"></i> View Details</a>
                     <div class="like-wrapper">
@@ -60,7 +58,7 @@ include 'userHeader.php';
                       </a>
                   </div>
                   </div>
-                 <a href="destination-details.php#book"><button class="book-btn">Book Now</button></a>
+                 <a href="../bookTour.php?id=<?php echo $pckgRow['id'];  ?>"><button class="book-btn">Book Now</button></a>
               </div>
           </div>
           <!-- box ends -->

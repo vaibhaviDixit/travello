@@ -26,6 +26,7 @@ $res=mysqli_query($con,$sql);
 						<th scope="col">Description</th>
 						<th scope="col" width="10%">Photo</th>
 						<th scope="col">Price</th>
+						<th scope="col">Discount</th>
 						<th scope="col">Category</th>
 						<th scope="col" width="20%">Actions</th>
 
@@ -48,6 +49,8 @@ $res=mysqli_query($con,$sql);
 						<td scope="col" width="20%" > <a target="_blank" href="<?php  echo SITE_PACKAGE_IMAGE.$row['packagePhoto']; ?>"> <img class="img-fluid" src="<?php  echo SITE_PACKAGE_IMAGE.$row['packagePhoto']; ?>" > </a> </td>
 
 						<td scope="col" > <?php  echo $row['packagePrice']; ?></td>
+						<td scope="col" > <?php  echo $row['discount']; if($row['disType']=='cash'){
+							echo "&#8377;";}if($row['disType']=='per'){echo "%";} ?></td>
 						<td scope="col" > <?php  echo $row['name']; ?></td>
 						<td scope="col" >
 

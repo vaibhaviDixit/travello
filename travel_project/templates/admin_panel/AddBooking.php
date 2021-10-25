@@ -4,6 +4,7 @@
     
     $name="";
     $phone="";
+    $address="";
     $packageId="";
     $checkIn="";
     $checkOut="";
@@ -24,10 +25,11 @@
 			$id=mysqli_real_escape_string( $con,htmlspecialchars( $_GET['id'] ) );
 
 
-			$row=mysqli_fetch_assoc( mysqli_query($con,"select * from booking where id='$id' ") );
+			$row=mysqli_fetch_assoc(mysqli_query($con,"select * from booking where id='$id' ") );
 			$bookId=$row['bookId'];
 			$name=$row['name'];
 		    $phone=$row['phone'];
+		    $address=$row['address'];
 		    $packageId=$row['packageId'];
 		    $checkIn=$row['checkIn'];
 		    $checkOut=$row['checkOut'];
@@ -85,6 +87,16 @@
 							    	<label for="mobile" class="form-label">Customer Mobile<span class="redStar">*</span></label>
 							       <input type="text" class="form-control" rows="3" id="mobile" required name="mobile"  value="<?php echo $phone; ?>">
 							 </div>
+
+						</div>
+						<div class="row">
+							<div class="col-sm-12 mb-3">
+							    	<label for="address" class="form-label">Customer Address<span class="redStar">*</span></label>
+							       <textarea class="form-control" id="address" required name="address">
+							       	<?php echo $address; ?>
+							       </textarea>
+							 </div>
+							
 
 						</div>
 

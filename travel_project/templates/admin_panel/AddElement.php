@@ -8,6 +8,7 @@
 	$packagePrice="";
 	$packageDesc="";
 	$packageType="";
+	$packageDis="";
 	$id="";
 	$image_status='required';
 
@@ -21,6 +22,8 @@
 		$packagePrice=$row['packagePrice'];
 		$packageDesc=$row['packageDesc'];
 		$packageType=$row['packageType'];
+		$packageDis=$row['discount'];
+		$packageDisType=$row['disType'];
 		
 
 		$image_status="";
@@ -33,7 +36,8 @@ if (isset($_POST['submit'])) {
 	$packageDesc=getSafeVal($_POST['packageDesc']);
 	$packagePrice=getSafeVal($_POST['packagePrice']);
  	$packageType=getSafeVal($_POST['packageType']);
-
+    $packageDis=getSafeVal($_POST['packageDis']);
+    $packageDisType=getSafeVal($_POST['packageDisType']);
 
         $type=$_FILES['packagePhoto']['type'];
 		//if id is not set then insert new package
@@ -48,7 +52,7 @@ if (isset($_POST['submit'])) {
 				$packagePhoto=rand(111111111,999999999).'_'.$_FILES['packagePhoto']['name'];
 				move_uploaded_file($_FILES['packagePhoto']['tmp_name'],SERVER_PACKAGE_IMAGE.$packagePhoto);
 
-			      mysqli_query($con,"INSERT INTO `package`(`packageName`, `packageDesc`, `packagePrice`, `packageType`, `packagePhoto`) VALUES ('$packageName','$packageDesc','$packagePrice','$packageType','$packagePhoto')");
+			      mysqli_query($con,"INSERT INTO `package`(`packageName`, `packageDesc`, `packagePrice`, `packageType`, `packagePhoto`, `discount`, `disType`) VALUES ('$packageName','$packageDesc','$packagePrice','$packageType','$packagePhoto','$packageDis','$packageDisType')");
 			  	
 			     
 				redirect('ListElement.php');
@@ -78,7 +82,7 @@ if (isset($_POST['submit'])) {
 
 			}
 			if($msg==""){
-				mysqli_query($con,"update package set packageName='$packageName',packageDesc='$packageDesc',packagePrice='$packagePrice',packageType='$packageType' $image_condition where id='$id'  ");
+				mysqli_query($con,"update package set packageName='$packageName',packageDesc='$packageDesc',packagePrice='$packagePrice',discount='$packageDis' ,disType='$packageDisType' ,packageType='$packageType' $image_condition where id='$id'  ");
 				redirect('ListElement.php');
 			}
 			
@@ -139,7 +143,7 @@ if (isset($_POST['submit'])) {
 										<label for="packageType" class="form-label">Package Category<span class="redStar">*</span></label>
 									      	<select class="form-select mb-3" id="packageType" name="packageType" required>
 
-											  <option value="select">Select</option>
+											  <option value="select" disabled selected>Select</option>
 											  <?php
 											  	$cate=mysqli_query($con,"select * from category where status =1");
 											    if(mysqli_num_rows($cate)>0){
@@ -175,6 +179,39 @@ if (isset($_POST['submit'])) {
 
 								 </div>
 							</div>
+							<div class="row">
+								<div class="col-sm-4 mb-3">
+									<label for="packageDis" class="form-label">Discount<span class="redStar">*</span></label>
+							       <input type="number" class="form-control" rows="3" id="packageDis" required name="packageDis" value="<?php echo $packageDis; ?>" min=0>
+								</div>
+								<div class="col-sm-4 mb-3">
+									<label for="packageDisType" class="form-label">Discount Type<span class="redStar">*</span></label>
+							       <select class="form-select mb-3" id="packageDisType" name="packageDisType" required>
+											  <?php
+											  	
+
+												      	if($packageDisType=="per"){
+												      		echo "<option selected value='per'>Per(%)</option>";
+												    	}
+												    	else{
+												    		echo "<option value='per'>Per(%)</option>";
+												    	}
+												    	if($packageDisType=="cash"){
+												      		echo "<option selected value='cash'>Cash(&#8377;)</option>";
+												    	}
+												    	else{
+												    		echo "<option value='cash'>Cash(&#8377;)</option>";
+												    	}
+												
+											  ?>
+								
+											  
+											</select> 
+
+								</div>
+								
+							</div>
+
 
 						
 							 <input type="submit" name="submit" class="btn btn-success" value="Submit">

@@ -131,7 +131,21 @@
           <i class="fa fa-star"></i>
         </div>
         <div class="price">&#8377; <?php  echo $rcPckg['packagePrice']; ?><span style="font-size: .4rem;color:gray;">/person /night</span></div>   
-        <div style="margin-top: 1rem;"> <a class="book-btn" href="destination-details.php?id=<?php echo $rcPckg['id'];  ?>">Book Now</a> </div>
+        <div style="margin-top: 1rem;">
+                  <?php 
+                      if(isset($_SESSION['CURRENT_USER_ID'])){
+                  ?>
+                  <a href="bookTour.php?id=<?php echo $rcPckg['id'];  ?>"><button class="book-btn">Book Now</button></a>
+                   
+                  <?php
+                    }
+                    else{
+                      ?>
+                       <a href="login.php"><button class="book-btn">Book Now</button></a>
+                      <?php
+                    }
+                  ?>
+                </div>
       
     </div>
     
@@ -199,16 +213,17 @@
                   </div>
                   <div class="price">&#8377; <?php  echo $pckgRow['packagePrice']; ?><span style="font-size: .4rem;color:gray;">/person /night</span></div>
                   <div class="view-like">
-                    <a class="view-details" href="destination-details.php"><i class="fa fa-eye"></i> View Details</a>
+                    <a class="view-details" href="view-details.php"><i class="fa fa-eye"></i> View Details</a>
                     <div class="like-wrapper">
                       <a href="javascript:void(0);" class="like-button <?php
+                        $active='add';
                         foreach ($favArray as $key => $value) {
 
                            $pckgId=$value['pckgId'];
-                           if($pckgRow['id']==$pckgId){ echo "is-active"; }
+                           if($pckgRow['id']==$pckgId){ echo "is-active"; $active='remove'; }else{$active='add';}
                         }
 
-                        ?>" onclick="manageFav('<?php echo $pckgRow['id']; ?>','add')" >
+                        ?>" onclick="manageFav('<?php echo $pckgRow['id']; ?>','<?php echo $active; ?>')" >
                         <i class="material-icons not-liked bouncy">favorite_border</i>
                         <i class="material-icons is-liked bouncy">favorite</i>
                         <span class="like-overlay"></span>
@@ -218,7 +233,7 @@
                   <?php 
                       if(isset($_SESSION['CURRENT_USER_ID'])){
                   ?>
-                   
+                  <a href="bookTour.php?id=<?php echo $pckgRow['id'];  ?>"><button class="book-btn">Book Now</button></a>
                       <?php
                     }
                     else{
@@ -382,19 +397,20 @@
   <div class="container">
 
     <div class="row">
+       <!-- card starts -->
+      <div class="col-sm-12">
+        <div  id="customers-testimonials" class="owl-carousel"> 
       <?php 
-        $reviews=mysqli_query($con,"select reviews.*, user.* from reviews,user ");
+        $reviews=mysqli_query($con,"select reviews.*, user.* from reviews,user where reviews.userId=user.id");
 
         while($ratings=mysqli_fetch_assoc($reviews)){
               
           ?>
 
-      <!-- card starts -->
-      <div class="col-sm-12">
-        <div  id="customers-testimonials" class="owl-carousel">     
+         
           <div class="item">
             <div class="shadow-effect">
-                <img class="img-circle" src="..\asset\img_user\pic2.png" alt="">
+                <img class="img-circle" src="<?php echo SITE_PROFILE_IMAGE.$ratings['profile']; ?>" alt="">
                 <h4 class="testimonial-name"><?php echo $ratings['name']; ?></h4>
                 <div>
                 <?php 
@@ -412,16 +428,11 @@
             </div>
           </div>
 
+      <!-- card ends -->
+      <?php } ?>
+      
         </div>
       </div>
-      <!-- card ends -->
-
-      <?php
-       }
-
-      ?>
-
-
     </div>
  </div>
  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>

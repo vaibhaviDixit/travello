@@ -549,6 +549,7 @@ section .heading span{
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
    font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
   transition: .5s all;
 }
 .packages .box-container .box .content .book-btn:hover{
@@ -817,9 +818,11 @@ display: none; /* for Chrome, Safari, and Opera */
       transform: scale3d(1.0, 1.0, 1);
   }
   .owl-carousel .owl-item img {
-    width:100px;
-    height:100px;
+    width: 100px;
+    height: 100px;
+    margin: 1rem 0;
     object-fit: cover;
+    border-radius: 50%;
       
   }
 .about{

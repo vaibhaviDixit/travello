@@ -61,8 +61,7 @@ function manageFav(id,operation){
 
       msg=jQuery.parseJSON(result);
       if(msg.action=="remove"){
-        console.log("remove");
-          window.location.href="favourites.php";
+          window.location.href=window.location.href;
       }
       else{
 

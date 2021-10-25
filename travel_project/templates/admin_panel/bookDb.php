@@ -11,6 +11,7 @@ if($type=="add"){
 
 	$name=getSafeVal($_POST['name']);
     $phone=getSafeVal($_POST['mobile']);
+    $address=getSafeVal($_POST['address']);
     $packageId=getSafeVal($_POST['pc']);
     $checkIn=getSafeVal($_POST['checkIn']);
     $checkOut=getSafeVal($_POST['checkOut']);
@@ -20,6 +21,7 @@ if($type=="add"){
     $packagePrice=getSafeVal($_POST['packagePrice']);
     $subTotal=getSafeVal($_POST['totalPrice']); 
     $discount=getSafeVal($_POST['dis']); 
+    $disType=getSafeVal($_POST['distype']); 
     $total=getSafeVal($_POST['grtotal']); 
     $paid=getSafeVal($_POST['payamt']); 
     $rem=getSafeVal($_POST['remAmt']); 
@@ -28,7 +30,7 @@ if($type=="add"){
 
 
 
-	$status1=mysqli_query($con,"INSERT INTO `booking`(`bookId`,`name`, `phone`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `payMode`, `adults`, `children`, `subTotal`, `discount`, `total`, `paid`, `rem`) VALUES ('$bookId','$name','$phone','$packageId','$packagePrice','$checkIn','$checkOut','$payMode','$adults','$children','$subTotal','$discount','$total','$paid','$rem')");
+	$status1=mysqli_query($con,"INSERT INTO `booking`(`bookId`,`name`, `phone`,`address`,`packageId`, `packagePrice`, `checkIn`, `checkOut`, `payMode`, `adults`, `children`, `subTotal`, `discount`,`distype`, `total`, `paid`, `rem`) VALUES ('$bookId','$name','$phone','$address','$packageId','$packagePrice','$checkIn','$checkOut','$payMode','$adults','$children','$subTotal','$discount','$disType','$total','$paid','$rem')");
 	$pname=$_POST['pname']; 
 	$pertype=$_POST['pertype']; 
 	$pamt=$_POST['pamt']; 

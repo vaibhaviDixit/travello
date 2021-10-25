@@ -207,7 +207,7 @@ $("#verifybtn").on("click",function(e){
                      if(msg.status=="success"){
 
                        $("#msg").html("<div class='alert alert-success' role='alert'>"+msg.msg+"</div>");
-                       window.location.href="../templates/user_panel/userpanel.php";
+                       window.location.href="../templates/user_panel/profile.php";
                         $("#signbtn").attr('disabled',false);
                         $("#signbtn").html("Sign Up");
                       
