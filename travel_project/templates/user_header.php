@@ -71,7 +71,6 @@ $currentUserDetails=getCurrentUserDetails();
 
         ?>
         </a></li>
-        <li class="nav-item"><a href="cart.php"><i class="material-icons">shopping_cart</i></a></li>
         <li class="nav-item" style="position: relative;"><a href="favourites.php"> <i class="material-icons is-liked bouncy">favorite</i></a> <span id="favItems" class="count"><?php echo $fav_count; ?> </li>
 
     </ul>

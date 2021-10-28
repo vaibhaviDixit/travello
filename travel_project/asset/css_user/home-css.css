@@ -343,6 +343,7 @@ section .heading span{
   text-align: center;
   text-transform: uppercase;
   font-size: 1.5rem;
+  overflow-wrap: break-word;
 }
 .packages .box-container{
   display: flex;
@@ -514,6 +515,7 @@ section .heading span{
   color:#666;
   margin: 0;
   padding: 0;
+  line-height: 18px;
   
 }
 .packages .box-container .box .content .stars i{
@@ -905,7 +907,8 @@ display: none; /* for Chrome, Safari, and Opera */
   padding:7px 10px;
   font-size: 2rem;
   border-radius:20px;
-  background: #fff;
+  background: #3a3939;
+  cursor: pointer;
   margin-right: 5px;
 }
 .footer .box-container .box #s-icon:hover{
@@ -965,7 +968,9 @@ margin:0;  color:#eee;
 .footer .credit span{
   color:#ffa500;
 }
-
+.couponMsg{
+  display: none;
+}
 
 
 
@@ -1115,6 +1120,7 @@ section .heading{
   height: 200px;
   margin:10px;
   margin-top: 20px;
+  height: auto;
 }
  .offers{
    padding-top:20%;

@@ -1,7 +1,7 @@
 <?php
 
 include 'user_header.php';
-if(isset($_POST['submit'])){
+if(isset($_POST['total'])){
 
 	$check_in=$_POST['check-in-date'];
     $check_out=$_POST['check-out-date'];
@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
 
     $dis=floatval(($packageRow['discount']));
     $disType=$packageRow['disType'];
-    $payAmt=$packageRow['packagePrice'];
+    $payAmt=$_POST['total'];
     if($dis >0){
     	if($disType=="cash"){
     		$payAmt=intval($payAmt)-$dis;
@@ -26,11 +26,12 @@ if(isset($_POST['submit'])){
     	if($disType=="per"){
     		$damt=$payAmt*(($dis)/100);
     		$payAmt=$payAmt-$damt;
+
     	}
 
     }
-
-}else{
+}
+else{
 	redirect("index.php");
 }
 
@@ -48,9 +49,6 @@ if(isset($_POST['submit'])){
 			<hr>
 <div class="accordion accordion-flush" id="accordionExample">
 
-
-
-
 <!-- Address Details starts -->
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
@@ -58,7 +56,7 @@ if(isset($_POST['submit'])){
         Address Details
       </button>
     </h2>
-    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingTwo">
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
       <div class="accordion-body">
         <form method="post" >
 						<div class="row">
@@ -69,7 +67,7 @@ if(isset($_POST['submit'])){
 
 							 <div class="col-sm-6 mb-3">
 							    	<label for="mobile" class="form-label">Phone<span class="redStar">*</span></label>
-							       <input type="text" class="form-control" rows="3" id="mobile" required name="mobile" value="<?php $currentUserDetails['phone']; ?>" readonly>
+							       <input type="text" class="form-control" rows="3" id="mobile" required name="mobile" value="<?php echo $currentUserDetails['mobile']; ?>" readonly>
 							 </div>
 
 						</div>
@@ -79,35 +77,27 @@ if(isset($_POST['submit'])){
 								
 								<div class="col-sm-12 mb-3">
 										<label for="adrs" class="form-label">Address<span class="redStar">*</span></label>
-										<textarea class="form-control" rows="3"  id="adrs" name="adrs" required><?php $currentUserDetails['address']; ?></textarea>
+										<textarea class="form-control" rows="3"  id="adrs" name="adrs" required><?php echo $currentUserDetails['address']; ?></textarea>
 									      	
 								</div>
 								
 							</div>
+							<div class="row">
+								<div class="col-sm-4 mb-3">
+							    	<input type="text" class="form-control form-control-sm" rows="3" id="coupon" name="coupon" placeholder="Coupon Code">
+								</div>
+								<div class="col-sm-4 mb-3">
+							    	<button class="btn btn-sm btn-primary" type="button" onclick="applyCoupon()">Apply Coupon</button>
+								</div>
+							</div>
 
-						
-							 <input type="submit" name="submit" class="btn btn-success" value="Submit">
+							<input type="submit" name="payNow" class="btn btn-success" value="Proceed To Payment">
 
-					</form>
+			</form>
       </div>
     </div>
   </div>
 <!-- Address Details ends -->
-
-<!-- payment accordian starts -->
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-        Payment Proceed
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-      <div class="accordion-body">
-        hihihihihi
-      </div>
-    </div>
-  </div>
-  <!-- payment accordian ends -->
 
 </div>
 				
@@ -143,7 +133,12 @@ if(isset($_POST['submit'])){
 						<tr><td>Subtotal</td><td><?php echo $total; ?></td></tr>
 						<tr><td>Discount</td><td><?php echo $packageRow['discount']; if($disType=='cash'){
 							echo "&#8377;";}if($disType=='per'){echo "%";} ?></td></tr>
-						<tr><td>Pay Amount</td><td><?php echo $payAmt; ?></td></tr>
+
+						<tr class="text-success"><td>Total</td><td><?php echo $payAmt; ?></td></tr>
+
+						<tr class="text-success couponMsg"><td>Coupon</td><td><span class="couponCode"></span></td></tr>
+
+						<tr class="text-success couponMsg"><td>Pay Amount</td><td><span class="finalPrice"></span></td></tr>
 					</table>
 					
 
@@ -162,7 +157,39 @@ if(isset($_POST['submit'])){
 </section>
 
 
+<script type="text/javascript">
+	
+	function applyCoupon(){
+		coupon=$("#coupon").val();
+		if(coupon==""){
+			swal("Failed", "Please enter Coupon Code!", "error");
+		}
+		else{
+			jQuery.ajax({
+				url:'applyCoupon.php',
+				type:'post',
+				data:'coupon='+coupon+'&bookPrice='+<?php echo $payAmt; ?>,
+				success:function(result){
+					console.log(result);
+					data=jQuery.parseJSON(result);
+					if(data.status=="success"){
+						swal("Success",data.msg,"success");
+						$(".couponMsg").show();
+						$(".couponCode").html(coupon);
+						$(".finalPrice").html(data.couponApplied);
+					}
+					if(data.status=="error"){
+						swal("Failed",data.msg, "error");
+					}
+				}
 
+
+			})
+		}
+		
+	}
+
+</script>
 
 
 <?php
@@ -170,3 +197,10 @@ if(isset($_POST['submit'])){
 include 'user_footer.php';
 
 ?>
+
+<script type="text/javascript">
+  
+  if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+</script>

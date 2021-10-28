@@ -98,11 +98,13 @@ function getCurrentUserDetails(){
 
    global $con;
     $arr=array();
-    $uid=$_SESSION['CURRENT_USER_ID'];
-
-    $res=mysqli_query($con,"select * from user where id ='$uid' ");
-    $row=mysqli_fetch_assoc($res);
-    $arr=$row;
+    if(isset($_SESSION['CURRENT_USER_ID'])){
+      $uid=$_SESSION['CURRENT_USER_ID'];
+      $res=mysqli_query($con,"select * from user where id ='$uid' ");
+       $row=mysqli_fetch_assoc($res);
+      $arr=$row;
+    }
+    
     return $arr;
 }
 

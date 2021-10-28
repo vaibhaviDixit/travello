@@ -23,9 +23,13 @@ if(isset($_POST['submit'])){
     $adminLocation=$_POST['adminLocation'];
   $adminEmail=$_POST['adminEmail'];
     $adminWeb=$_POST['adminWeb'];
+    $adminFb=$_POST['adminFb'];
+    $adminInsta=$_POST['adminInsta'];
+    $adminWh=$_POST['adminWh'];
 
 
-    mysqli_query($con,"update `admin` set `name`='$adminName', `email`='$adminEmail', `phone`='$adminPhone', `address`='$adminLocation' `website`='$adminWeb' ");
+
+    mysqli_query($con,"update `admin` set `name`='$adminName', `email`='$adminEmail', `phone`='$adminPhone', `address`='$adminLocation',`website`='$adminWeb',`fb`='$adminFb',`insta`='$adminInsta',`whatsapp`='$adminWh' ");
     ?>
 
       <script type="text/javascript"></script>
@@ -33,7 +37,14 @@ if(isset($_POST['submit'])){
 
   
 }
+if(isset($_FILES['adminProfile']))
+{
 
+echo $_FILES['adminProfile']['tmp_name'];
+?>
+<script type="text/javascript">alert("set")</script>
+<?php
+}
 
 ?>
       
@@ -55,9 +66,11 @@ if(isset($_POST['submit'])){
                   <img src="img/pic-3.png" alt="admin" class="img-fluid rounded-circle mb-2" width="128" height="128" />
                   <h5 class="card-title mb-0"><?php   echo $row['name']; ?></h5>
 
-               
+                  <form method="post" enctype="multipart/form-data">
+                    <input class="form-control form-control-sm" type="file" id="adminProfile" name="adminProfile" accept="image/*">
+                     <label for="adminProfile"><button type="submit" class="btn btn-success btn-sm mt-3 p-1"><span data-feather="user"></span> Change Profile</button> </label>
 
-                  <button class="btn btn-success btn-sm mt-3 p-1" ><span data-feather="key"></span> Change Password</button>
+                  </form>  
                 </div>
                 
                 
@@ -111,19 +124,11 @@ if(isset($_POST['submit'])){
 
           </div>
     <div class="col-md-8 col-xl-12">
-      <div class="accordion accordion-flush" id="accordionFlushExample">
-
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                Edit Profile
-              </button>
-            </h2>
-            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-            
-
-                        <div class="card">
+        
+                <div class="card">
+                  <div class="card-header">
+                    <h3>Edit Profile</h3>
+                  </div>
                     
                     <div class="card-body h-100">
 
@@ -185,20 +190,8 @@ if(isset($_POST['submit'])){
                       </div> 
                       <!-- card ends -->
 
-                  </div>
-           </div>
-         </div>
-
 </div>
-<!--  -->
 
-
-
-
-        
-              
-          </div>
-          </div>
 
       
       </main>

@@ -3,7 +3,7 @@
 
 include ('top.php');
 
-$sql="select * from category";
+$sql="select * from coupon";
 $res=mysqli_query($con,$sql);
 
 
@@ -16,7 +16,7 @@ $res=mysqli_query($con,$sql);
 				<div class="container-fluid p-0">
 
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Categories</h1>
+						<h1 class="h3 d-inline align-middle">Coupons</h1>
 					</div>
 					<hr>
 				<div class="container table-responsive">
@@ -24,10 +24,14 @@ $res=mysqli_query($con,$sql);
 					<table id="dttable" class="table table-striped   table-hover  table-sm pt-3">
 					<thead class="table-primary">
 						<tr>
-						<th scope="col">Sr. No</th>
-						<th scope="col">Category Name</th>
-						<th scope="col">Description</th>
-						<th scope="col">Actions</th>
+						<th scope="col" width="2%">Sr. No</th>
+						<th scope="col">Coupon Code</th>
+						<th scope="col" width="2%">Type</th>
+						<th scope="col">Value</th>
+						<th scope="col">Min Value</th>
+						<th scope="col">Expired On</th>
+						<th scope="col" width="10%">Added On</th>
+						<th scope="col" width="28%">Actions</th>
 
 						</tr>
 					</thead>
@@ -43,11 +47,15 @@ $res=mysqli_query($con,$sql);
 
 						<tr>
 						<td scope="col"> <?php  echo $i; ?></td>
-						<td scope="col"> <?php  echo $row['name']; ?></td>
-						<td scope="col" width="30%"> <?php  echo $row['description']; ?></td>
+						<td scope="col"> <?php  echo $row['couponCode']; ?></td>
+						<td scope="col"> <?php  echo $row['couponType']; ?></td>
+						<td scope="col"> <?php  echo $row['couponValue']; ?></td>
+						<td scope="col"> <?php  echo $row['minValue']; ?></td>
+						<td scope="col"> <?php  echo date("d/m/Y",strtotime($row['expiredOn'])); ?></td>
+						<td scope="col"> <?php  echo date("d/m/Y",strtotime($row['addedOn'])); ?></td>
 						<td scope="col">
 
-							<a href="AddCategory.php?id=<?php echo $row['id']; ?>"> <button class="btn btn-success btn-sm">Edit</button> </a>
+							<a href="AddCoupon.php?id=<?php echo $row['id']; ?>"> <button class="btn btn-success btn-sm">Edit</button> </a>
 
 
 							<?php
@@ -124,8 +132,8 @@ if( isset($_GET['type']) && $_GET['type']!==' '  &&  isset($_GET['id']) && $_GET
 
 	if( $type == 'delete')
 	{
-		 mysqli_query($con,"delete from category where id='$id' ");
-		 redirect('listCategory.php');
+		 mysqli_query($con,"delete from coupon where id='$id' ");
+		 redirect('ListCoupon.php');
 
 	}
 
@@ -136,8 +144,8 @@ if( isset($_GET['type']) && $_GET['type']!==' '  &&  isset($_GET['id']) && $_GET
 			$status=0;
 		}
 
-		mysqli_query($con,"update category set status='$status' where id='$id' ");
-		redirect('listCategory.php');
+		mysqli_query($con,"update coupon set status='$status' where id='$id' ");
+		redirect('ListCoupon.php');
 
 	}
 

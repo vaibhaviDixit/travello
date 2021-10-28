@@ -21,13 +21,21 @@ if(isset($_FILES['userProfile'])){
         move_uploaded_file($_FILES['userProfile']['tmp_name'],SERVER_PROFILE_IMAGE.$userProfile);
         $uid=$row['id'];
         mysqli_query($con,"update user set profile='$userProfile' where id='$uid' ");
-          echo "update user set profile='$userProfile' where id='$uid' ";
+        
            
         redirect('profile.php');
 
       }
 
   
+}
+if(isset($_POST['submit'])){
+  $userName=$_POST['userName'];
+  $userAddress=trim($_POST['userAddress']);
+  $uid=$row['id'];
+  mysqli_query($con,"update user set name='$userName',address='$userAddress' where id='$uid' ");
+  redirect("profile.php");
+
 }
 
 
@@ -68,7 +76,7 @@ if(isset($_FILES['userProfile'])){
 
                
                   <form method="post" enctype="multipart/form-data">
-                    <input class="form-control form-control-sm" type="file" id="userProfile" name="userProfile" >
+                    <input class="form-control form-control-sm" type="file" id="userProfile" name="userProfile" accept="image/*">
                      <label for="userProfile" ><button type="submit" class="btn btn-success btn-sm mt-3 p-1"><span data-feather="user"></span> Change Profile</button> </label>
                   </form>
 
@@ -139,15 +147,16 @@ if(isset($_FILES['userProfile'])){
                                   <label for="userName" class="form-label">Name</label>
                                     <input type="text" class="form-control" name="userName" id="userName" value="<?php   echo $row['name']; ?>">
                                 </div>
-                                <div class="col-sm-6 mb-3">
+
+                               <!--  <div class="col-sm-6 mb-3">
                                   <label for="userPhone" class="form-label">Phone</label>
-                                  <input type="text" class="form-control" name="userPhone" id="userPhone" value="<?php   echo $row['mobile']; ?>">
-                                </div>
+                                  <input type="text" class="form-control" name="userPhone" id="userPhone" value="<?php   //echo $row['mobile']; ?>">
+                                </div> -->
                              </div>
 
                             <div class="row">
                                 <div class="col mb-3">
-                                  <label for="userAddress" class="form-label">Location</label>
+                                  <label for="userAddress" class="form-label">Address</label>
                                   <textarea class="form-control" rows="3" id="userAddress" name="userAddress">
                                     <?php   echo $row['address']; ?>
                                   </textarea>

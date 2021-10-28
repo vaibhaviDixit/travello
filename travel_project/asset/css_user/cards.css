@@ -153,12 +153,12 @@
   animation-fill-mode: both;
 }
 
-
-
 .packages .box-container .box .content h4{
   color:#3b5057;
   text-transform: uppercase;
   margin:0;
+  font-weight: bold;
+  font-size: .9rem !important;
 }
 
 .packages .box-container .box .content h4 i{
@@ -166,13 +166,16 @@
   font-size: .9rem;
   font-weight: bold;
 }
-
+.packages .box-container .box .content{
+  width: 100%;
+}
 .packages .box-container .box .content p{
-  text-align:left;
-  font-size: .7rem;
-  color:#666;
-  margin: 0;
-  padding: 0;
+     text-align: left;
+    font-size: .7rem;
+    color: #666;
+    margin: 0;
+    padding: 0;
+    line-height: 18px;
   
 }
 .packages .box-container .box .content .stars i{
@@ -193,11 +196,6 @@
   
 }
 
-.packages .box-container .box .content .price span{
-  color:#666;
-  font-size: 1rem;
-  text-decoration: line-through;
-}
 
 .packages .box-container .box .content .book-btn{
   
@@ -213,6 +211,7 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
    font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
   transition: .5s all;
 }
 .packages .box-container .box .content .book-btn:hover{

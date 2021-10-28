@@ -257,7 +257,7 @@ $("#verifyLoginOtp").on("click",function(e){
                       msg=jQuery.parseJSON(result);
 
                      if(msg.status=="success"){
-                        window.location.href="../templates/user_panel/userpanel.php";
+                        window.location.href="../templates/user_panel/profile.php";
                         $("#signbtn").attr('disabled',false);
                         $("#signbtn").html("Sign Up");
                       

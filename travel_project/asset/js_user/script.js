@@ -47,17 +47,17 @@ jQuery(document).ready(function(){
 })
 
 //favorites
-
 function manageFav(id,operation){
  
-
+alert(operation);
 
    jQuery.ajax({
     url:'addToFav.php',
     type:'post',
     data:{id : id,operation:operation},
     success:function(result){
-         
+          console.log(result)
+
 
       msg=jQuery.parseJSON(result);
       if(msg.action=="remove"){

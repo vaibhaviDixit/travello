@@ -8,16 +8,32 @@
   <div class="box-container">
     <div class="box">
       <h5>Stay Connected With Us</h5>
-      <i id="s-icon" class="fa fa-facebook-square" style="color:#4267B2"></i>
-      <i id="s-icon" class="fa fa-twitter-square"  style="color:#1DA1F2"></i>
-      <i  id="s-icon" class="fa fa-linkedin-square"  style="color:#0077b5"></i>
-      <i  id="s-icon" class="fa fa-instagram" style="color:#e1306c"></i>
-      <i  id="s-icon" class="fa fa-whatsapp"  style="color:#25D366"></i>
+      <?php
+        $adminSocial=mysqli_fetch_assoc(mysqli_query($con,"select * from admin"));
+        $fb="";
+        $insta="";
+        $whatsapp="";
+        $phone="";
+        if($adminSocial>0){
+          $phone=$adminSocial['phone'];
+          $fb=$adminSocial['fb'];
+          $insta=$adminSocial['insta'];
+          $whatsapp=$adminSocial['whatsapp'];
+        }
+      ?>
+      <a href="<?php echo $fb;  ?>" target="_blank" class="d-inline">
+      <i id="s-icon" class="fab fa-facebook-square" style="color:#4267B2"></i> </a>
+      <a href="<?php echo $insta;  ?>" target="_blank" class="d-inline">
+        <i  id="s-icon" class="fab fa-instagram" style="color:#e1306c"></i>
+      </a>
+      <a href="https://wa.me/+91<?php echo $whatsapp;  ?>" target="_blank" class="d-inline">
+        <i  id="s-icon" class="fab fa-whatsapp"  style="color:#25D366"></i>
+      </a>
       <h5>Address</h5>
       <p class="address">
         Corporate Office :
         Doon House, B-275(A),<br>First floor Sector-57,<br>Shushant Lok 3 Near Hong Kong Bazzar,<br>Gurugram Pin 122001, Haryana.
-       <br><i class="fa fa-phone"></i> +91-9122588799</p>
+       <br><i class="fa fa-phone"></i> +91<?php echo $phone;  ?></p>
     </div>
       <div class="box">
         <h5>Quick Links</h5>
@@ -31,9 +47,9 @@
       <div class="box">
         <h5>Discuss Your Queries with us</h5>
         <form method="POST" action="">
-          <input type="text" name="email" id="email" placeholder="Email Address">
-          <textarea name="query" id="query" cols="30" rows="10" placeholder="Any Query.."></textarea>
-          <button class="query-btn" name="send">Send</button>
+          <input type="text" name="phone" id="phone" placeholder="Phone Number" required>
+          <textarea name="query" id="query" cols="30" rows="10" placeholder="Any Query.." required></textarea>
+          <button class="query-btn"  type="submit" name="submitQuery">Send</button>
         </form>
         </div>
 
@@ -91,9 +107,17 @@ document.documentElement.scrollTop = 0;
 </html>
 
 
+<?php
+  
+  if (isset($_POST['submitQuery'])) {
+    $phone=$_POST['phone'];
+    $query=$_POST['query'];
+    $q=mysqli_query($con,"INSERT INTO `query`(`phone`, `query`) VALUES ('$phone','$query')");
+    if($q){
+      ?>
+        <script type="text/javascript">swal("Thanks!","Thank you for your response!","success")</script>
+      <?php
+    }
+  }
 
-
-
-
-
-
+?>

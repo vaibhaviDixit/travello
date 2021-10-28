@@ -114,7 +114,6 @@ ob_start();
    -->
 
    <?php
-
    if(isset($_GET['id'])){
      $pckId=getSafeVal($_GET['id']);
       $packages=mysqli_query($con,"select * from package where id='$pckId' ");
@@ -122,10 +121,14 @@ ob_start();
       $price=$packagesRow['packagePrice'];
 
       $rec=unserialize($_COOKIE['recentlyViewed']);
-      $rec[]=$pckId;
-      if($key=array_search($pckId, $rec)!==false){
-        unset($rec['$key']);
+      // pra($rec);
+      foreach ($rec as $key=>$value) {
+        if($value==$pckId){
+          unset($rec[$key]);
+        }
       }
+      $rec[]=$pckId;
+      // pra($rec);
       setcookie('recentlyViewed',serialize($rec),time()+60*60*24*365);
 
    }
@@ -253,19 +256,6 @@ ob_start();
   }
 
 
-  // $("#book-btn").on("click",function(e){
-
-  //   console.log("Checkin: "+checkIn);
-  //   console.log("checkout: "+checkOut);
-  //    console.log("adults: "+adults);
-  //     console.log("children: "+children);
-  //     console.log("total: "+Total);
-
-
-
-  //   e.preventDefault();
-
-  // })
 
 //disable past dates
 $(document).ready(function(){
@@ -374,4 +364,9 @@ $(document).ready(function(){
 
 ?>
   
-
+<script type="text/javascript">
+  
+  if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+</script>

@@ -69,6 +69,10 @@
 		
 			<main class="content">
 				<div class="container-fluid p-0">
+					<div class="mb-3">
+						<h1 class="h3 d-inline align-middle">Add Booking</h1>
+					</div>
+					<hr>
 					<span id="popMsg"></span>
 
 					<form method="post" id="bookingForm">
@@ -77,11 +81,9 @@
 							 <div class="col-sm-6 mb-3">
 							    	
 							    	<label for="name" class="form-label">Customer Name<span class="redStar">*</span></label>
-							       	<input type="text" class="form-control" rows="3" id="name" required name="name"  value="<?php echo $name; ?>">
-										 
+							       	<input type="text" class="form-control" rows="3" id="name" required name="name"  value="<?php echo $name; ?>">	 
 							       	
 							 </div>
-						
 
 							 <div class="col-sm-6 mb-3">
 							    	<label for="mobile" class="form-label">Customer Mobile<span class="redStar">*</span></label>

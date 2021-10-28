@@ -143,7 +143,21 @@ if(!isset($_SESSION['ADMIN'])){
                </li>
                <li class="sidebar-item">
                   <a class="sidebar-link" href="listCategory.php">
-                  <i class="align-middle" data-feather="list"></i> <span class="align-middle">Catogery List</span>
+                  <i class="align-middle" data-feather="list"></i> <span class="align-middle">List Category</span>
+                  </a>
+               </li>
+
+                 <li class="sidebar-header">
+                  Coupons
+               </li>
+               <li class="sidebar-item">
+                  <a class="sidebar-link" href="AddCoupon.php">
+                  <i class="align-middle" data-feather="plus"></i> <span class="align-middle">Add Coupon</span>
+                  </a>
+               </li>
+               <li class="sidebar-item">
+                  <a class="sidebar-link" href="ListCoupon.php">
+                  <i class="align-middle" data-feather="list"></i> <span class="align-middle">List Coupon</span>
                   </a>
                </li>
    

@@ -9,12 +9,10 @@ $pkgId=getSafeVal($_POST['id']);
 $operation=getSafeVal($_POST['operation']);
 
 if($operation=="add"){
-	if(isset($_SESSION['CURRENT_USER'])){
+	if(isset($_SESSION['CURRENT_USER_ID'])){
 		//user is logged in
-		$uemail=$_SESSION['CURRENT_USER'];
-		manageFav($uemail,$pkgId);
-		
-
+		$uid=$_SESSION['CURRENT_USER_ID'];
+		manageFav($uid,$pkgId);
 	}
 	else{
 		//user is not logged in
@@ -35,10 +33,10 @@ if($operation=="add"){
 
 if($operation=="remove"){
 
-	if(isset($_SESSION['CURRENT_USER'])){
+	if(isset($_SESSION['CURRENT_USER_ID'])){
 		//user is logged in
-		$uemail=$_SESSION['CURRENT_USER'];
-		$getUid=mysqli_fetch_assoc(mysqli_query($con,"select * from userlogin where email='$uemail' "));
+		$uid=$_SESSION['CURRENT_USER_ID'];
+		$getUid=mysqli_fetch_assoc(mysqli_query($con,"select * from user where id='$uid' "));
 		$uid=$getUid['id'];
 
 		mysqli_query($con,"delete from favourites where userId='$uid' and pckgId='$pkgId' ");
