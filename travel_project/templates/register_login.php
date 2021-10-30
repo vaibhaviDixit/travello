@@ -16,7 +16,7 @@ if($type=="signUp"){
 
 		$check=mysqli_query($con,"INSERT INTO `user`(`name`, `mobile`, `address`) VALUES ('$name','$mobile','$add') ");
 
-		if(mysqli_num_rows($check)>0){
+		if($check){
 			$arr=array("status"=>"success","msg"=>"Registered successfully!");
 			$check=mysqli_query($con,"select * from user where mobile='$mobile' ");
 			$row=mysqli_fetch_assoc($check);

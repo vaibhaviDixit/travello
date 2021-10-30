@@ -311,7 +311,7 @@ cursor: pointer;
 }
 
 #bookingProcess{
-  margin:0+ 1rem;
+  margin:5% 1rem;
 }
 .bookingInfo img{
   width: 170px;
@@ -332,6 +332,9 @@ cursor: pointer;
 
   .book{
   padding-top: 30%;
+}
+#bookingProcess{
+  margin:30% 1rem;
 }
   .fixed-book{
     display: block;

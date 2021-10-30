@@ -18,18 +18,25 @@ if(mysqli_num_rows($res)>0){
 	$minValue=$couponRow['minValue'];
 	$expiredOn=$couponRow['expiredOn'];
 
+
 	if($bookPrice<$minValue){
 		$arr=array("status"=>"error","msg"=>"Coupon need minimum value of booking: ".$minValue);
 	}else{
-		$couponApplied=0;
-		if($couponType=="r"){
-			$couponApplied=$bookPrice-$couponValue;
-		}
-		if($couponType=="p"){
-			$couponApplied=$bookPrice-$bookPrice*($couponValue/100);
-		}
+		$date=strtotime(date('Y-m-d'));
+	   if($date>strtotime($expiredOn)){
+			$arr=array("status"=>"error","msg"=>"Coupon code has expired!");
+		}else{
 
-		$arr=array("status"=>"success","msg"=>"Coupon Code Applied!","couponApplied"=>$couponApplied);
+			$couponApplied=0;
+			if($couponType=="r"){
+				$couponApplied=$bookPrice-$couponValue;
+			}
+			if($couponType=="p"){
+				$couponApplied=$bookPrice-$bookPrice*($couponValue/100);
+			}
+
+			$arr=array("status"=>"success","msg"=>"Coupon Code Applied!","couponApplied"=>$couponApplied);
+		}
 	}
 
 

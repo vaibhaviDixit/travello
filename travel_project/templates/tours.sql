@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3309
--- Generation Time: Oct 28, 2021 at 02:09 PM
+-- Generation Time: Oct 30, 2021 at 06:40 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -81,7 +81,44 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`id`, `bookId`, `name`, `phone`, `address`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `payMode`, `adults`, `children`, `subTotal`, `discount`, `distype`, `total`, `paid`, `rem`) VALUES
 (4, 'yeabv', 'Shrawani Dixit', '9865986585', 'Solapur', 3, 37000, '2021-10-24', '2021-10-26', 'UPI', 2, 2, 222000, 5000, 'cash', 217000, 10000, 207000),
-(5, 'ijdbc', 'Shriyansh Mahamuni', '876743102', 'Vasud Road, Sangola                                       ', 5, 7000, '2021-11-01', '2021-11-03', 'OnlineTransfer', 2, 1, 35000, 5, 'per', 33250, 250, 33000);
+(5, 'ijdbc', 'Shriyansh Mahamuni', '876743102', 'Vasud Road, Sangola                                       ', 5, 7000, '2021-11-01', '2021-11-03', 'OnlineTransfer', 2, 1, 35000, 5, 'per', 33250, 250, 33000),
+(6, 'eysjj', 'Mitali Salunkhe', '8764595498', 'Ajinkya plaza,Sangola                                           ', 17, 6400, '2021-10-30', '2021-11-02', 'UPI', 2, 0, 38400, 2, 'per', 37632, 37632, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookonline`
+--
+
+CREATE TABLE `bookonline` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `bookId` varchar(255) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `address` varchar(250) NOT NULL,
+  `packageId` int(11) NOT NULL,
+  `packagePrice` int(11) NOT NULL,
+  `checkIn` date NOT NULL,
+  `checkOut` date NOT NULL,
+  `adults` int(11) NOT NULL,
+  `children` int(11) NOT NULL,
+  `subTotal` int(11) NOT NULL,
+  `discount` int(11) NOT NULL,
+  `disType` varchar(100) NOT NULL,
+  `coupon` varchar(100) NOT NULL,
+  `total` int(11) NOT NULL,
+  `paymentId` varchar(255) NOT NULL,
+  `paymentStatus` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bookonline`
+--
+
+INSERT INTO `bookonline` (`id`, `uid`, `bookId`, `name`, `phone`, `address`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `adults`, `children`, `subTotal`, `discount`, `disType`, `coupon`, `total`, `paymentId`, `paymentStatus`) VALUES
+(1, 2, 'IMPERIOUS94554980_2', 'Sayali', '8767431102', 'Thane', 6, 4000, '2021-10-31', '2021-11-02', 1, 1, 12000, 300, 'cash', 'diwali', 10530, '20211030111212800110168645603136917', 'success'),
+(2, 2, 'IMPERIOUS4756817_2', 'Sayali', '8767431102', 'Thane', 6, 4000, '2021-11-07', '2021-11-09', 1, 1, 12000, 300, 'cash', '', 11700, '20211030111212800110168886903127709', 'success');
 
 -- --------------------------------------------------------
 
@@ -129,7 +166,8 @@ CREATE TABLE `coupon` (
 
 INSERT INTO `coupon` (`id`, `couponCode`, `couponType`, `couponValue`, `minValue`, `expiredOn`, `status`, `addedOn`) VALUES
 (1, 'diwali', 'p', 10, 5000, '2021-11-07', 1, '2021-10-25 16:56:14'),
-(2, 'AFDH90', 'p', 20, 9000, '2021-11-07', 1, '2021-10-27 14:44:40');
+(2, 'AFDH90', 'p', 20, 9000, '2021-10-27', 1, '2021-10-27 14:44:40'),
+(3, 'AMJKL3', 'r', 500, 5000, '2021-11-10', 1, '2021-10-30 16:38:01');
 
 -- --------------------------------------------------------
 
@@ -226,7 +264,8 @@ CREATE TABLE `reviews` (
 INSERT INTO `reviews` (`id`, `userId`, `description`, `stars`) VALUES
 (1, 1, 'Very nice service! Amazing tours deals in affordable price.', 5),
 (2, 1, 'Nice service!', 4),
-(4, 1, 'very nice', 4);
+(4, 1, 'very nice', 4),
+(5, 2, 'Better service in affordable price.', 4);
 
 -- --------------------------------------------------------
 
@@ -253,7 +292,8 @@ INSERT INTO `tourmembers` (`id`, `bookId`, `name`, `type`, `amount`) VALUES
 (18, 'wvbjs', 'Abhi', 'child', 3500),
 (19, 'wvbjs', 'Rehan', 'adult', 7000),
 (20, 'ijdbc', 'Abhi', 'child', 3500),
-(21, 'ijdbc', 'Rehan', 'adult', 7000);
+(21, 'ijdbc', 'Rehan', 'adult', 7000),
+(22, 'eysjj', 'Tanuja', 'adult', 6400);
 
 -- --------------------------------------------------------
 
@@ -274,15 +314,16 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `mobile`, `address`, `profile`) VALUES
-(1, 'VaibhaviD', '9284552192', 'Sangali', '441666487_mech.jpeg');
+(1, 'VaibhaviD', '9284552192', 'Sangali', '726387059_ALIBAG.jpg'),
+(2, 'Sayali', '8767431102', 'Thane', '626145968_LAVASA.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `viewmore`
+-- Table structure for table `viewdetails`
 --
 
-CREATE TABLE `viewmore` (
+CREATE TABLE `viewdetails` (
   `id` int(11) NOT NULL,
   `packageId` int(11) NOT NULL,
   `location` varchar(255) NOT NULL,
@@ -295,12 +336,12 @@ CREATE TABLE `viewmore` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `viewmore`
+-- Dumping data for table `viewdetails`
 --
 
-INSERT INTO `viewmore` (`id`, `packageId`, `location`, `description`, `photoone`, `phototwo`, `photthree`, `photofour`, `link`) VALUES
+INSERT INTO `viewdetails` (`id`, `packageId`, `location`, `description`, `photoone`, `phototwo`, `photthree`, `photofour`, `link`) VALUES
 (1, 2, 'japan', 'idk', '712144922_download (3).jpg', '919435937_download (1).jpg', '507743692_Goa-Beach-Hollant.jpg', '491869502_download (9).jpg', 'https://www.youtube.com/watch?v=Jx6b0isD0jk'),
-(2, 3, 'Pune', 'tirupati', '225703541_download (1).jpg', '524502061_download (1).jpg', '524796940_download (1).jpg', '270563364_download (1).jpg', 'https://www.youtube.com/watch?v=uHtzOFwgD74');
+(2, 3, 'Pune', 'tirupati', '225703541_download (1).jpg', '524502061_download (1).jpg', '524796940_download (1).jpg', '270563364_download%2520(1).jpg', 'https://www.youtube.com/watch?v=uHtzOFwgD74');
 
 --
 -- Indexes for dumped tables
@@ -318,6 +359,12 @@ ALTER TABLE `admin`
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `bookId` (`bookId`);
+
+--
+-- Indexes for table `bookonline`
+--
+ALTER TABLE `bookonline`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `category`
@@ -369,9 +416,9 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `viewmore`
+-- Indexes for table `viewdetails`
 --
-ALTER TABLE `viewmore`
+ALTER TABLE `viewdetails`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -388,7 +435,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `bookonline`
+--
+ALTER TABLE `bookonline`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -400,7 +453,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `coupon`
 --
 ALTER TABLE `coupon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `favourites`
@@ -424,24 +477,24 @@ ALTER TABLE `query`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tourmembers`
 --
 ALTER TABLE `tourmembers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `viewmore`
+-- AUTO_INCREMENT for table `viewdetails`
 --
-ALTER TABLE `viewmore`
+ALTER TABLE `viewdetails`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 

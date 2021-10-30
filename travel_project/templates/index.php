@@ -213,7 +213,7 @@
                   </div>
                   <div class="price">&#8377; <?php  echo $pckgRow['packagePrice']; ?><span style="font-size: .4rem;color:gray;">/person /night</span></div>
                   <div class="view-like">
-                    <a class="view-details" href="view-details.php"><i class="fa fa-eye"></i> View Details</a>
+                    <a class="view-details" href="viewDetails.php?id=<?php echo $pckgRow['id'];  ?>"><i class="fa fa-eye"></i> View Details</a>
                     <div class="like-wrapper">
                       <a href="javascript:void(0);" class="like-button <?php
                         $active='add';
@@ -332,47 +332,38 @@
 
 <!-- services section ends -->
 
-<!-- gallery section starts  -->
+<!-- coupon section starts  -->
 
 <section class="offers" id="offers">
+ <?php 
 
+      $cpn=mysqli_query($con,"select * from coupon where status='1' ");
+      if(mysqli_num_rows($cpn)>0){
+
+      
+    ?>
   <div class="heading">
-      <span>E</span>
-      <span>x</span>
-      <span>c</span>
-      <span>l</span>
-      <span>u</span>
-      <span>s</span>
-      <span>i</span>
-      <span>v</span>
-      <span>e</span>
-      <span class="space"></span>
-      <span>d</span>
-      <span>e</span>
-      <span>a</span>
-      <span>l</span>
-      <span>s</span>
+      <span>E</span><span>x</span><span>c</span><span>l</span><span>u</span><span>s</span><span>i</span><span>v</span><span>e</span><span class="space"></span><span>d</span><span>e</span><span>a</span>
+      <span>l</span><span>s</span>
   </div>
   <p id="o">Checkout for the best discounts and deals here</p>
   <div class="o-card">
+   <?php
+      while($cpnRow=mysqli_fetch_assoc($cpn)){
+        if(strtotime($cpnRow['expiredOn']) > strtotime(date('Y-m-d'))){
+   ?>
     <div class="offer">
-      <h4>Get Upto 5% Cashback when you complete an experience</h4>
-      <p id="coupon"><i id="c-icon" class="fa fa-ticket"></i>Coupon Code: 2EFDFD</p>
+      <h4>Get Upto <?php echo $cpnRow['couponValue']; if($cpnRow['couponType']=='p'){echo "%";}if($cpnRow['couponType']=='r'){echo "&#8377;";} ?> off on tours</h4>
+      <p id="coupon"><i id="c-icon" class="fa fa-ticket"></i>Coupon Code: <?php echo $cpnRow['couponCode']; ?></p>
    </div>
-  <div class="offer">
-      <h4>Book any Experience and Get 30% off + 20% Off</h4>
-      <p id="coupon"><i id="c-icon" class="fa fa-ticket"></i>Coupon Code: A2FDFD</p>
-  </div>
-  <div class="offer">
-    <h4>Book any Experience and Get 30% off + 20% Off</h4>
-    <p id="coupon"><i id="c-icon" class="fa fa-ticket"></i>Coupon Code: A2FDFD</p>
+   <?php
+      }
+    }
+   ?>
 </div>
-<div class="offer">
-  <h4>Book any Experience and Get 30% off + 20% Off</h4>
-  <p id="coupon"><i id="c-icon" class="fa fa-ticket"></i>Coupon Code: A2FDFD</p>
-</div>
-</div>
-  
+<?php 
+  }
+?>
          
    
 </section>

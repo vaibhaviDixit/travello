@@ -222,7 +222,11 @@ span.scale-rating label:before
     background: #079b07 !important;
 }
 
-
+#userDrop{
+  position: absolute !important;
+  right: 1rem;
+  display: none;
+}
 
 
 

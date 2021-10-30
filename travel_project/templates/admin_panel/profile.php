@@ -2,6 +2,7 @@
 
 include ('top.php');
 
+$msg="";
 
 $sql="select * from admin";
 $res=mysqli_query($con,$sql);
@@ -37,13 +38,26 @@ if(isset($_POST['submit'])){
 
   
 }
-if(isset($_FILES['adminProfile']))
-{
 
-echo $_FILES['adminProfile']['tmp_name'];
-?>
-<script type="text/javascript">alert("set")</script>
-<?php
+if(isset($_FILES['adminProfile'])){
+
+  $type=$_FILES['adminProfile']['type'];
+
+  if($type!="image/jpeg" && $type!="image/png" && $type!="image/jpg"){
+        $msg="Invalid image format";
+      }
+      else{
+
+        $adminProfile=rand(111111111,999999999).'_'.$_FILES['adminProfile']['name'];
+        move_uploaded_file($_FILES['adminProfile']['tmp_name'],SERVER_PROFILE_IMAGE.$adminProfile);
+        mysqli_query($con,"update admin set profile='$adminProfile'");
+        
+           
+        redirect('profile.php');
+
+      }
+
+  
 }
 
 ?>
@@ -56,6 +70,14 @@ echo $_FILES['adminProfile']['tmp_name'];
           
           </div>
           <div class="row">
+            <?php 
+                    if(strlen( $msg ) > 0){
+                    ?>
+                    <div class="alert alert-danger" role="alert" >  <?php echo $msg;  ?> </div>
+                    <?php
+                      }
+
+                  ?>  
             <div class="col-md-4 col-xl-3">
               <div class="card mb-3">
                 <div class="card-header">
@@ -63,7 +85,10 @@ echo $_FILES['adminProfile']['tmp_name'];
                 </div>
                 <div class="card-body text-center">
                   
-                  <img src="img/pic-3.png" alt="admin" class="img-fluid rounded-circle mb-2" width="128" height="128" />
+                  <a target="_blank" href="<?php echo SITE_PROFILE_IMAGE.$row['profile']; ?>">
+                    <img src="<?php  echo SITE_PROFILE_IMAGE.$row['profile']; ?>" alt="user" class="img-fluid  mb-2 img-thumbnail" />
+                  </a>
+                  
                   <h5 class="card-title mb-0"><?php   echo $row['name']; ?></h5>
 
                   <form method="post" enctype="multipart/form-data">

@@ -39,6 +39,8 @@ if(isset($_POST['submit'])){
 }
 
 
+
+
 ?>
 
 <!--     PROFILE      -->
@@ -77,7 +79,7 @@ if(isset($_POST['submit'])){
                
                   <form method="post" enctype="multipart/form-data">
                     <input class="form-control form-control-sm" type="file" id="userProfile" name="userProfile" accept="image/*">
-                     <label for="userProfile" ><button type="submit" class="btn btn-success btn-sm mt-3 p-1"><span data-feather="user"></span> Change Profile</button> </label>
+                     <label for="userProfile"><button type="submit" class="btn btn-success btn-sm mt-3 p-1"><span data-feather="user"></span> Change Profile</button> </label>
                   </form>
 
                 </div>

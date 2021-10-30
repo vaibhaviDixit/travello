@@ -1,24 +1,30 @@
 <?php
 
 include 'user_header.php';
-if(isset($_POST['total'])){
+header("Pragma: no-cache");
+header("Cache-Control: no-cache");
+header("Expires: 0");
 
-	$check_in=$_POST['check-in-date'];
-    $check_out=$_POST['check-out-date'];
-    $adults=$_POST['adults'];
-    $children=$_POST['children'];
-    $total=$_POST['total'];
-    $package=$_POST['package'];
-    $adultPrice=$_POST['adultPrice'];
-    $childrenPrice=$_POST['childrenPrice'];
-    $days=$_POST['days'];
+if(isset($_SESSION['bookingArray'])){
 
-    $package=mysqli_query($con,"select * from package where id='$package' ");
-    $packageRow=mysqli_fetch_assoc($package);
+	$oid="IMPERIOUS" . rand(10000,99999999)."_".$_SESSION['CURRENT_USER_ID'];
+
+	$check_in=$_SESSION['bookingArray']['check-in-date'];
+    $check_out=$_SESSION['bookingArray']['check-out-date'];
+    $adults=$_SESSION['bookingArray']['adults'];
+    $children=$_SESSION['bookingArray']['children'];
+    $total=$_SESSION['bookingArray']['total'];
+    $package=$_SESSION['bookingArray']['package'];
+    $adultPrice=$_SESSION['bookingArray']['adultPrice'];
+    $childrenPrice=$_SESSION['bookingArray']['childrenPrice'];
+    $days=$_SESSION['bookingArray']['days'];
+
+    $pck=mysqli_query($con,"select * from package where id='$package' ");
+    $packageRow=mysqli_fetch_assoc($pck);
 
     $dis=floatval(($packageRow['discount']));
     $disType=$packageRow['disType'];
-    $payAmt=$_POST['total'];
+    $payAmt=$_SESSION['bookingArray']['total'];
     if($dis >0){
     	if($disType=="cash"){
     		$payAmt=intval($payAmt)-$dis;
@@ -30,10 +36,15 @@ if(isset($_POST['total'])){
     	}
 
     }
+
+  
+
+
 }
 else{
 	redirect("index.php");
 }
+
 
 
 
@@ -58,7 +69,29 @@ else{
     </h2>
     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
       <div class="accordion-body">
-        <form method="post" >
+        <form method="post" id="checkOutForm" action="pgRedirect.php">
+
+		<input id="ORDER_ID" tabindex="1" maxlength="20" size="20"
+						name="ORDER_ID" autocomplete="off"
+						value="<?php echo $oid; ?>" hidden>
+		<input id="CUST_ID" tabindex="2" maxlength="12" size="12" name="CUST_ID" autocomplete="off" value="<?php echo rand(1000,9999).'_'.$_SESSION['CURRENT_USER_ID']; ?>" hidden>
+		<input id="INDUSTRY_TYPE_ID" tabindex="4" maxlength="12" size="12" name="INDUSTRY_TYPE_ID" autocomplete="off" hidden value="Retail">
+		<input id="CHANNEL_ID" tabindex="4" maxlength="12"
+						size="12" name="CHANNEL_ID" autocomplete="off" value="WEB" hidden>
+		<input title="TXN_AMOUNT" id="TXN_AMOUNT" tabindex="10"
+						type="text" name="TXN_AMOUNT" hidden
+						value="<?php echo $payAmt; ?>">
+		<input type="text" name="package" value="<?php echo $package; ?>" hidden>
+		<input type="text" name="packagePrice" value="<?php echo $packageRow['packagePrice']; ?>" hidden>
+		<input type="text" name="check_in" value="<?php echo $check_in; ?>" hidden>
+		<input type="text" name="check_out" value="<?php echo $check_out; ?>" hidden>
+		<input type="text" name="adults" value="<?php echo $adults; ?>" hidden>
+		<input type="text" name="children" value="<?php echo $children; ?>" hidden>
+		<input type="text" name="total" value="<?php echo $total; ?>" hidden>
+		<input type="text" name="dis" value="<?php echo $dis; ?>" hidden>
+		<input type="text" name="disType" value="<?php echo $disType; ?>" hidden>
+		<input type="text" id="couponSetValue" name="payAmt" value="<?php echo $payAmt; ?>" hidden>
+
 						<div class="row">
 							 <div class="col-sm-6 mb-3">
 							    	<label for="name" class="form-label">Your Name<span class="redStar">*</span></label>
@@ -92,6 +125,7 @@ else{
 							</div>
 
 							<input type="submit" name="payNow" class="btn btn-success" value="Proceed To Payment">
+
 
 			</form>
       </div>
@@ -157,8 +191,20 @@ else{
 </section>
 
 
+
+
+
+<?php
+
+include 'user_footer.php';
+
+?>
 <script type="text/javascript">
-	
+
+ 
+
+
+
 	function applyCoupon(){
 		coupon=$("#coupon").val();
 		if(coupon==""){
@@ -177,9 +223,13 @@ else{
 						$(".couponMsg").show();
 						$(".couponCode").html(coupon);
 						$(".finalPrice").html(data.couponApplied);
+						$("#couponSetValue").val(data.couponApplied);
+						$("#TXN_AMOUNT").val(data.couponApplied);
+						
 					}
 					if(data.status=="error"){
 						swal("Failed",data.msg, "error");
+						coupon=$("#coupon").val("");
 					}
 				}
 
@@ -190,17 +240,10 @@ else{
 	}
 
 </script>
-
-
-<?php
-
-include 'user_footer.php';
-
-?>
-
 <script type="text/javascript">
   
   if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
 }
 </script>
+

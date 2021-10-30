@@ -92,9 +92,10 @@ if(!isset($_SESSION['ADMIN'])){
                   </a>
                </li>
                <li class="sidebar-item" >
-                  <a class="sidebar-link" href="EditViewMore.php">
-                  <i class="align-middle" data-feather="edit-3"></i> <span class="align-middle">Edit View More Page</span>
+                  <a class="sidebar-link" href="EditViewDetails.php">
+                  <i class="align-middle" data-feather="edit-3"></i> <span class="align-middle">Edit View Details Page</span>
                   </a>
+               </li>
                <li class="sidebar-item">
                   <a class="sidebar-link" href="reports.php">
                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart" viewBox="0 0 16 16">
@@ -130,6 +131,11 @@ if(!isset($_SESSION['ADMIN'])){
                <li class="sidebar-item ">
                   <a class="sidebar-link" href="ListBooking.php">
                   <i class="align-middle" data-feather="list"></i> <span class="align-middle">List Bookings</span>
+                  </a>
+               </li>
+               <li class="sidebar-item ">
+                  <a class="sidebar-link" href="paymentDues.php">
+                  <i class="align-middle" data-feather="list"></i> <span class="align-middle">Payment Dues</span>
                   </a>
                </li>
 

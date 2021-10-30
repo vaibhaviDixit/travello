@@ -15,6 +15,7 @@ const firebaseConfig = {
     measurementId: "G-5NJM3VEJST"
   };
 
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
@@ -29,7 +30,8 @@ const firebaseConfig = {
     recaptchaVerifier.render();
   }
 
-       //check email login
+
+       //check phone login
 
        $(".loginForm").on("submit",function(e){
      
@@ -167,6 +169,10 @@ $(formdata ).each(function(index, obj){
   }
   if(name.length<3){
      $("#msg").html("<div class='alert alert-danger' role='alert'>Name is too short!</div>");
+      return false;
+  }
+  if(name.length>15){
+     $("#msg").html("<div class='alert alert-danger' role='alert'>Name is too long!</div>");
       return false;
   }
   return true;

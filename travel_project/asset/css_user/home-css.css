@@ -1093,7 +1093,7 @@ section .heading{
 .packages,.services, .about, .review{
 
   padding:10px;
-  padding-top: 20%;
+  padding-top: 30%;
 }
 .packages .box-container .box,.gallery .box-container .box,.services .box-container .box{
   margin:0;

@@ -2,8 +2,8 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="..\..\asset\js_admin\app.js"></script>
-<script type="text/javascript" src="../../asset/js_user/script.js"></script>
+<script src="../../asset/js_admin/app.js"></script>
+<script src="../../asset/js_user/script.js"></script>
 <script src="../../asset/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.9/swiper-bundle.min.js" ></script>
@@ -231,6 +231,13 @@
 				defaultDate: defaultDate
 			});
 		});
+
+		
+				
+				$(".userdropdown").click(function(){
+				    
+				    $("#userDrop").toggle();
+				});			
 	</script>
 
 

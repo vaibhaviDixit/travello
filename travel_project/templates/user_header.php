@@ -11,11 +11,11 @@ $fav_count=count($favArray);
 $currentUserDetails=getCurrentUserDetails();
 
 ?>
-
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="GENERATOR" content="Evrsoft First Page">
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="..\asset\css_user\home-css.css"/>
