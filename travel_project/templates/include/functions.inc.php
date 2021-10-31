@@ -108,6 +108,19 @@ function getCurrentUserDetails(){
     return $arr;
 }
 
+function getAdminDetails(){
+
+   global $con;
+    $arr=array();
+    if(isset($_SESSION['ADMIN'])){
+      $uid=$_SESSION['ADMIN'];
+      $res=mysqli_query($con,"select * from admin where id ='$uid' ");
+       $row=mysqli_fetch_assoc($res);
+      $arr=$row;
+    }
+    
+    return $arr;
+}
 
 function bookings(){
   global $con;

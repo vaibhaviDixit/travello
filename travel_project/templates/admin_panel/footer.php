@@ -27,8 +27,6 @@
 </footer>
       <!-- footer ends here -->
       
-    </div>
-  </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
    <script src="..\..\asset\js_admin\app.js"></script>
@@ -263,8 +261,16 @@
         defaultDate: defaultDate
       });
     });
+
+    
+        
+        $(".userdropdown").click(function(){
+            
+            $("#userDrop").toggle();
+        });     
   </script>
 
-</body>
 
+
+</body>
 </html>

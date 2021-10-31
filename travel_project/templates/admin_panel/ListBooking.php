@@ -40,6 +40,7 @@ $res=mysqli_query($con,$sql);
 						<th scope="col">GrandTotal</th>
 						<th scope="col">Paid</th>
 						<th scope="col">Remain</th>
+						<th scope="col">Booked On</th>
 						<th scope="col">Actions</th>
 
 						</tr>
@@ -71,6 +72,7 @@ $res=mysqli_query($con,$sql);
 						<td scope="col"> <?php  echo $row['total']; ?></td>
 						<td scope="col"> <?php  echo $row['paid']; ?></td>
 						<td scope="col"> <?php  echo $row['rem']; ?></td>
+						<td scope="col"> <?php  echo date("d/m/Y", strtotime($row['bookedOn'])); ?></td>
 						<td scope="col">
 
 							<a href="AddBooking.php?id=<?php echo $row['id']; ?>"> <button class="btn btn-success btn-sm">Edit</button> </a>

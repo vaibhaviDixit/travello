@@ -18,7 +18,7 @@ $currentUserDetails=getCurrentUserDetails();
     <meta name="GENERATOR" content="Evrsoft First Page">
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="..\asset\css_user\home-css.css"/>
+    <link rel="stylesheet" href="asset\css_user\home-css.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Galada' rel='stylesheet'>
@@ -79,13 +79,13 @@ $currentUserDetails=getCurrentUserDetails();
           <li><a href="index.php"><i class='fa fa-home'></i></a>
             <span class="tooltiptext">Home</span>
         </li>
-        <li><a href="#packages"><i class="fa fa-map-o" aria-hidden="true"></i></a>
+        <li><a href="#packages"><i class="fas fa-map-marker-alt"></i></a>
           <span class="tooltiptext">Destinations</span>
         </li>
         <li ><a href="cart.php"><i class="material-icons">shopping_cart</i></a>
             <span class="tooltiptext">Cart</span>
         </li>
-          <li><a href="login.php"><i class="fa fa-user" aria-hidden="true"></i></a>
+          <li><a href="login.php"><i class="fa fa-user"></i></a>
             <span class="tooltiptext">Profile</span>
         </li>
         </ul>

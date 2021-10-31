@@ -3,6 +3,10 @@
    include ('..\include\database.inc.php');
    include ('..\include\functions.inc.php');
    include ('..\include\constants.inc.php');
+   
+if(!isset($_SESSION['ADMIN'])){
+   redirect("../adminlogin.php");
+}
 
 include ('..\vendor\autoload.php');
 $css=file_get_contents('..\..\asset\bootstrap.min.css');

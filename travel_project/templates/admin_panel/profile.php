@@ -4,15 +4,6 @@ include ('top.php');
 
 $msg="";
 
-$sql="select * from admin";
-$res=mysqli_query($con,$sql);
-
-if(mysqli_num_rows($res)>0){
- $row=mysqli_fetch_assoc($res);
-}else{
-  $row=array();
-}
-
                           
  
 
