@@ -3,7 +3,7 @@
 
 include ('top.php');
 
-$sql="select booking.*,package.packageName from booking,package where booking.packageId=package.id";
+$sql="select bookonline.*,package.packageName from bookonline,package where bookonline.packageId=package.id";
 $res=mysqli_query($con,$sql);
 
 
@@ -16,7 +16,7 @@ $res=mysqli_query($con,$sql);
 				<div class="container-fluid p-0">
 
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Offline Bookings</h1>
+						<h1 class="h3 d-inline align-middle">Online Bookings</h1>
 					</div>
 					<hr>
 				<div class="container table-responsive">
@@ -32,14 +32,13 @@ $res=mysqli_query($con,$sql);
 						<th scope="col">Price</th>
 						<th scope="col">CheckIn</th>
 						<th scope="col">CheckOut</th>
-						<th scope="col">PayMode</th>
 						<th scope="col" width="10%">Adults</th>
 						<th scope="col" width="10%">Children</th>
-						<th scope="col">subTotal</th>
+						<th scope="col">SubTotal</th>
 						<th scope="col">Dis</th>
+						<th scope="col">Coupon</th>
 						<th scope="col">GrandTotal</th>
-						<th scope="col">Paid</th>
-						<th scope="col">Remain</th>
+						<th scope="col">Payment Status</th>
 						<th scope="col">Actions</th>
 
 						</tr>
@@ -63,19 +62,18 @@ $res=mysqli_query($con,$sql);
 						<td scope="col"> <?php  echo $row['packagePrice']; ?></td>
 						<td scope="col"><?php echo date("d/m/Y", strtotime($row['checkIn']));?></td>
 						<td scope="col"> <?php echo date("d/m/Y", strtotime($row['checkOut']));?></td>
-						<td scope="col"> <?php  echo $row['payMode']; ?></td>
 						<td scope="col"> <?php  echo $row['adults']; ?></td>
 						<td scope="col"> <?php  echo $row['children']; ?></td>
 						<td scope="col"> <?php  echo $row['subTotal']; ?></td>
-						<td scope="col"> <?php  echo $row['discount']; $disType=$row['distype']; if($disType=='cash'){echo "&#8377;";}if($disType=='per'){echo "%";}  ?></td>
+						<td scope="col"> <?php  echo $row['discount']; $disType=$row['disType']; if($disType=='cash'){echo "&#8377;";}if($disType=='per'){echo "%";}  ?></td>
+						<td scope="col"> <?php  echo $row['coupon']; ?></td>
 						<td scope="col"> <?php  echo $row['total']; ?></td>
-						<td scope="col"> <?php  echo $row['paid']; ?></td>
-						<td scope="col"> <?php  echo $row['rem']; ?></td>
+						<td scope="col"> <?php  echo $row['paymentStatus']; ?></td>
 						<td scope="col">
 
 							<a href="AddBooking.php?id=<?php echo $row['id']; ?>"> <button class="btn btn-success btn-sm">Edit</button> </a>
 							
-							<a target="_blank" href="bookReceipt.php?id=<?php echo $row['id'];?>"> <button class="btn btn-danger btn-sm">View</button> </a>
+							<a target="_blank" href="userReceipt.php?id=<?php echo $row['bookId'];?>"> <button class="btn btn-danger btn-sm">View</button> </a>
 
 
 						</td>

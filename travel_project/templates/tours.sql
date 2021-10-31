@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3309
--- Generation Time: Oct 30, 2021 at 06:40 PM
+-- Generation Time: Oct 31, 2021 at 04:45 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -46,7 +46,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `profile`, `phone`, `email`, `address`, `location`, `website`, `fb`, `insta`, `whatsapp`) VALUES
-(1, 'Admin', '', '9284552192', 'admin@gmail.com', 'Solapur                                  ', 'Solapur', 'https://www.youtube.com/', 'https://www.facebook.com/', 'https://www.instagram.com/', '9284552192');
+(1, 'Admin', '466020427_pic-3.png', '9284552192', 'admin@gmail.com', 'Solapur                                  ', 'Solapur', 'https://www.youtube.com/', 'https://www.facebook.com/', 'https://www.instagram.com/', '9284552192');
 
 -- --------------------------------------------------------
 

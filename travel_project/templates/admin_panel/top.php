@@ -6,9 +6,9 @@ session_start();
    include ('..\include\constants.inc.php');
 
 
-if(!isset($_SESSION['ADMIN'])){
-   redirect("../adminlogin.php");
-}
+// if(!isset($_SESSION['ADMIN'])){
+//    redirect("../adminlogin.php");
+// }
 
    
    ?>
@@ -130,7 +130,12 @@ if(!isset($_SESSION['ADMIN'])){
                </li>
                <li class="sidebar-item ">
                   <a class="sidebar-link" href="ListBooking.php">
-                  <i class="align-middle" data-feather="list"></i> <span class="align-middle">List Bookings</span>
+                  <i class="align-middle" data-feather="list"></i> <span class="align-middle">Offline Bookings</span>
+                  </a>
+               </li>
+                <li class="sidebar-item ">
+                  <a class="sidebar-link" href="onlineBookings.php">
+                  <i class="align-middle" data-feather="list"></i> <span class="align-middle">Online Bookings</span>
                   </a>
                </li>
                <li class="sidebar-item ">
