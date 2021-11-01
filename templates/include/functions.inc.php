@@ -13,17 +13,17 @@ function redirect ($path)
 
 //print array
 function pra($arr){
-	echo "<pre>";
-	print_r($arr);
+  echo "<pre>";
+  print_r($arr);
 }
 
 
 
 
 function getSafeVal($str){
-	global $con;
-	$str=mysqli_real_escape_string($con,htmlspecialchars($str));
-	return $str;
+  global $con;
+  $str=mysqli_real_escape_string($con,htmlspecialchars($str));
+  return $str;
 }
 
 
@@ -124,14 +124,16 @@ function getAdminDetails(){
 
 function bookings(){
   global $con;
-  $bookings=mysqli_num_rows(mysqli_query($con,"select * from booking"));
+  $bookings=mysqli_num_rows(mysqli_query($con,"select * from booking,bookonline"));
+
   return $bookings;
 
 }
 function earnings(){
   global $con;
-  $earn=mysqli_fetch_assoc(mysqli_query($con,"SELECT sum(total) from `booking`"));
-  return $earn['sum(total)'];
+  $earn=mysqli_fetch_assoc(mysqli_query($con,"SELECT sum(paid) from `booking`"));
+  $earn2=mysqli_fetch_assoc(mysqli_query($con,"SELECT sum(total) from `bookonline`"));
+  return intval($earn['sum(paid)'])+intval($earn2['sum(total)']);
 
 }
 function packages(){

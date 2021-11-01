@@ -11,7 +11,7 @@
 
             <?php 
                $uid=$_SESSION['CURRENT_USER_ID'];
-               $his=mysqli_query($con,"select bookonline.*,package.packageName,package.packagePrice,package.packagePhoto from bookonline,package where bookonline.packageId=package.id and bookonline.uid='$uid' and bookonline.paymentStatus='success' ");
+               $his=mysqli_query($con,"select bookonline.*,package.packageName,package.packagePrice,package.packagePhoto from bookonline,package where bookonline.packageId=package.id and bookonline.uid='$uid' and bookonline.paymentStatus='success' ORDER BY bookonline.id DESC ");
                if(mysqli_num_rows($his)>0){
                   while($row=mysqli_fetch_assoc($his)){         
 
