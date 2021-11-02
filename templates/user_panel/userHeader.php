@@ -24,6 +24,13 @@
       <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
       <meta name="author" content="AdminKit">
       <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+      <link rel="apple-touch-icon" sizes="76x76" href="<?php echo SITE_PATH; ?>asset/logo/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo SITE_PATH; ?>asset/logo/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo SITE_PATH; ?>asset/logo/favicon-16x16.png">
+    <link rel="manifest" href="<?php echo SITE_PATH; ?>asset/logo/site.webmanifest">
+    <link rel="mask-icon" href="<?php echo SITE_PATH; ?>asset/logo/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
       <link rel="stylesheet" href="<?php echo SITE_PATH; ?>asset/css_user/style.css"/>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -32,7 +39,6 @@
       <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
       <link rel="preconnect" href="https://fonts.gstatic.com">
-      <link rel="shortcut icon" href="<?php echo SITE_PATH; ?>asset/img_user/icon-48x48.png" />
       <script src="<?php echo SITE_PATH; ?>asset/js_user/script.js"></script>
       <link rel="canonical" href="https://demo-basic.adminkit.io/" />
       <title>User Panel</title>

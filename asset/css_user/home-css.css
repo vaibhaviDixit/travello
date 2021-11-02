@@ -511,12 +511,18 @@ section .heading span{
 
 .packages .box-container .box .content p{
   text-align:left;
-  font-size: .7rem;
+  font-size: .8rem;
   color:#666;
   margin: 0;
   padding: 0;
-  line-height: 18px;
-  
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 22px;
+  max-height: 70px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .packages .box-container .box .content .stars i{
   padding-top:10px;
@@ -1082,10 +1088,13 @@ margin:0;  color:#eee;
   bottom: 10%;
 }
 section .heading{
-  font-weight: 400;
-   text-align: center;
+    font-weight: 400;
     font-size: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     line-height: 50px;
+    align-items: center;
     text-align: center !important;
   }  
 

@@ -284,14 +284,7 @@
 
 <section class="services" id="services">
   <div class="heading">
-      <span>s</span>
-      <span>e</span>
-      <span>r</span>
-      <span>v</span>
-      <span>i</span>
-      <span>c</span>
-      <span>e</span>
-      <span>s</span>
+      <span>s</span><span>e</span><span>r</span><span>v</span><span>i</span><span>c</span><span>e</span><span>s</span>
   </div>
 
   <div class="box-container">
@@ -343,8 +336,7 @@
       
     ?>
   <div class="heading">
-      <span>E</span><span>x</span><span>c</span><span>l</span><span>u</span><span>s</span><span>i</span><span>v</span><span>e</span><span class="space"></span><span>d</span><span>e</span><span>a</span>
-      <span>l</span><span>s</span>
+      <span>E</span><span>x</span><span>c</span><span>l</span><span>u</span><span>s</span><span>i</span><span>v</span><span>e</span><span class="space"></span><span>d</span><span>e</span><span>a</span><span>l</span><span>s</span>
   </div>
   <p id="o">Checkout for the best discounts and deals here</p>
   <div class="o-card">
@@ -372,18 +364,7 @@
 <section class="review" id="review">
 
   <div class="heading">
-      <span>T</span>
-      <span>E</span>
-      <span>S</span>
-      <span>T</span>
-      <span>I</span>
-      <span>M</span>
-      <span>O</span>
-      <span>N</span>
-      <span>I</span>
-      <span>A</span>
-      <span>L</span>
-      <span>S</span>
+      <span>T</span><span>E</span><span>S</span><span>T</span><span>I</span><span>M</span><span>O</span><span>N</span><span>I</span><span>A</span><span>L</span><span>S</span>
   </div>
   <div class="container">
 
@@ -433,14 +414,7 @@
   <section class="about" id="about">
 
     <div class="heading">
-        <span>A</span>
-        <span>b</span>
-        <span>o</span>
-        <span>u</span>
-        <span>t</span>
-        <span class="space"></span>
-        <span>u</span>
-        <span>s</span>
+        <span>A</span><span>b</span><span>o</span><span>u</span><span>t</span><span class="space"></span><span>u</span><span>s</span>
     </div>
     <p class="about-us">
       From 2012 to 2017, Our leadership team worked with many corporates, colleges, schools and institutions to organise adventure group trips and in these 6 years we understood HOTELS are old and unconventional and people are looking for more experimental places to spend their vacations but hard to discover.

@@ -19,7 +19,15 @@ const firebaseConfig = {
 
   function render(){
    
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+      "recaptcha-container",
+    {
+      size: "invisible",
+      callback: function(response) {
+        submitPhoneNumberAuth();
+      }
+    }
+      );
     recaptchaVerifier.render();
   }
 
@@ -28,7 +36,7 @@ const firebaseConfig = {
 
        $(".loginForm").on("submit",function(e){
     
-              phone=$("#loginPhone").val();
+              phone=$("#loginPhone").val().toString();
           if(isNaN(phone)){
                $(this).find("#msg").html("<div class='alert alert-success' role='alert'>Invalid Mobile</div>");
           }else{
@@ -41,7 +49,7 @@ const firebaseConfig = {
                    url:"register_login",  
                    data:"mobile="+phone+"&type=checkMobile",
                    success:function(result){
-                      console.log(result);
+                      
                       msg=jQuery.parseJSON(result);
 
                      if(msg.status=="success"){
@@ -55,9 +63,9 @@ const firebaseConfig = {
                         firebase.auth().signInWithPhoneNumber("+91"+phone,cverify).then(function(response){
                           window.confirmationResult = response;
                           $("#msg").html("<div class='alert alert-success' role='alert'>Enter OTP sent to "+phone+"</div>");
-                          console.log(response);
+                          
                         }).catch(function(error){
-                            console.log(error);
+                            
                         })
                       
                      }
@@ -127,9 +135,9 @@ const firebaseConfig = {
                         firebase.auth().signInWithPhoneNumber("+91"+mob,cverify).then(function(response){
                           window.confirmationResult = response;
                           $("#msg").html("<div class='alert alert-success' role='alert'>Enter OTP sent to "+mob+"</div>");
-                          console.log(response);
+                          
                         }).catch(function(error){
-                            console.log(error);
+                            
                         })
 
                        
@@ -199,7 +207,7 @@ $("#verifybtn").on("click",function(e){
                    url:"register_login",  
                    data:"name="+name+"&mobile="+mob+"&add="+add+"&type=signUp",
                    success:function(result){
-                console.log(result)
+                
                       msg=jQuery.parseJSON(result);
 
                      if(msg.status=="success"){
@@ -248,7 +256,7 @@ $("#verifyLoginOtp").on("click",function(e){
                    url:"register_login",  
                    data:"mobile="+phone+"&type=login",
                    success:function(result){
-                console.log(result)
+                
                       msg=jQuery.parseJSON(result);
 
                      if(msg.status=="success"){
@@ -283,7 +291,7 @@ $("#verifyLoginOtp").on("click",function(e){
      
             $("#msg").html("");
               phone=$("#adminloginPhone").val();
-              console.log(phone);
+            
           if(isNaN(phone)){
                $(this).find("#msg").html("<div class='alert alert-success' role='alert'>Invalid Mobile</div>");
           }else{
@@ -296,7 +304,7 @@ $("#verifyLoginOtp").on("click",function(e){
                    url:"register_login",  
                    data:"mobile="+phone+"&type=checkAdminMobile",
                    success:function(result){
-                       console.log(result)
+                       
                       msg=jQuery.parseJSON(result);
 
                      if(msg.status=="success"){
@@ -310,9 +318,9 @@ $("#verifyLoginOtp").on("click",function(e){
                         firebase.auth().signInWithPhoneNumber("+91"+phone,cverify).then(function(response){
                           window.confirmationResult = response;
                           $("#msg").html("<div class='alert alert-success' role='alert'>Enter OTP sent to "+phone+"</div>");
-                          console.log(response);
+                          
                         }).catch(function(error){
-                            console.log(error);
+                          
                         })
                       
                      }
