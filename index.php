@@ -171,13 +171,14 @@
 
   <br/><br/>
 
-  <h1 class="heading"> 
+ 
   <?php
 
     $cate=mysqli_query($con,"select * from category where status =1");
     if(mysqli_num_rows($cate)>0){
+      
       while ($cateRow=mysqli_fetch_assoc($cate)) {
-
+        echo " <h1 class='heading'> ";
         $cateName=$cateRow['name'];
         $catId=$cateRow['id'];
             for ($i=0; $i <strlen($cateName); $i++) {
@@ -190,6 +191,7 @@
                 }
               }
             ?>
+          </h1>
              <div class="box-container">
             <?php
 

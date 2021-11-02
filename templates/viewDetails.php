@@ -45,7 +45,7 @@
             <h1><?php echo $packagesRow['packageName']; ?></h1>
             <p><i id="map" class="fa fa-map-marker"></i><?php echo $detailsRow['location']; ?></p>
            
-                <iframe  src="<?php echo $detailsRow['link']; ?>?controls=0"
+                <iframe  src="<?php echo str_replace('watch?v=','embed/',$detailsRow['link']); ?>"
                  title="YouTube video player" frameborder="0" 
                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                  allowfullscreen ></iframe>
@@ -87,9 +87,9 @@
                 </h1>
                 </section>
 
-                  <p id="about-description" style="width: 70%; margin: 0 auto; text-align: justify;"><?php echo $detailsRow['description']; ?></p>
+                  <p id="about-description" style="width: 95%; margin: 0 auto; text-align: justify;"><?php echo $detailsRow['description']; ?></p>
               </div>
-              <div class="things-to-do" style="width: 70%; margin: 0 auto;">
+              <div class="things-to-do" style="width: 95%; margin: 0 auto;">
               <section class="packages" id="packages">
 
 
