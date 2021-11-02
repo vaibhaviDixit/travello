@@ -30,7 +30,7 @@
       <meta name="author" content="AdminKit">
       <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
       <!-- cdn for data table -->
-      <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css">
+      <!-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css"> -->
       
       <link href="<?php echo SITE_PATH; ?>asset/css_user/reportbootstrap.min.css" rel="stylesheet">
       <link href="<?php echo SITE_PATH; ?>asset/css_user/reportbootstrap-responsive.min.css" rel="stylesheet">
@@ -50,10 +50,10 @@
       <link href="<?php echo SITE_PATH; ?>asset/css_user/reportbootstrap.min.css" rel="stylesheet">
       <link href="<?php echo SITE_PATH; ?>asset/css_user/reportbootstrap-responsive.min.css" rel="stylesheet">
       <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
-      <link href="<?php echo SITE_PATH; ?>asset/css_user/reportfont-awesome.css" rel="stylesheet">
-      <link href="<?php echo SITE_PATH; ?>asset/css_user/reportstyle.css" rel="stylesheet">
+      <!-- <link href="<?php echo SITE_PATH; ?>asset/css_user/reportfont-awesome.css" rel="stylesheet"> -->
+      <!-- <link href="<?php echo SITE_PATH; ?>asset/css_user/reportstyle.css" rel="stylesheet"> -->
       <link href="<?php echo SITE_PATH; ?>asset/bootstrap.min.css" rel="stylesheet">
-      <link href="<?php echo SITE_PATH; ?>asset/css_user/reports.css" rel="stylesheet">
+      <!-- <link href="<?php echo SITE_PATH; ?>asset/css_user/reports.css" rel="stylesheet"> -->
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link rel="shortcut icon" href="<?php echo SITE_PATH; ?>asset/img_user/icon-48x48.png" />
       <link rel="canonical" href="https://demo-basic.adminkit.io/" />
@@ -177,13 +177,13 @@
          <a class="sidebar-toggle js-sidebar-toggle">
          <i class="hamburger align-self-center"></i>
          </a>
-         <div class="navbar-collapse collapse">
+         <div style=" position: absolute !important; right: 4rem;">
             <ul class="navbar-nav navbar-align">
                <li class="nav-item">
-                  <a class="nav-link dropdown-toggle userdropdown d-sm-inline-block" href="javascript:void(0)"  >
+                  <a class="nav-link dropdown-toggle userdropdown d-sm-inline-block " href="javascript:void(0)"  >
                   <img src="<?php  echo SITE_PROFILE_IMAGE.$row['profile']; ?>" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo $row['name']; ?></span>
                   </a>
-                  <div class="card" style="width: 7rem;" id="userDrop">
+                  <div class="card"  id="userDrop" style=" position: absolute !important; top: 2rem; display: none;">
                      <ul class="list-group list-group-flush">
                         <li class="list-group-item"><a class="dropdown-item" href="<?php echo SITE_PATH.'templates/admin_panel/' ?>logout">Log out</a></li>
                      </ul>
@@ -192,3 +192,5 @@
             </ul>
          </div>
       </nav>
+
+   

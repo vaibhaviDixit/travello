@@ -277,6 +277,7 @@ margin-left:2.127659574%;
 }
 .container-fluid:after {
 	clear: both;
+	clear: b;
 }
 p {
 	margin: 0 0 9px;
@@ -2554,7 +2555,7 @@ filter:progid:dximagetransform.microsoft.gradient(enabled=false);
 	height: auto;
 }
 .navbar {
-	color: #999999;
+	/* color: #999999; */
 }
 .navbar .brand:hover {
 	text-decoration: none;

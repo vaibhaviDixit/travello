@@ -25,6 +25,8 @@
           </div>
         </div>
 </footer>
+</div>
+</div>
       <!-- footer ends here -->
       
 
