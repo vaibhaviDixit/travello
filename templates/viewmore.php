@@ -1,15 +1,37 @@
 <?php
   
   include 'user_header.php';
+  if(isset($_GET['id'])){
+    $id=getSafeVal($_GET['id']);
+  }
+  else{
+    redirect(SITE_PATH);
+  }
 ?>
   
+<div class="mt-5 pt-4">
 <section class="packages mt-3" id="packages">
-   <div class="box-container mt-5">
-            <?php
+   <?php
+            $packages=mysqli_query($con,"select package.*,category.name from package,category where package.packageType=category.id and package.packageType=$id");
 
-            $packages=mysqli_query($con,"select * from package");
 
              if(mysqli_num_rows($packages)>0){
+               echo " <h1 class='heading'> ";
+                $r=mysqli_fetch_assoc($packages);
+                $cateName=$r['name'];
+                for ($i=0; $i <strlen($cateName); $i++) {
+                    if($cateName[$i]==" "){
+                      echo "&nbsp;";
+                    } 
+                    else{
+
+                     echo "<span>".$cateName[$i]."</span>"; 
+                    }
+                }
+            ?>
+          </h1>
+   <div class="box-container mt-5">
+          <?php
                while ($pckgRow=mysqli_fetch_assoc($packages)) {
                 ?>
           <div class="box">
@@ -69,7 +91,7 @@
           <!-- box container ends -->
 </section>
 
-
+</div>
  
 <?php
 

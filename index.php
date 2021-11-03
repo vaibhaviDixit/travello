@@ -248,16 +248,8 @@
               </div>
           </div>
           <!-- box ends -->
-
-          <?php
-      
+         <?php
                 }
-                
-                ?>
-          <!-- box container ends -->
-         <div class="view-more"><a class="view-more-btn" href="<?php echo SITE_PATH.'templates/'; ?>viewmore">View More</a></div>
-
-          <?php
             }
             else{
               echo "<br/>Data not found!<br/><br/>";
@@ -267,6 +259,8 @@
 
           </div>
          
+          <!-- box container ends -->
+         <div class="view-more"><a class="view-more-btn" href="<?php echo SITE_PATH.'templates/'; ?>viewmore/<?php echo $cateRow['id'];  ?>">View More</a></div>
 
       <?php
       

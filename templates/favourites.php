@@ -9,24 +9,12 @@
 
 
 <div class="container-fluid mt-5 pt-5" >
-
-
     <section class="packages" id="packages">
 <h1 class="heading">      
-  <span>M</span>
-  <span>y</span>
-  &nbsp;&nbsp;&nbsp;
-  <span>F</span>
-  <span>a</span>
-  <span>v</span>
-  <span>o</span>
-   <span>r</span>
-    <span>i</span>
-     <span>t</span>
-      <span>e</span>
-       <span>s</span>
+  <span>M</span><span>y</span>
+  &nbsp;&nbsp;&nbsp;<span>F</span><span>a</span><span>v</span><span>o</span><span>r</span><span>i</span><span>t</span><span>e</span><span>s</span>
 
-  <br/><br/>
+  <br/>
 </h1>
 
 <div class="box-container">
@@ -104,6 +92,7 @@
 </div>
 
 </section>
+</div>
       <?php
 
         include 'user_footer.php';

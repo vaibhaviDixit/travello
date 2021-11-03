@@ -259,7 +259,6 @@
             </div>
             <div class="col mb-3">
                <label for="placelocation" class="form-label">Location<span class="redStar">*</span></label>
-               <!-- <label for="packageDesc" class="form-label">Things To Know About The Place</label> -->
                <input class="form-control" rows="3" id="placelocation" name="placelocation" required>
             </div>
          </div>
@@ -269,12 +268,12 @@
                <textarea class="form-control" rows="3" id="placedesc" name="placedesc" required></textarea>
             </div>
          </div>
-         <div class="row">
+        <!--  <div class="row">
             <div class="col mb-3">
                <h5>Things To Know About The Place</h5>
                <textarea class="form-control" rows="3" id="thingstoknow" name="thingstoknow" required></textarea>
             </div>
-         </div>
+         </div> -->
          <div class="row">
             <!-- photo 1 -->
             <div class="col-sm-4 mb-3">
