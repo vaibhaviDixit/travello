@@ -12,6 +12,7 @@ include ('include/constants.inc.php');
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo SITE_PATH; ?>asset/logo/apple-touch-icon.png">
+   <title>ImperiousTours</title>
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo SITE_PATH; ?>asset/logo/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo SITE_PATH; ?>asset/logo/favicon-16x16.png">
     <link rel="manifest" href="<?php echo SITE_PATH; ?>asset/logo/site.webmanifest">
@@ -25,10 +26,6 @@ include ('include/constants.inc.php');
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?php echo SITE_PATH; ?>asset/css_user/login-signup-css.css">
 <link rel='stylesheet' href='https://unpkg.com/aos@2.3.0/dist/aos.css'>
-<link rel="stylesheet" href="<?php echo SITE_PATH; ?>asset/css_user/login-signup-css.css">
-
-
-
 </head>
 <body>
   <button onclick="go_home()" id="home-btn"  class="home-btn"><i class="material-icons">keyboard_arrow_left</i></button>
@@ -65,7 +62,11 @@ include ('include/constants.inc.php');
     <a href="<?php echo SITE_PATH; ?>templates/sign-up">Don't have an account? Sign up</a>
     
     <br/><br/>
-    <a href="<?php echo SITE_PATH?>templates/adminlogin">ADMIN LOGIN</a>
+    <a href="<?php echo SITE_PATH; ?>templates/adminlogin">ADMIN LOGIN</a>
+    <small class="text-center">This site is protected by reCAPTCHA and the Google <br>
+      <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+      <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+    </small>
 
   </div>
     

@@ -14,7 +14,7 @@ $id="";
 
 
 if(isset($_GET['id']) && $_GET['id']>0){
-	$id=mysqli_real_escape_string( $con,htmlspecialchars( $_GET['id'] ) );
+	$id=getSafeVal( $_GET['id'] );
 
 
 	$row=mysqli_fetch_assoc( mysqli_query($con,"select * from coupon where id='$id' ") );

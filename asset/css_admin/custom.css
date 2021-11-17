@@ -13,3 +13,6 @@ form label{
 	color: red;
 	font-weight: bold;
 }
+#dttable .btn-sm{
+	margin-top:10px; 
+}

@@ -11,7 +11,7 @@ $id="";
 
 
 if(isset($_GET['id']) && $_GET['id']>0){
-	$id=mysqli_real_escape_string( $con,htmlspecialchars( $_GET['id'] ) );
+	$id=getSafeVal( $_GET['id'] ) ;
 
 
 	$row=mysqli_fetch_assoc( mysqli_query($con,"select * from category where id='$id' ") );
@@ -22,8 +22,8 @@ if(isset($_GET['id']) && $_GET['id']>0){
 
 
 if (isset($_POST['submit'])) {
-	$category=mysqli_real_escape_string( $con,htmlspecialchars( $_POST['category'] ) );
-	$description=mysqli_real_escape_string($con, htmlspecialchars( $_POST['description'] ) );
+	$category=getSafeVal( $_POST['category'] ) ;
+	$description=getSafeVal( $_POST['description'] ) ;
  
 
 	if($id==""){

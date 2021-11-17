@@ -60,9 +60,6 @@ $res=mysqli_query($con,$sql);
 
 
 						</td>
-
-		
-
 						</tr>
 
 

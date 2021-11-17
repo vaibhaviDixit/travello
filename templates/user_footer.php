@@ -102,8 +102,6 @@ document.documentElement.scrollTop = 0;
   
 </body>
 </html>
-
-
 <?php
   
   if (isset($_POST['submitQuery'])) {

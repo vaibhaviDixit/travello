@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3309
--- Generation Time: Nov 02, 2021 at 03:47 PM
+-- Generation Time: Nov 17, 2021 at 03:05 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -174,9 +174,9 @@ CREATE TABLE `coupon` (
 --
 
 INSERT INTO `coupon` (`id`, `couponCode`, `couponType`, `couponValue`, `minValue`, `expiredOn`, `status`, `addedOn`) VALUES
-(1, 'diwali', 'p', 10, 5000, '2021-11-07', 1, '2021-10-25 16:56:14'),
-(2, 'AFDH90', 'p', 20, 9000, '2021-10-27', 1, '2021-10-27 14:44:40'),
-(3, 'AMJKL3', 'r', 500, 5000, '2021-11-10', 1, '2021-10-30 16:38:01');
+(1, 'diwali', 'p', 10, 5000, '2022-11-01', 1, '2021-10-25 16:56:14'),
+(2, 'AFDH90', 'p', 20, 9000, '2023-10-10', 1, '2021-10-27 14:44:40'),
+(3, 'AMJKL3', 'r', 500, 5000, '2022-11-11', 1, '2021-10-30 16:38:01');
 
 -- --------------------------------------------------------
 
@@ -354,8 +354,8 @@ CREATE TABLE `viewdetails` (
 --
 
 INSERT INTO `viewdetails` (`id`, `packageId`, `location`, `description`, `photoone`, `phototwo`, `photthree`, `photofour`, `link`) VALUES
-(1, 2, 'japan', 'idk', '712144922_download (3).jpg', '919435937_download (1).jpg', '507743692_Goa-Beach-Hollant.jpg', '491869502_download (9).jpg', 'https://www.youtube.com/watch?v=OKAYqzOfLjY'),
-(2, 3, 'Pune', 'tirupati', '225703541_download (1).jpg', '524502061_download (1).jpg', '524796940_download (1).jpg', '270563364_download%2520(1).jpg', 'https://www.youtube.com/watch?v=i1PRlMkpUgM');
+(1, 2, 'japan', 'Tokyo (東京, Tōkyō) is Japan\'s capital and the world\'s most populous metropolis. It is also one of Japan\'s 47 prefectures, consisting of 23 central city wards and multiple cities, towns and villages west of the city center. The Izu and Ogasawara Islands are', '712144922_download (3).jpg', '919435937_download (1).jpg', '507743692_Goa-Beach-Hollant.jpg', '491869502_download (9).jpg', 'https://www.youtube.com/watch?v=OKAYqzOfLjY'),
+(2, 3, 'Pune', 'Tirupati has one of the most visited tourist attraction as well as religious shrine and the second richest temple in the world, the Tirumala Venkateswara Temple. This temple is one of the holiest Hindu pilgrimage sites. Because of this temple, Tirupati is', '225703541_download (1).jpg', '524502061_download (1).jpg', '524796940_download (1).jpg', '270563364_download%2520(1).jpg', 'https://www.youtube.com/watch?v=i1PRlMkpUgM');
 
 --
 -- Indexes for dumped tables

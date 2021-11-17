@@ -1,9 +1,8 @@
 <?php
-
-include 'user_header.php';
 header("Pragma: no-cache");
 header("Cache-Control: no-cache");
 header("Expires: 0");
+include 'user_header.php';
 
 if(!isset($_SESSION['CURRENT_USER_ID'])){
 	redirect(SITE_PATH);
@@ -11,7 +10,7 @@ if(!isset($_SESSION['CURRENT_USER_ID'])){
 
 if(isset($_SESSION['bookingArray'])){
 
-	$oid="IMPERIOUS" . rand(10000,99999999)."_".$_SESSION['CURRENT_USER_ID'];
+	$oid="IMPERIOUS".rand(10000,99999999)."_".$_SESSION['CURRENT_USER_ID'];
 
 	$check_in=$_SESSION['bookingArray']['check-in-date'];
     $check_out=$_SESSION['bookingArray']['check-out-date'];
@@ -130,7 +129,6 @@ else{
     </div>
   </div>
 <!-- Address Details ends -->
-
 </div>
 				
 		</div>
@@ -199,10 +197,6 @@ include 'user_footer.php';
 ?>
 <script type="text/javascript">
 
- 
-
-
-
 	function applyCoupon(){
 		coupon=$("#coupon").val();
 		if(coupon==""){
@@ -241,7 +235,9 @@ include 'user_footer.php';
 <script type="text/javascript">
   
   if ( window.history.replaceState ) {
+  	<?php
+  		unset($_SESSION['bookingArray']); 
+  	?>
   window.history.replaceState( null, null, window.location.href );
 }
 </script>
-

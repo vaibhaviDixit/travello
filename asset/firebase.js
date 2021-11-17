@@ -213,7 +213,7 @@ $("#verifybtn").on("click",function(e){
                      if(msg.status=="success"){
 
                        $("#msg").html("<div class='alert alert-success' role='alert'>"+msg.msg+"</div>");
-                       window.location.href="user_panel/profile";
+                       window.location.href="http://localhost/Travello/";
                         $("#signbtn").attr('disabled',false);
                         $("#signbtn").html("Sign Up");
                       
@@ -260,7 +260,7 @@ $("#verifyLoginOtp").on("click",function(e){
                       msg=jQuery.parseJSON(result);
 
                      if(msg.status=="success"){
-                        window.location.href="user_panel/profile";
+                        window.location.href="http://localhost/Travello/";
                         $("#signbtn").attr('disabled',false);
                         $("#signbtn").html("Sign Up");
                       
@@ -380,6 +380,8 @@ $("#verifyAdminLoginOtp").on("click",function(e){
          
   }).catch(function(error){
     $("#msg").html("<div class='alert alert-danger' role='alert'>Invalid OTP</div>");
+    $("#signbtn").attr('disabled',false);
+    $("#signbtn").html("Sign Up");
 
   })
   e.preventDefault();

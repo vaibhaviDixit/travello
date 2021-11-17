@@ -120,4 +120,7 @@ body{
   }
 
   
-  
+  .grecaptcha-badge {
+    display:none !important;
+
+  }

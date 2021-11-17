@@ -23,10 +23,10 @@
    
    
    if (isset($_POST['submit'])) {
-   	$placename=mysqli_real_escape_string( $con,htmlspecialchars( $_POST['packageName'] ) );
-   	$location=mysqli_real_escape_string( $con,htmlspecialchars( $_POST['placelocation'] ) );
-   	$placedesc=mysqli_real_escape_string( $con,htmlspecialchars( $_POST['placedesc'] ) );
-   	$link=mysqli_real_escape_string($con, htmlspecialchars( $_POST['link'] ) );
+   	$placename=getSafeVal( $_POST['packageName'] ) ;
+   	$location=getSafeVal( $_POST['placelocation'] ) ;
+   	$placedesc=getSafeVal( $_POST['placedesc'] ) ;
+   	$link=getSafeVal($_POST['link'] ) ;
    
    
    	//photo 1

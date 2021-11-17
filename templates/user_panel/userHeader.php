@@ -69,7 +69,8 @@
             </li>
             <li class="sidebar-item ">
                <a class="sidebar-link" href="<?php echo SITE_PATH.'templates/user_panel/'; ?>history">
-               <i class="fa fa-history fa-lg" aria-hidden="true"></i> <span class="align-middle">History</span>
+               <i class="fa fa-history fa-lg" aria-hidden="true"></i> 
+               <span class="align-middle">History</span>
                </a>
             </li>
             <li class="sidebar-item ">
@@ -106,8 +107,9 @@
          <div class="navbar-collapse collapse">
             <ul class="navbar-nav navbar-align">
                <li class="nav-item">
-                  <a class="nav-link dropdown-toggle userdropdown d-sm-inline-block" href="javascript:void(0)"  >
+                  <a class="nav-link  userdropdown d-sm-inline-block" href="javascript:void(0)"  >
                   <img src="<?php  echo SITE_PROFILE_IMAGE.$row['profile']; ?>" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo getCurrentUserName(); ?></span>
+                  <span> <i class="fas fa-caret-down"></i> </span>
                   </a>
                   <div class="card" style="width: 7rem;" id="userDrop">
                      <ul class="list-group list-group-flush">

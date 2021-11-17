@@ -13,6 +13,7 @@ include ('include/constants.inc.php');
 <head>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImperiousTours</title>
     <link rel="stylesheet" href="<?php echo SITE_PATH; ?>asset/css_user/login-signup-css.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="apple-touch-icon" sizes="76x76" href="<?php echo SITE_PATH; ?>asset/logo/apple-touch-icon.png">
@@ -61,7 +62,11 @@ include ('include/constants.inc.php');
         
 
         <a href="<?php echo SITE_PATH; ?>templates/login">Already have an account? Login</a>
-        
+         <small class="text-center">This site is protected by reCAPTCHA and the Google <br>
+          <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+          <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+        </small>
+
     </div>
   </form>
 </div>

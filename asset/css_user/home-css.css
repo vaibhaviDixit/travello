@@ -29,11 +29,11 @@ body{
   width: 100vw;
   padding: 10px 20px;
   display: flex;
-  position: fixed;  
+  position: fixed;
   top: 0;
+  height: 4rem;
   z-index: 9999;
   background-color: black;
-
 }
 .navbar .nav-menu{
   flex: 1;

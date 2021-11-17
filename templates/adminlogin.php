@@ -11,7 +11,7 @@ include ('include/constants.inc.php');
 <head>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+   <title>ImperiousTours</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="apple-touch-icon" sizes="76x76" href="<?php echo SITE_PATH; ?>asset/logo/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo SITE_PATH; ?>asset/logo/favicon-32x32.png">
@@ -61,6 +61,10 @@ include ('include/constants.inc.php');
       <button type="submit"  id="verifyAdminLoginOtp" class="login-btn"  name="submit" >Verify</button>
     </div>
 
+     <small class="text-center">This site is protected by reCAPTCHA and the Google <br>
+      <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+      <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+    </small>
   
 </div>
 

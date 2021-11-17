@@ -8,7 +8,6 @@ else{
 	redirect(SITE_PATH);
 }
 ?>
-
 <section id="bookingProcess"  style="padding-top: 10% !important; height: 100vh;">
 
 	<div class="container pt-3">
@@ -17,8 +16,6 @@ else{
 	</div>
 
 </section>
-
-
 <?php
 
 include 'user_footer.php';

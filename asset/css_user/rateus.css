@@ -1,10 +1,10 @@
 *
-{ 
+{
   box-sizing: border-box;
 }
 
 .container {
-  background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/concrete-texture.png"); 
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/concrete-texture.png");
   display: flex;
   flex-wrap: wrap;
   height: 50vh;
@@ -106,8 +106,7 @@
 
 .feedback {
   background-color: #fff;
-  width: 95%;
-  padding: 30px;
+  width: 100%;
   border-radius: 8px;
   display: flex;
   flex-direction: column;

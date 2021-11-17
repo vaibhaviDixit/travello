@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 include 'include/database.inc.php';
 include 'include/functions.inc.php';
 include 'include/constants.inc.php';
@@ -16,7 +14,7 @@ $currentUserDetails=getCurrentUserDetails();
 <head>
     <meta charset="UTF-8">
     <meta name="GENERATOR" content="Evrsoft First Page">
-    <title>Home</title>
+    <title>ImperiousTours</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo SITE_PATH; ?>asset/logo/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo SITE_PATH; ?>asset/logo/favicon-32x32.png">
@@ -35,7 +33,7 @@ $currentUserDetails=getCurrentUserDetails();
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.css'>
 <link rel="stylesheet" href="<?php echo SITE_PATH; ?>asset/css_user/style.css">
  <link rel="stylesheet" href="<?php echo SITE_PATH; ?>asset/css_user/destination-details-css.css"/>
-    <link rel="stylesheet" href="..\asset\css_user\home-css.css"/>
+    <link rel="stylesheet" href="<?php echo SITE_PATH; ?>asset/css_user/home-css.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -60,7 +58,21 @@ $currentUserDetails=getCurrentUserDetails();
     </div>         
     <ul class="nav-menu">
         <li class="nav-item"><a href="<?php echo SITE_PATH; ?>">Home</a></li>
-        <li class="nav-item"><a href="#about">About us</a></li>
+        <?php
+        if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'){
+            $url = "https://";   
+        }
+        else{
+            $url = "http://";  
+        }
+         if($url.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']==SITE_PATH.'templates/favourites'){
+            echo '';
+         } 
+         else{
+            echo '<li class="nav-item"><a href="#about">About us</a></li>';
+         }
+        
+         ?>
         <li class="nav-item"><a href="<?php if(isset($_SESSION['CURRENT_USER_ID'])){
             echo SITE_PATH."templates/user_panel/profile";
         }else{

@@ -28,6 +28,7 @@
       
       $rec[]=$pckId;
       setcookie('recentlyViewed',serialize($rec),time()+60*60*24*365);
+      print_r($rec);
 
    }
    else{

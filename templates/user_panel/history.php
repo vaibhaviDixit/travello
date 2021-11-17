@@ -4,10 +4,8 @@
 <main class="content">
    <div class="container-fluid p-0">
    <h1 class="h3 mb-3"><strong>History</strong></h1>
-   <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
-   <div class="card flex-fill w-100">
-      <div class="container-fluid mt-2 p-5">
-         <div class="container-fluid mt-2 p-2">
+  
+      <div class="container-fluid mt-2 ">
 
             <?php 
                $uid=$_SESSION['CURRENT_USER_ID'];
@@ -40,7 +38,7 @@
                      </div>
                   </div>
                </div>
-            </div>
+             </div>
             <!-- card ends -->
             <?php
                }
@@ -53,8 +51,7 @@
             <br/>
             <br/>
          </div>
-      </div>
-   </div>
+  
 </main>
 <?php  
    include 'userFooter.php';

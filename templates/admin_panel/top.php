@@ -10,7 +10,6 @@
       if(!isset($_SESSION['ADMIN'])){
          redirect(SITE_PATH.'templates/adminlogin');
       }
-   
       
       ?>
 <!DOCTYPE html>
@@ -30,11 +29,9 @@
       <meta name="author" content="AdminKit">
       <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
       <!-- cdn for data table -->
-      <!-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css"> -->
-      
+      <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css">
       <link href="<?php echo SITE_PATH; ?>asset/css_user/reportbootstrap.min.css" rel="stylesheet">
       <link href="<?php echo SITE_PATH; ?>asset/css_user/reportbootstrap-responsive.min.css" rel="stylesheet">
-      
       <!-- font awesome cdn link  -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -180,8 +177,10 @@
          <div style=" position: absolute !important; right: 4rem;">
             <ul class="navbar-nav navbar-align">
                <li class="nav-item">
-                  <a class="nav-link dropdown-toggle userdropdown d-sm-inline-block " href="javascript:void(0)"  >
-                  <img src="<?php  echo SITE_PROFILE_IMAGE.$row['profile']; ?>" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo $row['name']; ?></span>
+                  <a class="nav-link  userdropdown d-sm-inline-block " href="javascript:void(0)"  >
+                  <img src="<?php  echo SITE_PROFILE_IMAGE.$row['profile']; ?>" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> 
+                  <span class="text-dark"><?php echo $row['name']; ?></span>
+                  <span> <i class="fas fa-caret-down"></i> </span>
                   </a>
                   <div class="card"  id="userDrop" style=" position: absolute !important; top: 2rem; display: none;">
                      <ul class="list-group list-group-flush">

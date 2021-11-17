@@ -1,6 +1,5 @@
 <?php
 
-
 function redirect ($path)
 {
     ?>
@@ -22,7 +21,7 @@ function pra($arr){
 
 function getSafeVal($str){
   global $con;
-  $str=mysqli_real_escape_string($con,htmlspecialchars($str));
+  $str=strip_tags(mysqli_real_escape_string($con,htmlspecialchars($str)));
   return $str;
 }
 

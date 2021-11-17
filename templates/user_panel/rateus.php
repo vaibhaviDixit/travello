@@ -1,7 +1,7 @@
 	<?php  
 
-					include 'userHeader.php';
-			?>
+		include 'userHeader.php';
+	?>
 
 			<main class="content">
 				
@@ -10,15 +10,7 @@
 					<h1 class="h3 mb-3"><strong>Rate Us</strong></h1>
 
 
-					<div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
-						<div class="card flex-fill w-100">
-							<!-- <div class="card-header"> -->
-
-								<!-- <h5 class="card-title mb-0">Real-Time</h5> -->
-							<!-- </div> -->
-							
-								  
-							<div class="w3-container w3-card">  
+					<div class="col-12 col-md-12  d-flex">
 					<div class="feedback">
 						<br/>
 						<h4><strong>Dear Customer, </strong></h4>
@@ -32,12 +24,9 @@
 					<div class="container">
 						<div class="feedback">
 							<div class="card-header"> 
-
 								<h5 class="card-title mb-0">Rate Us</h5> 
 							</div>
-
 							<form method="post" id="reviewForm">
-
 						  <div class="rating">
 							<input type="radio" name="rating5" id="rating-5" >
 							<label for="rating-5"></label>
@@ -147,7 +136,7 @@
 					  <hr class="survey-hr"> 
 					<!-- <label for="m_3189847521540640526commentText">Any Other suggestions:</label><br/><br/> -->
 					<h4><strong>Feedback: </strong></h4>
-					<textarea cols="75" name="commentText" rows="5" id="suggestion" required></textarea><br><!--style = 100%-->
+					<textarea cols="75" name="commentText" rows="5" id="suggestion" required style="width: 100%;"></textarea><br><!--style = 100%-->
 					<br>
 					  <div class="clear"></div> 
 					<input style="background:#43a7d5;color:#fff;padding:12px;border:0" id="submitReview" type="button" value="Submit your review">&nbsp;
@@ -157,11 +146,9 @@
 								</div>
 							</div>
 						</div>
-					</section>
 				</div>	 
 				</div>
-			</div>
-		</div>
+			
 					</div>
 				
 					</main>
