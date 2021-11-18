@@ -44,6 +44,9 @@
     <div class="destination">
         <div class="destination-details">
             <h1><?php echo $packagesRow['packageName']; ?></h1>
+            <div>
+              <a href="<?php echo SITE_PATH.'templates/'; ?>bookTour/<?php echo $packagesRow['id'];  ?>"><button class="sticky-book-btn">Book Now</button></a>
+            </div>
             <p><i id="map" class="fa fa-map-marker"></i><?php echo $detailsRow['location']; ?></p>
            
                 <iframe  src="<?php echo str_replace('watch?v=','embed/',$detailsRow['link']); ?>"
@@ -51,7 +54,7 @@
                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                  allowfullscreen ></iframe>
                  <div class="gallery">
-              
+            
                     <img src="<?php echo SITE_PACKAGE_IMAGE.$detailsRow['photoone']; ?>">
                     <img src="<?php echo SITE_PACKAGE_IMAGE.$detailsRow['phototwo']; ?>">
                     <img src="<?php echo SITE_PACKAGE_IMAGE.$detailsRow['photthree']; ?>">

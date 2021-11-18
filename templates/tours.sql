@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3309
--- Generation Time: Nov 17, 2021 at 03:05 PM
+-- Generation Time: Nov 18, 2021 at 04:03 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -38,15 +38,16 @@ CREATE TABLE `admin` (
   `website` varchar(255) NOT NULL,
   `fb` varchar(100) NOT NULL,
   `insta` varchar(100) NOT NULL,
-  `whatsapp` varchar(100) NOT NULL
+  `whatsapp` varchar(100) NOT NULL,
+  `youtube` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `name`, `profile`, `phone`, `email`, `address`, `location`, `website`, `fb`, `insta`, `whatsapp`) VALUES
-(1, 'Admin', '466020427_pic-3.png', '9284552192', 'admin@gmail.com', 'Mumbai                                            ', 'Solapur', 'https://www.youtube.com/', 'https://www.facebook.com/', 'https://www.instagram.com/', '9284552192');
+INSERT INTO `admin` (`id`, `name`, `profile`, `phone`, `email`, `address`, `location`, `website`, `fb`, `insta`, `whatsapp`, `youtube`) VALUES
+(1, 'Admin', '466020427_pic-3.png', '9284552192', 'admin@gmail.com', 'Mumbai                                            ', 'Solapur', 'https://www.youtube.com/', 'https://www.facebook.com/', 'https://www.instagram.com/', '9284552192', 'https://www.youtube.com/channel/UC9TgvYNUsMBPl6J2xbL-4qg');
 
 -- --------------------------------------------------------
 

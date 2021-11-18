@@ -567,6 +567,26 @@ section .heading span{
 }
 .packages .box-container .box .content .book-btn:hover{
   background:#bb7b05;
+}
+.sticky-book-btn{ 
+  width: 100%;
+  font-family: Poppins;
+  color: #fff;
+  margin-top: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background:#ffa500;
+  border-radius: 10px;
+  border: none;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+   font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: .5s all;
+  position: sticky;
+}
+.sticky-book-btn:hover{
+  background:#bb7b05;
 
 }
 .packages .view-more{

@@ -7,8 +7,12 @@
 
     <section id="home" class="home">
       <div class="search-box">
-        <button class="btn-search"><i class="fa fa-search"></i></button>
-        <input type="text" class="input-search" placeholder="Type to Search...">
+        <form method="post">
+          
+          <button class="btn-search" type="submit" name="searchKey"><i class="fa fa-search"></i></button>
+          <input type="text" class="input-search" name="search" placeholder="Type to Search..." required>
+
+        </form>
       </div>
     
         <div class="swiper-container">

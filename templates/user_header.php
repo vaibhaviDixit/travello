@@ -8,13 +8,29 @@ $favArray=getFavourites();
 $fav_count=count($favArray);
 $currentUserDetails=getCurrentUserDetails();
 
+if(isset($_POST['searchKey'])){
+   $key=getSafeVal($_POST['search']);
+   $searchRes=mysqli_query($con,"select * from package where packageName like '%$key%' or packageDesc like '%$key%';");
+   if(mysqli_num_rows($searchRes)<=0){
+    ?>
+    <script type="text/javascript">alert("Result Not Found!");</script>
+    <?php
+    redirect(SITE_PATH);
+   }
+   else{
+    $keyRow=mysqli_fetch_assoc($searchRes);
+    $keyid=$keyRow['id'];
+    redirect(SITE_PATH.'templates/viewDetails/'.$keyid);
+   }
+}
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="GENERATOR" content="Evrsoft First Page">
-    <title>ImperiousTours</title>
+    <title><?php echo SITE_NAME; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo SITE_PATH; ?>asset/logo/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo SITE_PATH; ?>asset/logo/favicon-32x32.png">

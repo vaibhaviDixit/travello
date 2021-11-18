@@ -14,6 +14,7 @@
           $fb=$adminSocial['fb'];
           $insta=$adminSocial['insta'];
           $whatsapp=$adminSocial['whatsapp'];
+          $youtube=$adminSocial['youtube'];
         }
       ?>
       <a href="<?php echo $fb;  ?>" target="_blank" class="d-inline">
@@ -23,6 +24,9 @@
       </a>
       <a href="https://wa.me/+91<?php echo $whatsapp;  ?>" target="_blank" class="d-inline">
         <i  id="s-icon" class="fab fa-whatsapp"  style="color:#25D366"></i>
+      </a>
+      <a href="<?php echo $youtube;  ?>" target="_blank" class="d-inline">
+        <i  id="s-icon" class="fab fa-youtube" style="color:#e1306c"></i>
       </a>
       <h5>Address</h5>
       <p class="address">

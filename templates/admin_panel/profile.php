@@ -17,10 +17,11 @@ if(isset($_POST['submit'])){
     $adminFb=$_POST['adminFb'];
     $adminInsta=$_POST['adminInsta'];
     $adminWh=$_POST['adminWh'];
+    $adminYt=$_POST['adminYt'];
 
 
 
-    $adminQ=mysqli_query($con,"update `admin` set `name`='$adminName', `email`='$adminEmail', `phone`='$adminPhone', `address`='$adminLocation',`website`='$adminWeb',`fb`='$adminFb',`insta`='$adminInsta',`whatsapp`='$adminWh' ");
+    $adminQ=mysqli_query($con,"update `admin` set `name`='$adminName', `email`='$adminEmail', `phone`='$adminPhone', `address`='$adminLocation',`website`='$adminWeb',`fb`='$adminFb',`insta`='$adminInsta',`whatsapp`='$adminWh',`youtube`='$adminYt' ");
       if($adminQ){
         redirect(SITE_PATH.'templates/admin_panel/profile');
       }
@@ -186,17 +187,22 @@ if(isset($_FILES['adminProfile'])){
                              <div class="row">
                             
                                   <label class="form-label">Social Links</label>
-                                  <div class="col-sm-4 mb-3">
+                                  <div class="col-sm-6 mb-3">
                                   <i class="fab fa-facebook p-3"></i>
                                       <input type="text" class="form-control" name="adminFb"  value="<?php   echo $row['fb']; ?>">
                                    </div>
-                                   <div class="col-sm-4 mb-3">
+                                   <div class="col-sm-6 mb-3">
                                   <i class="fab fa-instagram p-3"></i>
                                       <input type="text" class="form-control" name="adminInsta" value="<?php   echo $row['insta']; ?>">
                                    </div>
-                                   <div class="col-sm-4 mb-3">
+                                   <div class="col-sm-6 mb-3">
                                   <i class="fab fa-whatsapp p-3"></i>
                                       <input type="text" class="form-control" name="adminWh" value="<?php   echo $row['whatsapp']; ?>">
+                                   </div>
+
+                                   <div class="col-sm-6 mb-3">
+                                  <i class="fab fa-youtube p-3"></i>
+                                      <input type="text" class="form-control" name="adminYt" value="<?php   echo $row['youtube']; ?>">
                                    </div>
                               
                              </div>

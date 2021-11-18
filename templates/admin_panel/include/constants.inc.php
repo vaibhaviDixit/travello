@@ -1,7 +1,7 @@
 <?php
 
 // define constants here
-
+define('SITE_NAME','ImperiousTours');
 define('SITE_PATH','http://localhost/Travello/');
 define('SERVER_PATH',$_SERVER['DOCUMENT_ROOT'].'/Travello/');
 
