@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3309
--- Generation Time: Nov 18, 2021 at 04:03 PM
+-- Generation Time: Nov 20, 2021 at 11:56 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -347,16 +347,29 @@ CREATE TABLE `viewdetails` (
   `phototwo` varchar(255) NOT NULL,
   `photthree` varchar(255) NOT NULL,
   `photofour` varchar(255) NOT NULL,
-  `link` varchar(255) NOT NULL
+  `link` varchar(255) NOT NULL,
+  `checkin` varchar(100) NOT NULL,
+  `checkout` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `viewdetails`
 --
 
-INSERT INTO `viewdetails` (`id`, `packageId`, `location`, `description`, `photoone`, `phototwo`, `photthree`, `photofour`, `link`) VALUES
-(1, 2, 'japan', 'Tokyo (東京, Tōkyō) is Japan\'s capital and the world\'s most populous metropolis. It is also one of Japan\'s 47 prefectures, consisting of 23 central city wards and multiple cities, towns and villages west of the city center. The Izu and Ogasawara Islands are', '712144922_download (3).jpg', '919435937_download (1).jpg', '507743692_Goa-Beach-Hollant.jpg', '491869502_download (9).jpg', 'https://www.youtube.com/watch?v=OKAYqzOfLjY'),
-(2, 3, 'Pune', 'Tirupati has one of the most visited tourist attraction as well as religious shrine and the second richest temple in the world, the Tirumala Venkateswara Temple. This temple is one of the holiest Hindu pilgrimage sites. Because of this temple, Tirupati is', '225703541_download (1).jpg', '524502061_download (1).jpg', '524796940_download (1).jpg', '270563364_download%2520(1).jpg', 'https://www.youtube.com/watch?v=i1PRlMkpUgM');
+INSERT INTO `viewdetails` (`id`, `packageId`, `location`, `description`, `photoone`, `phototwo`, `photthree`, `photofour`, `link`, `checkin`, `checkout`) VALUES
+(1, 2, 'japan', 'Tokyo (東京, Tōkyō) is Japan\'s capital and the world\'s most populous metropolis. It is also one of Japan\'s 47 prefectures, consisting of 23 central city wards and multiple cities, towns and villages west of the city center. The Izu and Ogasawara Islands are', '712144922_download (3).jpg', '919435937_download (1).jpg', '507743692_Goa-Beach-Hollant.jpg', '408284347_download (7).jpg', 'https://www.youtube.com/watch?v=OKAYqzOfLjY', '05:00', '22:00'),
+(2, 3, 'Pune', 'Tirupati has one of the most visited tourist attraction as well as religious shrine and the second richest temple in the world, the Tirumala Venkateswara Temple. This temple is one of the holiest Hindu pilgrimage sites. Because of this temple, Tirupati is', '225703541_download (1).jpg', '524502061_download (1).jpg', '524796940_download (1).jpg', '507743692_Goa-Beach-Hollant.jpg', 'https://www.youtube.com/watch?v=i1PRlMkpUgM', '06:00', '22:00'),
+(3, 1, 'Mumbai', 'Mumbai is the commercial capital of India. It is also known as the city that never sleeps. Mumbai is the perfect blend of culture, customs and lifestyles. Mumbai is India\'s most cosmopolitan city, its financial powerhouse and the nerve center of India\'s f', '758104889_520468845Ganpatipule_Main_thumb.jpg', '113935880_ALIBAG.jpg', '408284347_download (7).jpg', '292499670_ALIBAG.jpg', 'https://www.youtube.com/watch?v=rwGKmcRoeYQ', '06:00', '21:00'),
+(4, 4, 'katra', 'The Vaishno Devi Temple is an important Hindu temple dedicated to Vaishno Devi located in Katra at the Trikuta Mountains within the Indian Union territory of Jammu and Kashmir. The temple is one of the 108 Shakti Peethas dedicated to Durga, who is worship', '264752709_download (1).jpg', '195590735_520468845Ganpatipule_Main_thumb.jpg', '292499670_ALIBAG.jpg', '269754446_download (8).jpg', 'https://www.youtube.com/watch?v=OQg-SnqvHZg', '05:56', '21:56'),
+(5, 5, 'Lahul', 'Spiti Valley (pronounced as Piti in Bhoti Language) is a cold desert mountain valley located high in the Himalayas in the north-eastern part of the northern Indian state of Himachal Pradesh. The name &quot;Spiti&quot; means &quot;The middle land&quot;, i.', '219621047_download (7).jpg', '809013692_download (9).jpg', '269754446_download (8).jpg', '851591990_Goa-Beach-Hollant.jpg', 'https://www.youtube.com/watch?v=9SafHATb1AQ', '02:58', '21:58'),
+(6, 6, 'manali', 'Solang Valley also known as the \'snow point\' is an alluring snow clad utopia near Manali and lies between Solang village and Beas Kund. Situated at an altitude of 8,500 feet above sea level, it offers a spectacular scenery of enchanting glaciers and snow ', '621606382_download.jpg', '221959017_MAHABALESHWAR.jpg', '851591990_Goa-Beach-Hollant.jpg', '999340734_download (9).jpg', 'https://www.youtube.com/watch?v=6fMzwVkK1qw', '11:00', '22:00'),
+(7, 13, 'Goa', 'Located south of Bogmalo beach, this is the only beach in Goa where one can witness a beautiful sunrise (considering Goa is on the West Coast of India). Nestled along the foothills of the lush Western Ghats, Hollant Beach offers visitors beautiful views.', '672467979_520468845Ganpatipule_Main_thumb.jpg', '321477881_AJANTA-AND-ELLORA-CAVES.jpg', '999340734_download (9).jpg', '689252310_download (1).jpg', 'https://www.youtube.com/watch?v=0ECHkEfGMVg', '18:01', '22:01'),
+(8, 14, 'Mahabaleshwar', 'Mahableshwar is the best hill station of Maharashtra. It is situated about 4500 ft. above sea level on the Sahyadri spurs. It was the erstwhile summer capital of Old Bombay Presidency. The tourists are enthralled by its exotic greenery, beautiful gardens ', '196798648_download (7).jpg', '500053569_520468845Ganpatipule_Main_thumb.jpg', '689252310_download (1).jpg', '999340734_download (9).jpg', 'https://www.youtube.com/watch?v=GOw-sAXMYek', '07:03', '22:03'),
+(9, 15, 'Shirdi', 'Shirdi is a small village situated in the Ahmednagar district of Maharashtra. Shirdi is one of the holiest places in India and is a very popular pilgrimage spot. This place is famous for the shrine of \'Sai Baba\', which is the main attraction for the devot', '345114086_SHIRDI.jpg', '838540109_520468845Ganpatipule_Main_thumb.jpg', '432473946_AJANTA-AND-ELLORA-CAVES.jpg', '998042567_download (1).jpg', 'https://www.youtube.com/watch?v=ExBuOY3tmwM', '08:04', '20:04'),
+(10, 16, 'Aurangabad', 'Approximately 67 miles (107 km) to the north of Aurangabad in the Indhyadri range of Western Ghats lie the caves of Ajanta. The 30 caves, famous for their early Buddhist temple architecture and many delicately drawn murals, are located in a 76 m high, hor', '391318409_520468845Ganpatipule_Main_thumb.jpg', '318798851_AJANTA-AND-ELLORA-CAVES.jpg', '998042567_download (1).jpg', '154604369_images (1).jpg', 'https://www.youtube.com/watch?v=kgu6vcNLEC0', '17:06', '22:06'),
+(11, 17, 'Pune', 'Known as India\'s newest hill station, the Lavasa Corporation is constructing this private city. The city is a beautiful project, stylistically based on the Italian town Portofino. Spreading across 7 hills, covering an area of 25000 acres, Lavasa is a perf', '359073603_LAVASA.jpg', '155079000_download (7).jpg', '209304443_520468845Ganpatipule_Main_thumb.jpg', '154604369_images (1).jpg', 'https://www.youtube.com/watch?v=kajJgaWGaFk', '18:08', '21:13'),
+(12, 18, 'Satara', 'The \'Land of Five Hills\', or Panchgani, is a distinguished hill station in Maharashtra. Located far away from the bustling city of Mumbai, Panchgani promises its visitors a trip they could cherish for life. The name Panchgani literally means \'five hills\'.', '995476233_520468845Ganpatipule_Main_thumb.jpg', '947646606_download.jpg', '154604369_images (1).jpg', '117605943_520468845Ganpatipule_Main_thumb.jpg', 'https://www.youtube.com/watch?v=-K9jbvI3Qg0', '17:10', '22:10'),
+(13, 19, 'Ratnagiri', 'Ganpatipule (Gaṇpatīpuḷē) is a small town located 25 km north of the city of Ratnagiri in Ratnagiri district on the Konkan coast of Maharashtra, in the sub-continent of India. The town of Chiplun is located to its north.', '923011216_images (3).jpg', '117605943_520468845Ganpatipule_Main_thumb.jpg', '556425386_AJANTA-AND-ELLORA-CAVES.jpg', '359073603_LAVASA.jpg', 'https://www.youtube.com/watch?v=wix1DZtrzCs', '18:11', '23:11');
 
 --
 -- Indexes for dumped tables
@@ -510,7 +523,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `viewdetails`
 --
 ALTER TABLE `viewdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

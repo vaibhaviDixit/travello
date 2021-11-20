@@ -16,7 +16,6 @@
       </div>
     
         <div class="swiper-container">
-
         <!-- swiper slides -->
         <div class="swiper-wrapper">
             <div class="swiper-slide" style="background:linear-gradient(50deg, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.6));">
@@ -95,8 +94,7 @@
 <section class="recently-viewed">
   <br>
   <div class="heading text-center">    
-    <span>R</span><span>e</span><span>c</span><span>e</span><span>n</span><span>t</span><span>l</span><span>y</span>
-    &nbsp; &nbsp;<span>V</span><span>i</span><span>e</span><span>w</span><span>e</span><span>d</span>
+    <span class="bullet">Recently Viewed</span>
   </div>
   <div class="viewed-box">
       <?php
@@ -169,13 +167,9 @@
 
 ?>
 
-
+<br>
 <!-- packages section starts  -->
 <section class="packages" id="packages">
-
-  <br/><br/>
-
- 
   <?php
 
     $cate=mysqli_query($con,"select * from category where status =1");
@@ -185,15 +179,7 @@
         echo " <h1 class='heading'> ";
         $cateName=$cateRow['name'];
         $catId=$cateRow['id'];
-            for ($i=0; $i <strlen($cateName); $i++) {
-                if($cateName[$i]==" "){
-                  echo "&nbsp;";
-                } 
-                else{
-
-                 echo "<span>".$cateName[$i]."</span>"; 
-                }
-              }
+        echo "<span class='bullet'>".$cateName."</span>";
             ?>
           </h1>
              <div class="box-container">
@@ -267,16 +253,9 @@
          <div class="view-more"><a class="view-more-btn" href="<?php echo SITE_PATH.'templates/'; ?>viewmore/<?php echo $cateRow['id'];  ?>">View More</a></div>
 
       <?php
-      
-
       }
     }
   ?>  
-
-
-
-
-  
 
 </section>
 
@@ -284,7 +263,7 @@
 
 <section class="services" id="services">
   <div class="heading">
-      <span>s</span><span>e</span><span>r</span><span>v</span><span>i</span><span>c</span><span>e</span><span>s</span>
+      <span class="bullet">Services</span>
   </div>
 
   <div class="box-container">
@@ -336,7 +315,7 @@
       
     ?>
   <div class="heading">
-      <span>E</span><span>x</span><span>c</span><span>l</span><span>u</span><span>s</span><span>i</span><span>v</span><span>e</span><span class="space"></span><span>d</span><span>e</span><span>a</span><span>l</span><span>s</span>
+      <span class="bullet">Exclusive Deals</span>
   </div>
   <p id="o">Checkout for the best discounts and deals here</p>
   <div class="o-card">
@@ -364,7 +343,7 @@
 <section class="review" id="review">
 
   <div class="heading">
-      <span>T</span><span>E</span><span>S</span><span>T</span><span>I</span><span>M</span><span>O</span><span>N</span><span>I</span><span>A</span><span>L</span><span>S</span>
+      <span class="bullet">Testimonials</span>
   </div>
   <div class="container">
 
@@ -414,7 +393,7 @@
   <section class="about" id="about">
 
     <div class="heading">
-        <span>A</span><span>b</span><span>o</span><span>u</span><span>t</span><span class="space"></span><span>u</span><span>s</span>
+        <span class="bullet">About Us</span>
     </div>
     <p class="about-us">
       From 2012 to 2017, Our leadership team worked with many corporates, colleges, schools and institutions to organise adventure group trips and in these 6 years we understood HOTELS are old and unconventional and people are looking for more experimental places to spend their vacations but hard to discover.

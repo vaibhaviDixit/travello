@@ -18,6 +18,8 @@
    $three_condition='';
    $four_condition='';
    $link="";
+   $checkin="";
+   $checkout="";
    
    
    
@@ -27,6 +29,8 @@
    	$location=getSafeVal( $_POST['placelocation'] ) ;
    	$placedesc=getSafeVal( $_POST['placedesc'] ) ;
    	$link=getSafeVal($_POST['link'] ) ;
+      $checkin=getSafeVal($_POST['checkin'] );
+      $checkout=getSafeVal($_POST['checkout'] );
    
    
    	//photo 1
@@ -166,7 +170,7 @@
    			else{
    
    				$photofour=rand(111111111,999999999).'_'.$_FILES['photofour']['name'];
-   				move_uploaded_file($_FILES['photofour']['tmp_name'],SERVER_PACKAGE_IMAGE.$phototwo);
+   				move_uploaded_file($_FILES['photofour']['tmp_name'],SERVER_PACKAGE_IMAGE.$photofour);
    
    			$four_condition=", photofour='$photofour' ";
    
@@ -216,14 +220,14 @@
    	else{
    		//if id is not set then insert new category 
    		if($id==""){
-   			mysqli_query($con,"INSERT INTO `viewdetails`(`packageId`, `location`, `description`, `link`,`photoone`, `phototwo`, `photthree`, `photofour`) VALUES ('$placename','$location','$placedesc','$link','$photoone','$phototwo','$photothree','$photofour')");
+   			mysqli_query($con,"INSERT INTO `viewdetails`(`packageId`, `location`, `description`, `link`,`photoone`, `phototwo`, `photthree`, `photofour`, `checkin`, `checkout`) VALUES ('$placename','$location','$placedesc','$link','$photoone','$phototwo','$photothree','$photofour','$checkin','$checkout')");
    		
    
    		}
-   		else{
-   			//if id is set then update exsting category
-   			mysqli_query($con,"update viewdetails set packageId='$placename', location='$location', description='$placedesc', ,link='$link' $one_condition $two_condition $three_condition $four_condition  where id='$id'  ");
-   		}
+   		// else{
+   		// 	//if id is set then update exsting category
+   		// 	mysqli_query($con,"update viewdetails set packageId='$placename', location='$location', description='$placedesc', ,link='$link' $one_condition $two_condition $three_condition $four_condition  where id='$id'  ");
+   		// }
    		// redirect('Editviewdetails.php');
    		
    	}	
@@ -259,7 +263,7 @@
             </div>
             <div class="col mb-3">
                <label for="placelocation" class="form-label">Location<span class="redStar">*</span></label>
-               <input class="form-control" rows="3" id="placelocation" name="placelocation" required>
+               <input class="form-control"  id="placelocation" name="placelocation" required>
             </div>
          </div>
          <div class="row">
@@ -268,12 +272,17 @@
                <textarea class="form-control" rows="3" id="placedesc" name="placedesc" required></textarea>
             </div>
          </div>
-        <!--  <div class="row">
-            <div class="col mb-3">
-               <h5>Things To Know About The Place</h5>
-               <textarea class="form-control" rows="3" id="thingstoknow" name="thingstoknow" required></textarea>
+         <div class="row">
+            <div class="col-sm-4  mb-3">
+               <label for="checkin" class="form-label">Checkin Time<span class="redStar">*</span></label>
+               <input type="time" class="form-control"  id="checkin" name="checkin" required>
             </div>
-         </div> -->
+            <div class="col-sm-4  mb-3">
+               <label for="checkout" class="form-label">Checkout Time<span class="redStar">*</span></label>
+               <input type="time" class="form-control"  id="checkout" name="checkout" required>
+            </div>
+
+         </div>
          <div class="row">
             <!-- photo 1 -->
             <div class="col-sm-4 mb-3">

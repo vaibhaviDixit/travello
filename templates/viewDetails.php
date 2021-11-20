@@ -72,23 +72,8 @@
               <section class="packages" id="packages">
 
 
-<h1 class="heading">      
-  <span>A</span>
-  <span>b</span>
-  <span>o</span>
-  <span>u</span>
-  <span>t</span>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <span>T</span>
-  <span>h</span>
-  <span>e</span>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <span>p</span>
-  <span>l</span>
-  <span>a</span>
-  <span>c</span>
-  <span>e</span>
-                </h1>
+<div class="heading"> <span class="bullet">About The Place</span></div> 
+
                 </section>
 
                   <p id="about-description" style="width: 95%; margin: 0 auto; text-align: justify;"><?php echo $detailsRow['description']; ?></p>
@@ -97,26 +82,11 @@
               <section class="packages" id="packages">
 
 
-<h1 class="heading">      
-  <span>T</span>
-  <span>h</span>
-  <span>i</span>
-  <span>n</span>
-  <span>g</span>
-  <span>s</span>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <span>T</span>
-  <span>o</span>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <span>K</span>
-  <span>n</span>
-  <span>o</span>
-  <span>w</span>
-                </h1>
+              <div class="heading"> <span class="bullet">Things To Know</span></div>
                 </section>
                   <ul>
-                      <li><i  class="material-icons">access_time</i>Checkin Time - 11:30 AM </li>
-                      <li><i  class="material-icons">access_time</i>Checkout Time - 10:00 AM </li>
+                      <li><i  class="material-icons">access_time</i>Checkin Time - <?php echo $detailsRow['checkin']; ?></li>
+                      <li><i  class="material-icons">access_time</i>Checkout Time - <?php echo $detailsRow['checkout']; ?></li>
                       <li><i class="material-icons">info_outline</i>Carry Valid ID proof issued by Government of India</li>
                       <li><i class="material-icons">info_outline</i>Carry RT-PCR Test report prior of 48 hours</li>
                       <li><i class="material-icons">info_outline</i>No refund will be processed if any adventures/activities are cancelled due to an act of God or bad weather conditions</li>
