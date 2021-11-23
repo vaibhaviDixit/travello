@@ -28,6 +28,11 @@ if(isset($_POST['searchKey'])){
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
+
+  <!-- google sign in -->
+  <meta name="google-signin-client_id" content="875579401591-3sthut12r3le5hl4noodducetvrmek04.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  
     <meta charset="UTF-8">
     <meta name="GENERATOR" content="Evrsoft First Page">
     <title><?php echo SITE_NAME; ?></title>
@@ -117,10 +122,14 @@ if(isset($_POST['searchKey'])){
         <li><a href="#packages"><i class="fas fa-map-marker-alt"></i></a>
           <span class="tooltiptext">Destinations</span>
         </li>
-        <li ><a href="<?php echo SITE_PATH; ?>templates/cart"><i class="material-icons">shopping_cart</i></a>
-            <span class="tooltiptext">Cart</span>
+        <li ><a href="<?php echo SITE_PATH; ?>templates/favourites"><i class="fas fa-heart"></i></a>
+            <span class="tooltiptext">Favourites</span>
         </li>
-          <li><a href="<?php echo SITE_PATH; ?>templates/login"><i class="fa fa-user"></i></a>
+          <li><a href="<?php if(isset($_SESSION['CURRENT_USER_ID'])){
+            echo SITE_PATH."templates/user_panel/profile";
+        }else{
+            echo SITE_PATH."templates/login";
+        } ?>"><i class="fa fa-user"></i></a>
             <span class="tooltiptext">Profile</span>
         </li>
         </ul>

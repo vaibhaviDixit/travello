@@ -70,9 +70,8 @@ if(isset($_POST['submit'])){
                 </div>
                 <div class="card-body text-center">
 
-                  <a target="_blank" href="<?php echo SITE_PROFILE_IMAGE.$row['profile']; ?>">
-                    <img src="<?php  echo SITE_PROFILE_IMAGE.$row['profile']; ?>" alt="user" class="img-fluid  mb-2 img-thumbnail" />
-                  </a>
+                    <img src="<?php  echo SITE_PROFILE_IMAGE.$row['profile']; ?>" alt="user" class="img-fluid  mb-2 img-thumbnail" onerror="this.onerror=null;this.src=`<?php  echo $row['profile']; ?>`;"/>
+      
 
                   <h5 class="card-title mb-0"><?php   echo $row['name']; ?></h5>
 

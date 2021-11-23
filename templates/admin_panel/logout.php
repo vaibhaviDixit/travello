@@ -7,5 +7,5 @@ include ('include/constants.inc.php');
 
 unset( $_SESSION['ADMIN']);
 session_destroy();
-redirect(SITE_PATH.'templates/adminlogin');
+redirect(SITE_PATH);
 ?>

@@ -583,7 +583,6 @@ input[type="file"] {
 	width: auto;
 	padding: initial;
 	line-height: initial;
-	border: initial;
 	background-color: #ffffff;
 	background-color: initial;
 	-webkit-box-shadow: none;
@@ -596,8 +595,10 @@ input[type="button"], input[type="reset"], input[type="submit"] {
 }
 select, input[type="file"] {
 	height: 28px;
-*margin-top:4px;
+*
+	;
 	line-height: 28px;
+	ine-height: 28px;
 }
 input[type="file"] {
 	line-height: 18px \9;

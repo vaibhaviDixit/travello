@@ -9,6 +9,11 @@ include ('include/constants.inc.php');
 <!DOCTYPE html>
 <html lang="en" >
 <head>
+
+  <!-- google sign in -->
+  <meta name="google-signin-client_id" content="875579401591-3sthut12r3le5hl4noodducetvrmek04.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo SITE_PATH; ?>asset/logo/apple-touch-icon.png">
@@ -41,6 +46,13 @@ include ('include/constants.inc.php');
 <div class="container">
 
   <div class="box">
+
+     <!-- sign up using gmail or facebook -->
+       <div>
+         <div class="g-signin2" data-onsuccess="gmailLogIn"></div>
+       </div>
+       <div class="line-between"><span>OR</span></div>
+     
     
   <form method="post" class="loginForm text-center">
     <h1>Login</h1>

@@ -32,12 +32,10 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
       <link rel="stylesheet" href="<?php echo SITE_PATH; ?>asset/css_user/style.css"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link href='https://fonts.googleapis.com/css?family=Galada' rel='stylesheet'>
       <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <script src="<?php echo SITE_PATH; ?>asset/js_user/script.js"></script>
       <link rel="canonical" href="https://demo-basic.adminkit.io/" />
@@ -108,7 +106,8 @@
             <ul class="navbar-nav navbar-align">
                <li class="nav-item">
                   <a class="nav-link  userdropdown d-sm-inline-block" href="javascript:void(0)"  >
-                  <img src="<?php  echo SITE_PROFILE_IMAGE.$row['profile']; ?>" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo getCurrentUserName(); ?></span>
+                  <img src="<?php  echo SITE_PROFILE_IMAGE.$row['profile']; ?>" class="avatar img-fluid rounded me-1" alt="<?php echo getCurrentUserName(); ?>" onerror="this.onerror=null;this.src=`<?php  echo $row['profile']; ?>`;">
+                  <span class="text-dark"><?php echo getCurrentUserName(); ?></span>
                   <span> <i class="fas fa-caret-down"></i> </span>
                   </a>
                   <div class="card" style="width: 7rem;" id="userDrop">

@@ -1,7 +1,11 @@
 <?php
 
 include 'top.php';
-$bookings=bookings();
+$onbookings=onbookings();
+$offbookings=offbookings();
+$pendingBook=pendingBook();
+$todaybookings=todaybookings();
+$cnfBook=cnfBook();
 $packages=packages();
 $earnings=earnings();
 $payDues=payDues();
@@ -32,14 +36,39 @@ $payDues=payDues();
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3"><?php echo $bookings; ?></h1>
+												<table class="table" style="text-align: left;">
+								                    <tbody>
+								                      <tr>
+								                        <th scope="row">Todays</th>
+								                        <td><?php   echo $todaybookings; ?></td>
+								                      </tr>
+								                      <tr>
+								                        <th scope="row">Online</th>
+								                        <td><?php   echo $onbookings; ?></td>
+								                      </tr>
+								                     <tr>
+								                        <th scope="row">Offline</th>
+								                        <td><?php   echo $offbookings; ?></td>
+								                      </tr>
+								                      <tr>
+								                        <th scope="row">Pending</th>
+								                        <td><?php   echo $pendingBook; ?></td>
+								                      </tr>
+								                      <tr>
+								                        <th scope="row">Confirmed</th>
+								                        <td><?php echo $cnfBook; ?></td>
+								                      </tr>
+								                 
+								                    </tbody>
+							                  </table>
+
 											</div>
 										</div>
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Packages</h5>
+														<h5 class="card-title">Tours</h5>
 													</div>
 
 													<div class="col-auto">

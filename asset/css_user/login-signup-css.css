@@ -124,3 +124,46 @@ body{
     display:none !important;
 
   }
+
+  .line-between{
+    color: #e53a4a;
+    width: 100%;
+    margin:6px auto;
+    text-align: center;
+    font-size: 20px;
+    position: relative;
+  }
+  .line-between:before{
+    content:"";
+    width: 120px;
+    height: 2px;
+    top:50%;
+    display: block;
+    left: 0;
+    position: absolute;
+    background-color: black;
+    z-index: -1;
+  }
+  .line-between:after{
+    content:"";
+    width: 120px;
+    height: 2px;
+    top:50%;
+    display: block;
+    right: 0;
+    position: absolute;
+    background-color: black;
+    z-index: -1;
+  }
+
+.line-between span{
+  background: transparent;
+  font-weight: bold;
+}
+
+
+
+
+
+
+

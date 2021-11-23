@@ -3,7 +3,7 @@
 
 include ('top.php');
 
-$sql="select bookonline.*,package.packageName from bookonline,package where bookonline.packageId=package.id";
+$sql="select bookonline.*,package.packageName from bookonline,package where bookonline.packageId=package.id and bookonline.paymentStatus='success' order by bookonline.id desc";
 $res=mysqli_query($con,$sql);
 
 
@@ -25,6 +25,7 @@ $res=mysqli_query($con,$sql);
 					<thead class="table-primary">
 						<tr>
 						<th scope="col">Sr. No</th>
+						<th scope="col">Status</th>
 						<th scope="col">Name</th>
 						<th scope="col">Phone</th>
 						<th scope="col">Address</th>
@@ -56,6 +57,16 @@ $res=mysqli_query($con,$sql);
 
 						<tr>
 						<td scope="col"> <?php  echo $i; ?></td>
+						<td scope="col"> <?php  
+							if($row['status']==1){
+								echo "<span class='badge bg-success'>Confirmed</span>";
+							}
+							else{
+								echo "<button onclick='toConfirm(".$row['id'].",".$row['uid'].")' class='badge bg-danger'>Pending</button>";
+							}
+
+
+						 ?></td>
 						<td scope="col"> <?php  echo $row['name']; ?></td>
 						<td scope="col"> <?php  echo $row['phone']; ?></td>
 						<td scope="col"> <?php  echo $row['address']; ?></td>
@@ -116,10 +127,36 @@ $res=mysqli_query($con,$sql);
         include 'footer.php';
       ?>
 
-   
-<?php
+  <script type="text/javascript">
+  	function toConfirm(confirmid,uid){
+  		
+  			swal({
+				  title: "Are you sure?",
+				  text: "Once booking successful, you will not be able to cancel booking!",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((book) => {
+				  if (book) {
+				    jQuery.ajax({
+				    	type:'post',
+				    	url:'updateStatus',
+				    	data:"confirmid="+confirmid,
+				    	success:function(result){
+				    		if(result){
+				    			swal("Booking successful!", {
+						      		icon: "success",
+						    	});
+						    	window.location.href=window.location.href;
+				    		}
+				    		
+				    	}
 
-
-
-
-?>
+				    })
+				  }else {
+				    swal("Booking is pending!");
+				  }
+			});
+  	}
+  </script>

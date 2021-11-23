@@ -13,15 +13,12 @@
 </div>
 </div>
       <!-- footer ends here -->
-      
+    
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
    <script src="<?php echo SITE_PATH; ?>asset/js_admin/app.js"></script>
   <script src="//cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <!-- Push notification js -->
-   <script src="<?php echo SITE_PATH; ?>asset/push.min.js"></script>
-   <script src="<?php echo SITE_PATH; ?>asset/serviceWorker.min.js"></script>
 
    <link href="<?php echo SITE_PATH; ?>asset/bootstrap.min.js" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -31,7 +28,7 @@
       $('#dttable').DataTable();
   } );
   </script>
-
+ 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");

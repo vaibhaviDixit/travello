@@ -97,9 +97,15 @@ else{
 
 							 <div class="col-sm-6 mb-3">
 							    	<label for="mobile" class="form-label">Phone<span class="redStar">*</span></label>
-							       <input type="text" class="form-control" rows="3" id="mobile" required name="mobile" value="<?php echo $currentUserDetails['mobile']; ?>" readonly>
+							       <input type="text" class="form-control" rows="3" id="mobile" required name="mobile" value="<?php echo $currentUserDetails['mobile']; ?>">
 							 </div>
 
+						</div>
+						<div class="row">
+							 <div class="col-sm-6 mb-3">
+							    	<label for="email" class="form-label">Email<span class="redStar">*</span></label>
+							       <input type="text" class="form-control" rows="3" id="email" required name="email" value="<?php echo $currentUserDetails['email']; ?>">
+							 </div>
 						</div>
 
 						<div class="row">

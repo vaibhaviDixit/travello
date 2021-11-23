@@ -35,8 +35,6 @@
       <!-- font awesome cdn link  -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-      <!-- font awesome cdn link  -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
       <!-- custom css -->
       <link href="<?php echo SITE_PATH; ?>asset/css_admin/custom.css" rel="stylesheet">
        
@@ -66,6 +64,11 @@
       <link rel="canonical" href="https://demo-basic.adminkit.io/" />
       <title>Admin Panel</title>
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Push notification js -->
+   <script src="<?php echo SITE_PATH; ?>asset/push.min.js"></script>
+   <script src="<?php echo SITE_PATH; ?>asset/serviceWorker.min.js"></script>
+   
    </head>
    <body>
       <div class="wrapper">
@@ -94,15 +97,7 @@
                   <i class="align-middle" data-feather="edit-3"></i> <span class="align-middle">Edit View Details Page</span>
                   </a>
                </li>
-               <li class="sidebar-item">
-                  <a class="sidebar-link" href="<?php echo SITE_PATH.'templates/admin_panel/' ?>reports">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart" viewBox="0 0 16 16">
-                        <path d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z"/>
-                     </svg>
-                     <span class="align-middle">Reports</span>
-                  </a>
-               </li>
-               <br/>
+               
                <li class="sidebar-header">
                   Packages
                </li>
@@ -174,6 +169,7 @@
          <a class="sidebar-toggle js-sidebar-toggle">
          <i class="hamburger align-self-center"></i>
          </a>
+         <?php echo "Today is ".date("d/m/Y"); ?>
          <div style=" position: absolute !important; right: 4rem;">
             <ul class="navbar-nav navbar-align">
                <li class="nav-item">

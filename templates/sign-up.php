@@ -11,6 +11,10 @@ include ('include/constants.inc.php');
 <!DOCTYPE html>
 <html lang="en" >
 <head>
+  <!-- google sign in -->
+  <meta name="google-signin-client_id" content="875579401591-3sthut12r3le5hl4noodducetvrmek04.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITE_NAME; ?></title>
@@ -43,6 +47,11 @@ include ('include/constants.inc.php');
 <div class="container">
   <form method="post" id="signUpForm">
     <div class="box">
+      <!-- sign up using gmail or facebook -->
+       <div>
+         <div class="g-signin2" data-onsuccess="gmailLogIn"></div>
+       </div>
+       <div class="line-between"><span>OR</span></div>
      
         <h1>Sign Up</h1>
 
@@ -50,6 +59,7 @@ include ('include/constants.inc.php');
         <div id="mainSignUpForm" style="display: flex;flex-direction: column; align-items: center;">
         <input type="text" name="signUpName" id="signUpName" placeholder="Name" required>
         <input type="text" name="signUpMob" id="signUpMob" placeholder="Mobile" required>
+        <input type="email" name="signUpEmail" id="signUpEmail"  placeholder="Email" required>
         <input type="text" name="signUpAdd" id="signUpAdd"  placeholder="Address" required>
         <button type="submit"  id="signbtn" class="sign-up-btn" onclick="return signUpvalidation()" >Sign Up</button>
        </div>
@@ -59,9 +69,8 @@ include ('include/constants.inc.php');
         <button type="submit"   id="verifybtn" class="sign-up-btn" >Verify</button>
         </div>
 
-        
-
         <a href="<?php echo SITE_PATH; ?>templates/login">Already have an account? Login</a>
+        <br>
          <small class="text-center">This site is protected by reCAPTCHA and the Google <br>
           <a href="https://policies.google.com/privacy">Privacy Policy</a> and
           <a href="https://policies.google.com/terms">Terms of Service</a> apply.

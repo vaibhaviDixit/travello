@@ -318,6 +318,7 @@
       <span class="bullet">Exclusive Deals</span>
   </div>
   <p id="o">Checkout for the best discounts and deals here</p>
+  <div class="d-flex justify-content-center">
   <div class="o-card">
    <?php
       while($cpnRow=mysqli_fetch_assoc($cpn)){
@@ -331,6 +332,7 @@
       }
     }
    ?>
+</div>
 </div>
 <?php 
   }

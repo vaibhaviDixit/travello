@@ -47,32 +47,10 @@
    				$photoone=rand(111111111,999999999).'_'.$_FILES['photoone']['name'];
    				move_uploaded_file($_FILES['photoone']['tmp_name'],SERVER_PACKAGE_IMAGE.$photoone);
    
-   			    $one_condition=", photoone='$photoone' ";
-   
    			}
    		}
    		
-   		else{
-   			//if id is set then update exsting package
-   
-   			$one_condition="";
-   			if($_FILES['photoone']['name']!=""){
-   
-   				//add validations on image
-   				if($type!='image/jpeg' && $type!='image/png' && $type!='image/jpg'){
-   						$msg="Invalid image format";
-   				}
-   				else{
-   					$photoone=rand(111111111,999999999).'_'.$_FILES['photoone']['name'];
-   					move_uploaded_file($_FILES['photoone']['tmp_name'],SERVER_PACKAGE_IMAGE.$phototwo);
-   
-   
-   					$one_condition=", photoone='$photoone' ";
-   				}
-   			}
-   		}
-   
-   
+
    		// photo 2
    		$type=$_FILES['phototwo']['type'];
    		//if id is not set then insert new package
@@ -86,36 +64,12 @@
    
    				$phototwo=rand(111111111,999999999).'_'.$_FILES['phototwo']['name'];
    				move_uploaded_file($_FILES['phototwo']['tmp_name'],SERVER_PACKAGE_IMAGE.$phototwo);
-   
-   			    $two_condition=", phototwo='$phototwo' ";
-   
+
    
    			}
    		}
    		
-   		else{
-   			//if id is set then update exsting package
-   
-   			$two_condition="";
-   			if($_FILES['phototwo']['name']!=""){
-   
-   				//add validations on image
-   				if($type!='image/jpeg' && $type!='image/png' && $type!='image/jpg'){
-   						$msg="Invalid image format";
-   				}
-   				else{
-   					$phototwo=rand(111111111,999999999).'_'.$_FILES['phototwo']['name'];
-   					move_uploaded_file($_FILES['phototwo']['tmp_name'],SERVER_PACKAGE_IMAGE.$phototwo);
-   
-   
-   					$two_condition=", phototwo='$phototwo' ";
-   				}
-   			}
-   		}
-   
-   
-   
-   
+
    		// photo 3
    		$type=$_FILES['photothree']['type'];
    		//if id is not set then insert new package
@@ -129,33 +83,9 @@
    
    				$photothree=rand(111111111,999999999).'_'.$_FILES['photothree']['name'];
    				move_uploaded_file($_FILES['photothree']['tmp_name'],SERVER_PACKAGE_IMAGE.$photothree);
-   
-   			    $htree_condition=", photothree='$photothree' ";
-   
    			}
    		}
    		
-   		else{
-   			//if id is set then update exsting package
-   
-   			$three_condition="";
-   			if($_FILES['photothree']['name']!=""){
-   
-   				//add validations on image
-   				if($type!='image/jpeg' && $type!='image/png' && $type!='image/jpg'){
-   						$msg="Invalid image format";
-   				}
-   				else{
-   					$photothree=rand(111111111,999999999).'_'.$_FILES['photothree']['name'];
-   					move_uploaded_file($_FILES['photothree']['tmp_name'],SERVER_PACKAGE_IMAGE.$phototwo);
-   
-   
-   					$three_condition=", photothree='$photothree' ";
-   				}
-   			}
-   		}
-   
-   
    
    
    		// photo 4
@@ -171,33 +101,10 @@
    
    				$photofour=rand(111111111,999999999).'_'.$_FILES['photofour']['name'];
    				move_uploaded_file($_FILES['photofour']['tmp_name'],SERVER_PACKAGE_IMAGE.$photofour);
-   
-   			$four_condition=", photofour='$photofour' ";
-   
+
    			}
    		}
    		
-   		else{
-   			//if id is set then update exsting package
-   
-   			$four_condition="";
-   			if($_FILES['photofour']['name']!=""){
-   
-   				//add validations on image
-   				if($type!='image/jpeg' && $type!='image/png' && $type!='image/jpg'){
-   						$msg="Invalid image format";
-   				}
-   				else{
-   					$photofour=rand(111111111,999999999).'_'.$_FILES['photofour']['name'];
-   					move_uploaded_file($_FILES['photofour']['tmp_name'],SERVER_PACKAGE_IMAGE.$phototwo);
-   
-   
-   					$four_condition=", photofour='$photofour' ";
-   				}
-   			}
-   		}
-   
-   
    
    
    	if($id==""){
@@ -214,7 +121,7 @@
    
    	if(mysqli_num_rows(mysqli_query($con,$sql)) >0 ){
    
-   		$msg="Details already exists";
+   		mysqli_query($con,"update viewdetails set packageId='$placename', location='$location', description='$placedesc',link='$link' photoone='$photoone', phototwo='$phototwo',photthree='$photothree', photofour='$photofour', checkin='$checkin',checkout='$checkout'  where id='$id'  ");
    
    	}
    	else{
@@ -224,12 +131,6 @@
    		
    
    		}
-   		// else{
-   		// 	//if id is set then update exsting category
-   		// 	mysqli_query($con,"update viewdetails set packageId='$placename', location='$location', description='$placedesc', ,link='$link' $one_condition $two_condition $three_condition $four_condition  where id='$id'  ");
-   		// }
-   		// redirect('Editviewdetails.php');
-   		
    	}	
    }
    

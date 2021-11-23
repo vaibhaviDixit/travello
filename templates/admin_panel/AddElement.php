@@ -56,7 +56,21 @@ if (isset($_POST['submit'])) {
 			  	
 			    
 			    if($addPck){
-
+                    // notify user here
+                    ?>
+                     <script type="text/javascript">
+  
+						  Push.create("Explore New Tour", {
+							    body: "<?php echo $packageName; ?>",
+							    icon: '<?php echo SITE_PATH; ?>asset/logo/apple-touch-icon.png',
+							    timeout: 4000,
+							    onClick: function () {
+							        window.focus();
+							        this.close();
+							    }
+							});
+					</script>
+                 <?php
 					redirect(SITE_PATH.'templates/admin_panel/ListElement');	
 			    }
 
@@ -97,7 +111,6 @@ if (isset($_POST['submit'])) {
 
 
 ?>
-
 
 			<main class="content">
 				<div class="container-fluid p-0">

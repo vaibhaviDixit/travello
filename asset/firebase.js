@@ -103,27 +103,27 @@ const firebaseConfig = {
         data[obj.name] = obj.value;
     });
 
- 
    let name=data.signUpName;
     let mob=data.signUpMob;
     let add=data.signUpAdd;
+    let email=data.signUpEmail;
          
            $.ajax({  
                    type:"POST",  
                    url:"register_login",  
-                   data:"mobile="+mob+"&type=checkMobile",
+                   data:"mobile="+mob+"&email="+email+"&type=checkMbEmail",
                    success:function(result){
 
                       msg=jQuery.parseJSON(result);
 
-                     if(msg.status=="success"){
+                     if(msg.status=="fail"){
 
-                       $("#msg").html("<div class='alert alert-danger' role='alert'>Mobile already registered!</div>");
+                       $("#msg").html("<div class='alert alert-danger' role='alert'>"+msg.msg+"</div>");
                         $("#signbtn").attr('disabled',false);
                         $("#signbtn").html("Sign Up");
                       
                      }
-                     if(msg.status=="fail"){
+                     if(msg.status=="success"){
                         $("#signbtn").attr('disabled',false);
                         $("#signbtn").html("Sign Up");
                         $("#mainSignUpForm").hide();
@@ -279,6 +279,8 @@ $("#verifyLoginOtp").on("click",function(e){
          
   }).catch(function(error){
     $("#msg").html("<div class='alert alert-danger' role='alert'>Invalid OTP</div>");
+    $("#signbtn").attr('disabled',false);
+    $("#signbtn").html("Sign Up");
 
   })
   e.preventDefault();
@@ -388,3 +390,27 @@ $("#verifyAdminLoginOtp").on("click",function(e){
 
 });
 
+function gmailLogIn(userInfo){
+    userProfile=userInfo.getBasicProfile();
+           $.ajax({  
+                   type:"POST",  
+                   url:"register_login",  
+                   data:"name="+userProfile.getName()+"&email="+userProfile.getEmail()+"&profile="+userProfile.getImageUrl()+"&type=regUsingGmail",
+                   success:function(result){
+                      msg=jQuery.parseJSON(result);
+
+                     if(msg.status=="success"){
+                        window.location.href="http://localhost/Travello/";
+                    
+                     }
+                     if(msg.status=="fail"){
+
+                       $("#msg").html("<div class='alert alert-danger' role='alert'>"+msg.msg+"</div>");
+                        
+                     }
+                     
+                     
+                   }
+                   
+          });
+}
