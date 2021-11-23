@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3309
--- Generation Time: Nov 20, 2021 at 11:56 AM
+-- Generation Time: Nov 23, 2021 at 03:04 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -83,7 +83,7 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`id`, `bookId`, `name`, `phone`, `address`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `payMode`, `adults`, `children`, `subTotal`, `discount`, `distype`, `total`, `paid`, `rem`, `bookedOn`) VALUES
 (4, 'yeabv', 'Shrawani Dixit', '9865986585', 'Solapur', 3, 37000, '2021-10-24', '2021-10-26', 'UPI', 2, 2, 222000, 5000, 'cash', 217000, 10000, 207000, '2021-10-31'),
-(5, 'ijdbc', 'Shriyansh Mahamuni', '876743102', 'Vasud Road, Sangola                                       ', 5, 7000, '2021-11-01', '2021-11-03', 'OnlineTransfer', 2, 1, 35000, 5, 'per', 33250, 250, 33000, '2021-10-31'),
+(5, 'ijdbc', 'Shriyansh Mahamuni', '876743102', 'Vasud Road, Sangola                                       ', 5, 7000, '2021-11-01', '2021-11-03', 'OnlineTransfer', 2, 1, 35000, 5, 'per', 33250, 250, 33000, '2021-11-21'),
 (6, 'eysjj', 'Mitali Salunkhe', '8764595498', 'Ajinkya plaza,Sangola                                           ', 17, 6400, '2021-10-30', '2021-11-02', 'UPI', 2, 0, 38400, 2, 'per', 37632, 37632, 0, '2021-10-31');
 
 -- --------------------------------------------------------
@@ -112,23 +112,25 @@ CREATE TABLE `bookonline` (
   `total` int(11) NOT NULL,
   `paymentId` varchar(255) NOT NULL,
   `paymentStatus` varchar(10) NOT NULL,
-  `bookedOn` date NOT NULL DEFAULT current_timestamp()
+  `bookedOn` date NOT NULL DEFAULT current_timestamp(),
+  `status` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bookonline`
 --
 
-INSERT INTO `bookonline` (`id`, `uid`, `bookId`, `name`, `phone`, `address`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `adults`, `children`, `subTotal`, `discount`, `disType`, `coupon`, `total`, `paymentId`, `paymentStatus`, `bookedOn`) VALUES
-(1, 2, 'IMPERIOUS94554980_2', 'Sayali', '8767431102', 'Thane', 6, 4000, '2021-10-31', '2021-11-02', 1, 1, 12000, 300, 'cash', 'diwali', 10530, '20211030111212800110168645603136917', 'success', '2021-10-31'),
-(2, 2, 'IMPERIOUS4756817_2', 'Sayali', '8767431102', 'Thane', 6, 4000, '2021-11-07', '2021-11-09', 1, 1, 12000, 300, 'cash', '', 11700, '20211030111212800110168886903127709', 'success', '2021-10-31'),
-(3, 1, 'IMPERIOUS8811716_1', 'Vaibhavi Dixit', '9284552192', 'Sangali', 18, 3000, '2021-11-05', '2021-11-07', 1, 2, 12000, 3, 'per', 'diwali', 10476, '20211031111212800110168210703105638', 'success', '2021-10-31'),
-(4, 1, 'IMPERIOUS3941622_1', 'VaibhaviD', '9284552192', 'Sangali', 1, 3400, '2021-11-04', '2021-11-05', 1, 1, 5100, 200, 'cash', '', 4900, '20211031111212800110168443403108938', 'success', '2021-10-31'),
-(5, 1, 'IMPERIOUS91794175_1', 'VaibhaviD', '9284552192', 'Sangali', 15, 4300, '2021-11-05', '2021-11-06', 2, 2, 12900, 6, 'per', '', 12126, '20211031111212800110168249703114014', 'success', '2021-10-31'),
-(6, 1, 'IMPERIOUS15664954_1', 'VaibhaviD', '9284552192', 'Sangali', 16, 7530, '2021-11-03', '2021-11-05', 1, 1, 22590, 200, 'cash', '', 22390, '', 'pending', '2021-11-01'),
-(7, 1, 'IMPERIOUS10984805_1', 'VaibhaviD', '9284552192', 'Sangali', 16, 7530, '2021-11-03', '2021-11-05', 1, 1, 22590, 200, 'cash', '', 22390, '20211101111212800110168822903135859', 'success', '2021-11-01'),
-(8, 1, 'IMPERIOUS49634695_1', 'VaibhaviD', '9284552192', 'Sangali', 6, 4000, '2021-11-03', '2021-11-05', 1, 1, 12000, 300, 'cash', '', 11700, '20211101111212800110168576603147418', 'success', '2021-11-01'),
-(9, 2, 'IMPERIOUS76103629_2', 'Sayali', '8767431102', 'Thane', 19, 2000, '2021-11-27', '2021-11-28', 1, 1, 3000, 0, 'per', '', 3000, '20211101111212800110168480503123809', 'success', '2021-11-01');
+INSERT INTO `bookonline` (`id`, `uid`, `bookId`, `name`, `phone`, `address`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `adults`, `children`, `subTotal`, `discount`, `disType`, `coupon`, `total`, `paymentId`, `paymentStatus`, `bookedOn`, `status`) VALUES
+(1, 2, 'IMPERIOUS94554980_2', 'Sayali', '8767431102', 'Thane', 6, 4000, '2021-10-31', '2021-11-02', 1, 1, 12000, 300, 'cash', 'diwali', 10530, '20211030111212800110168645603136917', 'success', '2021-10-31', 1),
+(2, 2, 'IMPERIOUS4756817_2', 'Sayali', '8767431102', 'Thane', 6, 4000, '2021-11-07', '2021-11-09', 1, 1, 12000, 300, 'cash', '', 11700, '20211030111212800110168886903127709', 'success', '2021-10-31', 1),
+(3, 1, 'IMPERIOUS8811716_1', 'Vaibhavi Dixit', '9284552192', 'Sangali', 18, 3000, '2021-11-05', '2021-11-07', 1, 2, 12000, 3, 'per', 'diwali', 10476, '20211031111212800110168210703105638', 'success', '2021-10-31', 1),
+(4, 1, 'IMPERIOUS3941622_1', 'VaibhaviD', '9284552192', 'Sangali', 1, 3400, '2021-11-04', '2021-11-05', 1, 1, 5100, 200, 'cash', '', 4900, '20211031111212800110168443403108938', 'success', '2021-10-31', 1),
+(5, 1, 'IMPERIOUS91794175_1', 'VaibhaviD', '9284552192', 'Sangali', 15, 4300, '2021-11-05', '2021-11-06', 2, 2, 12900, 6, 'per', '', 12126, '20211031111212800110168249703114014', 'success', '2021-10-31', 1),
+(6, 1, 'IMPERIOUS15664954_1', 'VaibhaviD', '9284552192', 'Sangali', 16, 7530, '2021-11-03', '2021-11-05', 1, 1, 22590, 200, 'cash', '', 22390, '', 'pending', '2021-11-01', 0),
+(7, 1, 'IMPERIOUS10984805_1', 'VaibhaviD', '9284552192', 'Sangali', 16, 7530, '2021-11-03', '2021-11-05', 1, 1, 22590, 200, 'cash', '', 22390, '20211101111212800110168822903135859', 'success', '2021-11-01', 1),
+(8, 1, 'IMPERIOUS49634695_1', 'VaibhaviD', '9284552192', 'Sangali', 6, 4000, '2021-11-03', '2021-11-05', 1, 1, 12000, 300, 'cash', '', 11700, '20211101111212800110168576603147418', 'success', '2021-11-01', 1),
+(9, 2, 'IMPERIOUS76103629_2', 'Sayali', '8767431102', 'Thane', 19, 2000, '2021-11-27', '2021-11-28', 1, 1, 3000, 0, 'per', '', 3000, '20211101111212800110168480503123809', 'success', '2021-11-21', 1),
+(10, 3, 'IMPERIOUS93818924_3', '40 ᴠᴀɪʙʜᴀᴠɪ ᴅɪxɪᴛ', '9284552192', 'Vita', 19, 2000, '2021-11-24', '2021-11-25', 1, 0, 2000, 0, 'per', '', 2000, '20211123111212800110168134903209306', 'success', '2021-11-23', 1);
 
 -- --------------------------------------------------------
 
@@ -319,6 +321,7 @@ INSERT INTO `tourmembers` (`id`, `bookId`, `name`, `type`, `amount`) VALUES
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `mobile` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `profile` varchar(255) NOT NULL
@@ -328,9 +331,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `mobile`, `address`, `profile`) VALUES
-(1, 'VaibhaviD', '9284552192', 'Sangali', '726387059_ALIBAG.jpg'),
-(2, 'Sayali', '8767431102', 'Thane', '626145968_LAVASA.jpg');
+INSERT INTO `user` (`id`, `name`, `email`, `mobile`, `address`, `profile`) VALUES
+(1, 'VaibhaviD', 'sayalid951@gmail.com', '9284552192', 'Sangali', '726387059_ALIBAG.jpg'),
+(2, 'Sayali', 'dixitsayali184@gmail.com', '8767431102', 'Thane', '626145968_LAVASA.jpg'),
+(3, '40 ᴠᴀɪʙʜᴀᴠɪ ᴅɪxɪᴛ', 'vaibhavidixit511@gmail.com', '', '', 'https://lh3.googleusercontent.com/a-/AOh14Gi70rfAXTd9N6geCFXu-xdJB-fbulBc_UoBf-eSZA=s96-c');
 
 -- --------------------------------------------------------
 
@@ -469,7 +473,7 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT for table `bookonline`
 --
 ALTER TABLE `bookonline`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -517,7 +521,7 @@ ALTER TABLE `tourmembers`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `viewdetails`
