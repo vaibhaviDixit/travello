@@ -122,10 +122,36 @@ function getAdminDetails(){
     return $arr;
 }
 
-function bookings(){
+function onbookings(){
   global $con;
-  $bookings=mysqli_num_rows(mysqli_query($con,"select * from booking,bookonline"));
+  $bookings=mysqli_num_rows(mysqli_query($con,"select * from bookonline"));
 
+  return $bookings;
+
+}
+function offbookings(){
+  global $con;
+  $bookings=mysqli_num_rows(mysqli_query($con,"select * from booking"));
+
+  return $bookings;
+
+}
+function todaybookings(){
+   global $con;
+   $tdate=date('Y-m-d');
+   $b1=mysqli_num_rows(mysqli_query($con,"select * from booking where bookedOn='$tdate' "));
+   $b2=mysqli_num_rows(mysqli_query($con,"select * from bookonline where bookedOn='$tdate' "));
+  return intval($b1)+intval($b2);
+}
+function pendingBook(){
+  global $con;
+  $bookings=mysqli_num_rows(mysqli_query($con,"select * from bookonline where status=0"));
+  return $bookings;
+
+}
+function cnfBook(){
+  global $con;
+  $bookings=mysqli_num_rows(mysqli_query($con,"select * from bookonline where status=1"));
   return $bookings;
 
 }

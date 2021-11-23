@@ -1,9 +1,10 @@
 <?php
    session_start();
 
-   include 'include/constants.inc.php';
-   include 'include/database.inc.php';
-   include 'include/functions.inc.php';
+   
+      include ($_SERVER['DOCUMENT_ROOT'].'/Travello/templates/include/database.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/Travello/templates/include/functions.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/Travello/templates/include/constants.inc.php');
    
    
    $favArray=getFavourites();

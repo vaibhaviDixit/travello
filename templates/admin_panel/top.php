@@ -1,11 +1,12 @@
 <?php
    session_start();
    
-      include ('include/database.inc.php');
-      include ('include/functions.inc.php');
-      include ('include/constants.inc.php');
-   
+      include ($_SERVER['DOCUMENT_ROOT'].'/Travello/templates/include/database.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/Travello/templates/include/functions.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/Travello/templates/include/constants.inc.php');
+     
       $row=getAdminDetails();
+
    
       if(!isset($_SESSION['ADMIN'])){
          redirect(SITE_PATH.'templates/adminlogin');
