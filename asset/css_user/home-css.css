@@ -33,7 +33,7 @@ body{
   display: flex;
   position: fixed;
   top: 0;
-  height: 4rem;
+  height: auto;
   z-index: 9999;
   box-shadow: 1px 0 #77a342;
   box-shadow: 3px 2px 9px #888888;
@@ -44,11 +44,15 @@ body{
 
 
 }
+.bars{
+  display: none;
+}
 .navbar .nav-menu li{
-  display: inline-block;
-  margin: 0 20px;
-  border-radius: 15px;
-  padding: 10px;
+   display: inline-block;
+   margin: 0px 20px;
+   border-radius: 15px;
+   padding: 10px;
+   list-style-type: none;
 }
 .navbar .nav-menu li a:hover{
   color:#070f1a;
@@ -59,8 +63,9 @@ body{
   color: #fff;
   }
 .navbar .logo{
- 
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .navbar .logo h1{
   font-size: 1.4rem;
@@ -207,7 +212,7 @@ font-size:30px}
 .input-search:focus{
   width: 300px;
   border-radius: 0px;
-  background-color: transparent;
+  background-color: #052011f5;
   border-bottom:1px solid rgba(255,255,255,.5);
   transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
 }
@@ -929,7 +934,9 @@ display: none; /* for Chrome, Safari, and Opera */
   padding: 40px;
 }
 
-
+.fooLabel{
+  margin-bottom: 1rem;
+}
 .footer .box-container .box h3{
   color:#fff;
 }
@@ -1023,75 +1030,29 @@ margin:0;  color:#eee;
     z-index: 9999;
    }
   .navbar .nav-menu{
-    display: none;
-    
+     display: none; 
+    position: fixed;
+    height: 100vh;
+    width: auto;
+    top: 96px;
+    right: 0;
+    background: #ed6953;
+    z-index: -1;
   }
-  .navbar .mobile-view{
+  .navbar .nav-menu li{
     display: block;
-    width:100%;
-    height:auto;
-    position: fixed ;
-    left:0;
-    bottom:0;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    z-index: 1;
-    background:rgba(255, 166, 0, 0.342);
-  }
-  .navbar .mobile-tab{
-   width: 95%;
-   margin: 10px;
-   background:#0f1111;
-   display: flex;
-   justify-content:space-around;
-   align-items: center;
-   padding: 5px;
-   border-radius: 10px; 
-   box-shadow: rgb(38, 57, 77) -10px 30px 20px 0;
-  
-  
-  }
-  .navbar .mobile-tab li{
-    position: relative;
-    border-radius: 20px;
-    padding: 10px;
-    list-style-type: none;  
-
-  }
-  .navbar .mobile-tab li i{
-    font-size: 1.5rem;
-    text-decoration: none;
-    color:#fff;
-  
-  
-  }
-  .navbar .mobile-tab li .tooltiptext {
-    visibility: hidden;
-    background-color:#000;
-    color: #fff;
-    text-align: center;
-    border-radius:20px;
-    padding:10px 30px;
-    
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    bottom: 120%;
-    margin-left: -65px;
+    margin-top: 1rem;
   }
   
-  .navbar  .mobile-tab li:hover .tooltiptext {
-    visibility: visible;
-  
+  .bars{
+    display: block;
+    font-size: 30px;
+    margin-right: 1rem;
+    cursor: pointer;
   }
-  
   .navbar .logo{
     width: 100%;
-    justify-content: center;
-    align-items: center;
   }
-
   
   
   .sticky .mobile-tab{

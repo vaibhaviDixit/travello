@@ -83,7 +83,7 @@ $res=mysqli_query($con,$sql);
 						<td scope="col"> <?php  echo $row['paymentStatus']; ?></td>
 						<td scope="col"> <?php  echo date("d/m/Y", strtotime($row['bookedOn'])); ?></td>
 						<td scope="col">
-							<a target="_blank" href="<?php echo SITE_PATH.'templates'; ?>userReceipt/<?php echo $row['bookId'];?>"> <button class="btn btn-danger btn-sm">View</button> </a>
+							<a target="_blank" href="<?php echo SITE_PATH.'templates/'; ?>userReceipt/<?php echo $row['bookId'];?>"> <button class="btn btn-danger btn-sm">View</button> </a>
 
 
 						</td>

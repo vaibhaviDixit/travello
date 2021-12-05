@@ -45,7 +45,18 @@
         <div class="destination-details">
             <h1><?php echo $packagesRow['packageName']; ?></h1>
             <div>
-              <a href="<?php echo SITE_PATH.'templates/'; ?>bookTour/<?php echo $packagesRow['id'];  ?>"><button class="sticky-book-btn">Book Now</button></a>
+		  <?php 
+                      if(isset($_SESSION['CURRENT_USER_ID'])){
+                  ?>
+                  <a href="<?php echo SITE_PATH.'templates/'; ?>bookTour/<?php echo $pckgRow['id'];  ?>"><button class="sticky-book-btn">Book Now</button></a>
+                      <?php
+                    }
+                    else{
+                      ?>
+                       <a href="<?php echo SITE_PATH.'templates/'; ?>login"><button class="sticky-book-btn">Book Now</button></a>
+                      <?php
+                    }
+                  ?>
             </div>
             <p><i id="map" class="fa fa-map-marker"></i><?php echo $detailsRow['location']; ?></p>
            

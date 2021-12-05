@@ -24,7 +24,7 @@
               </div>
                 <div class="headline">
                   <h1>Adventure is Worthwhile</h1>
-                  <p>Dicover new places with us, Adventure awaits</p>
+                  <p>Discover new places with us, Adventure awaits</p>
                   <a href="#packages" class="discover-btn">discover more</a>
                 </div>
                     
@@ -35,8 +35,8 @@
                 <video src="<?php echo SITE_PATH; ?>asset/img_user/vid-2.mp4" id="video-slider" loop autoplay muted></video>
               </div>
                 <div class="headline">
-                  <h1>Adventure is Worthwhile</h1>
-                  <p class="tagline">Dicover new places with us, Adventure awaits</p>
+                  <h1>Travel well, live well</h1>
+                  <p class="tagline">Happiness is travelling</p>
                   <a href="#packages" class="discover-btn">discover more</a>
                 </div>
                     
@@ -46,8 +46,8 @@
                 <video src="<?php echo SITE_PATH; ?>asset/img_user/vid-3.mp4" id="video-slider" loop autoplay muted></video>
               </div>
                 <div class="headline">
-                  <h1>Adventure is Worthwhile</h1>
-                  <p>Dicover new places with us, Adventure awaits</p>
+                  <h1>Grab fun with travel</h1>
+                  <p>Travel is the only thing you buy that makes you richer</p>
                   <a href="#packages" class="discover-btn">discover more</a>
                  </div>
                     
@@ -57,8 +57,8 @@
                 <video src="<?php echo SITE_PATH; ?>asset/img_user/vid-4.mp4" id="video-slider" loop autoplay muted></video>
               </div>
                 <div class="headline">
-                  <h1>Adventure is Worthwhile</h1>
-                  <p>Dicover new places with us, Adventure awaits</p>
+                  <h1>Travel to meet yourself</h1>
+                  <p>Invest in unforgettable travel experiences</p>
                   <a href="#packages" class="discover-btn">discover more</a>
                     </div>
                     
@@ -68,8 +68,8 @@
                 <video src="<?php echo SITE_PATH; ?>asset/img_user/vid-5.mp4" id="video-slider" loop autoplay muted></video>
               </div>
                 <div class="headline">
-                  <h1>Adventure is Worthwhile</h1>
-                  <p>Dicover new places with us, Adventure awaits</p>
+                  <h1>Celebrate the Journey</h1>
+                  <p>Explore exotic places through our amazing travel deals</p>
                   <a href="#packages" class="discover-btn">discover more</a>
                   </div>     
             </div>
@@ -172,22 +172,24 @@
 <section class="packages" id="packages">
   <?php
 
-    $cate=mysqli_query($con,"select * from category where status =1");
+    $cate=mysqli_query($con,"select * from category where status=1");
     if(mysqli_num_rows($cate)>0){
       
       while ($cateRow=mysqli_fetch_assoc($cate)) {
-        echo " <h1 class='heading'> ";
-        $cateName=$cateRow['name'];
+	
+	$cateName=$cateRow['name'];
         $catId=$cateRow['id'];
-        echo "<span class='bullet'>".$cateName."</span>";
+	$packages=mysqli_query($con,"select * from package where packageType='$catId'  ORDER BY id DESC LIMIT 3");
+
+             if(mysqli_num_rows($packages)>0){
+        	echo " <h1 class='heading' id='".$cateName."'> ";
+        	echo "<span class='bullet'>".$cateName."</span></h1>";
+
             ?>
-          </h1>
              <div class="box-container">
             <?php
 
-            $packages=mysqli_query($con,"select * from package where packageType='$catId'  ORDER BY id DESC LIMIT 3");
-
-             if(mysqli_num_rows($packages)>0){
+            
                while ($pckgRow=mysqli_fetch_assoc($packages)) {
                 ?>
                
@@ -240,10 +242,7 @@
           <!-- box ends -->
          <?php
                 }
-            }
-            else{
-              echo "<br/>Data not found!<br/><br/>";
-            }
+     
 
           ?>
 
@@ -253,7 +252,8 @@
          <div class="view-more"><a class="view-more-btn" href="<?php echo SITE_PATH.'templates/'; ?>viewmore/<?php echo $cateRow['id'];  ?>">View More</a></div>
 
       <?php
-      }
+      		}
+	}
     }
   ?>  
 
@@ -270,17 +270,17 @@
       <div class="box">
           <img src="<?php echo SITE_PATH; ?>asset/img_user/s1.png">
           <h3>Affordable Hotels</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+          <p>We guaranty you budget accomodation with hygienic, sanitised rooms across hotels in India</p>
       </div>
       <div class="box">
         <img src="<?php echo SITE_PATH; ?>asset/img_user/s2.png">
           <h3>Food and Drinks</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+          <p>We provide high quality food and beverages in friendly and welcoming atmosphere.</p>
       </div>
       <div class="box">
         <img src="<?php echo SITE_PATH; ?>asset/img_user/s3.png">
-          <h3>Safty Guide</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+          <h3>Safety Guide</h3>
+          <p>We believe Safety and security are vital to providing quality in happy tourism.</p>
       </div>
       <div class="box">
           <img src="<?php echo SITE_PATH; ?>asset/img_user/s4.png">
@@ -290,12 +290,12 @@
       <div class="box">
         <img src="<?php echo SITE_PATH; ?>asset/img_user/s5.png">
           <h3>Fastest Travel</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+          <p>We provide convenient ticket deals in very reasonalble price.We make your journey fast and confortable!</p>
       </div>
       <div class="box">
         <img src="<?php echo SITE_PATH; ?>asset/img_user/s6.png">
           <h3>Adventures</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore commodi earum, quis voluptate exercitationem ut minima itaque iusto ipsum corrupti!</p>
+          <p>while providing you with tons of new experiences, we provide best adventure places in india.</p>
       </div>
 
   </div>

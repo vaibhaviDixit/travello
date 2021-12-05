@@ -2,7 +2,7 @@
 
   <div class="box-container">
     <div class="box">
-      <h5>Stay Connected With Us</h5>
+      <h5 class="fooLabel">Stay Connected With Us</h5>
       <?php
         $adminSocial=mysqli_fetch_assoc(mysqli_query($con,"select * from admin"));
         $fb="";
@@ -28,14 +28,15 @@
       <a href="<?php echo $youtube;  ?>" target="_blank" class="d-inline">
         <i  id="s-icon" class="fab fa-youtube" style="color:#e1306c"></i>
       </a>
-      <h5>Address</h5>
+      <br><br>
+      <h5 class="fooLabel">Address</h5>
       <p class="address">
         Corporate Office :
         Doon House, B-275(A),<br>First floor Sector-57,<br>Shushant Lok 3 Near Hong Kong Bazzar,<br>Gurugram Pin 122001, Haryana.
        <br><i class="fa fa-phone"></i> +91<?php echo $phone;  ?></p>
     </div>
       <div class="box">
-        <h5>Quick Links</h5>
+        <h5 class="fooLabel">Quick Links</h5>
         <a href="<?php echo SITE_PATH; ?>">Home</a>
         <a href="<?php echo SITE_PATH; ?>#packages">Destinations</a>
         <a href="<?php echo SITE_PATH; ?>#services">Services</a>
@@ -44,7 +45,7 @@
         <a href="<?php echo SITE_PATH; ?>#about">About us</a>
       </div>
       <div class="box">
-        <h5>Discuss Your Queries with us</h5>
+        <h5 class="fooLabel">Discuss Your Queries with us</h5>
         <form method="POST" action="">
           <input type="text" name="phone" id="phone" placeholder="Phone Number" required>
           <textarea name="query" id="query" cols="30" rows="10" placeholder="Any Query.." required></textarea>
@@ -56,8 +57,10 @@
 
   </div>
 
-  <p class="credit"> created by <span> Bodhi Technology </span> | all rights reserved! </p>
-
+ <p class="credit">
+         Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> <a href="<?php echo SITE_PATH; ?>" style="text-decoration: none; color: #000;"><b>Imperious Tours</b></a>.
+          All rights reserved | Developed By <a target="_blank" style="text-decoration: none; color: #000;" href="https://intelliseit.com/"><b> intelliseit </b></a> </p>
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
@@ -102,10 +105,44 @@ function topFunction() {
 document.body.scrollTop = 0;
 document.documentElement.scrollTop = 0;
 }
+
+
   </script>
   
 </body>
 </html>
+<?php
+
+if(isset($_POST['searchKey'])){
+   $key=getSafeVal($_POST['search']);
+   $searchRes=mysqli_query($con,"select * from package where packageName like '%$key%' or packageDesc like '%$key%';");
+   if(mysqli_num_rows($searchRes)<=0){
+	   $searchCate=mysqli_query($con,"select * from category where name like '%$key%' or description like '%$key%' and status=1;");
+	   if(mysqli_num_rows($searchCate)>0){
+	$cateDom=mysqli_fetch_assoc($searchCate);
+?>
+<script type="text/javascript">
+	id="<?php echo $cateDom['name']; ?>";
+    	sc=$(`*[id^="${id}"]`);
+	window.scroll(sc.offset().left,parseInt(sc.offset().top)-120);
+</script>
+<?php
+		
+	   }else{
+
+    ?>
+    <script type="text/javascript">alert("Result Not Found!");</script>
+    <?php
+    //redirect(SITE_PATH);
+    }
+   }
+   else{
+    $keyRow=mysqli_fetch_assoc($searchRes);
+    $keyid=$keyRow['id'];
+    redirect(SITE_PATH.'templates/viewDetails/'.$keyid);
+   }
+}
+?>
 <?php
   
   if (isset($_POST['submitQuery'])) {

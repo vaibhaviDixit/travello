@@ -1,9 +1,9 @@
 <?php
    session_start();
    
-      include ($_SERVER['DOCUMENT_ROOT'].'/Travello/templates/include/database.inc.php');
-      include ($_SERVER['DOCUMENT_ROOT'].'/Travello/templates/include/functions.inc.php');
-      include ($_SERVER['DOCUMENT_ROOT'].'/Travello/templates/include/constants.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/templates/include/database.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/templates/include/functions.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/templates/include/constants.inc.php');
      
       $row=getAdminDetails();
 
@@ -98,6 +98,22 @@
                   <i class="align-middle" data-feather="edit-3"></i> <span class="align-middle">Edit View Details Page</span>
                   </a>
                </li>
+
+	      <li class="sidebar-header">
+                  Enquiries
+               </li>
+               <li class="sidebar-item">
+                  <a class="sidebar-link" href="<?php echo SITE_PATH.'templates/admin_panel/' ?>enquiries">
+                  <i class="align-middle" data-feather="message-circle"></i> <span class="align-middle">Enquiries</span>
+                  </a>
+               </li>
+             <li class="sidebar-item">
+                  <a class="sidebar-link" href="<?php echo SITE_PATH.'templates/admin_panel/' ?>AddEnquiry">
+                  <i class="align-middle" data-feather="message-circle"></i> <span class="align-middle">Add Enquiry</span>
+                  </a>
+               </li>
+
+
                
                <li class="sidebar-header">
                   Packages

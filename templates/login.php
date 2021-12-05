@@ -11,7 +11,7 @@ include ('include/constants.inc.php');
 <head>
 
   <!-- google sign in -->
-  <meta name="google-signin-client_id" content="875579401591-3sthut12r3le5hl4noodducetvrmek04.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="19666336114-r81ci252rgmv8ee73ikpjb6i4j8o7uf9.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
 
   <meta charset="UTF-8">
@@ -75,6 +75,7 @@ include ('include/constants.inc.php');
     
     <br/><br/>
     <a href="<?php echo SITE_PATH; ?>templates/adminlogin">ADMIN LOGIN</a>
+<br/>
     <small class="text-center">This site is protected by reCAPTCHA and the Google <br>
       <a href="https://policies.google.com/privacy">Privacy Policy</a> and
       <a href="https://policies.google.com/terms">Terms of Service</a> apply.

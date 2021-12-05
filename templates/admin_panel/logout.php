@@ -2,8 +2,9 @@
 
 session_start();
 
-include ('include/functions.inc.php');
-include ('include/constants.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/templates/include/database.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/templates/include/functions.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/templates/include/constants.inc.php');
 
 unset( $_SESSION['ADMIN']);
 session_destroy();

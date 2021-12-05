@@ -1,8 +1,8 @@
 <?php 
 
-  include ('include\database.inc.php');
-   include ('include\functions.inc.php');
-   include ('include\constants.inc.php');
+include ($_SERVER['DOCUMENT_ROOT'].'/templates/include/database.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/templates/include/functions.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/templates/include/constants.inc.php');
 
 
 	if(isset($_POST['id'])){

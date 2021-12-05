@@ -104,44 +104,32 @@ if($type=="login"){
 
 }
 if($type=="adminlogin"){
+		$uname=$_POST['uname'];
+		$pass=$_POST['pass'];
 
-
-		$mobile=$_POST['mobile'];
-
-		$check=mysqli_query($con,"select * from admin where phone='$mobile' ");
+		$check=mysqli_query($con,"select * from admin where name='$uname' ");
 
 		if(mysqli_num_rows($check)>0){
+
 			$row=mysqli_fetch_assoc($check);
-			$_SESSION['ADMIN']=$row['id'];
-			$arr=array("status"=>"success","msg"=>"login successfully");
-		    echo json_encode($arr);
+			$adminpass=$row['pass'];
+
+			if (password_verify($pass, $adminpass)) {
+				$_SESSION['ADMIN']=$row['id'];
+				$arr=array("status"=>"success","msg"=>"login successfully");
+			    echo json_encode($arr);
+			} else {
+				$arr=array("status"=>"fail","msg"=>"Invalid username or password!");
+			    echo json_encode($arr);
+			}
+
 		}
 		else{
-			$arr=array("status"=>"fail","msg"=>"Unable to login!");
+			$arr=array("status"=>"fail","msg"=>"Invalid username or password!");
 		    echo json_encode($arr);
 
 		}
 		
-
-
-
-}
-if($type=="checkAdminMobile"){
-
-	$mobile=$_POST['mobile'];
-
-		$check=mysqli_query($con,"select * from admin where phone='$mobile' ");
-
-		if(mysqli_num_rows($check)>0){
-			$arr=array("status"=>"success","msg"=>"Enter OTP sent to ".$mobile);
-		    echo json_encode($arr);
-		}
-		else{
-			$arr=array("status"=>"fail","msg"=>"Mobile no. not registered ");
-		    echo json_encode($arr);
-
-		}
-
 }
 
 if($type=="regUsingGmail"){

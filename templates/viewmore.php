@@ -11,16 +11,20 @@
 <div class="mt-5 pt-4">
 <section class="packages mt-3" id="packages">
    <?php
-            $packages=mysqli_query($con,"select package.*,category.name from package,category where package.packageType=category.id and package.packageType=$id;");
+            $packages=mysqli_query($con,"select * from package where package.packageType=$id;");
 
              if(mysqli_num_rows($packages)>0){
+	
                 $r=mysqli_fetch_assoc($packages);
-                $cateName=$r['name'];
+                $cat=mysqli_fetch_assoc(mysqli_query($con,"select * from category where id=$id;"));
+                $cateName=$cat['name'];
                 echo "<h1 class='heading'><span class='bullet'>".$cateName."</span></h1>";
 
             ?>
    <div class="box-container mt-5">
+      
           <?php
+
                while ($pckgRow=mysqli_fetch_assoc($packages)) {
                 ?>
           <div class="box">
@@ -73,9 +77,12 @@
           <?php
       
                 }
+?>
+        </div>
+<?php
               }
           ?>
-        </div>
+
           <!-- box container ends -->
 </section>
 

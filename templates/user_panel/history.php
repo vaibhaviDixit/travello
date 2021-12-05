@@ -24,7 +24,8 @@
                      <div class="card-body">
                         <h6 ><?php echo $row['packageName']; ?></h6>
                         <h6 >&#8377; <?php echo $row['total']; ?></h6>
-                        <h6 >Booked On: <?php echo date('d/m/Y',strtotime($row['bookedOn'])); ?></h6><a href="<?php echo SITE_PATH.'templates/'; ?>downloadPdf/<?php echo $row['bookId'];  ?>">
+                        <h6 >Booked On: <?php echo date('d/m/Y',strtotime($row['bookedOn'])); ?></h6>
+                 <a href="<?php echo SITE_PATH.'templates/'; ?>downloadPdf/<?php echo $row['bookId'];  ?>">
                         <button class="btn btn-success">
                           <span class="svg-icon svg-icon-white svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

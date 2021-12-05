@@ -6,11 +6,13 @@ include ('include/database.inc.php');
 include ('include/functions.inc.php');
 include ('include/constants.inc.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
    <title><?php echo SITE_NAME; ?></title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="apple-touch-icon" sizes="76x76" href="<?php echo SITE_PATH; ?>asset/logo/apple-touch-icon.png">
@@ -27,8 +29,8 @@ include ('include/constants.inc.php');
 <link rel="stylesheet" href="<?php echo SITE_PATH; ?>asset/css_user/login-signup-css.css">
 <link rel='stylesheet' href='https://unpkg.com/aos@2.3.0/dist/aos.css'>
 <link rel="stylesheet" href="<?php echo SITE_PATH; ?>asset/css_user/login-signup-css.css">
-
-
+  <!-- font awesome cdn link  -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
   <button onclick="go_home()" id="home-btn"  class="home-btn"><i class="material-icons">keyboard_arrow_left</i></button>
@@ -45,32 +47,29 @@ include ('include/constants.inc.php');
 
   <div class="box">
     <form method="post" id="adminloginForm" class="text-center">
-    <h1>Admin Login</h1>
-   <span id="msg"></span>
+     <h1>Admin Login</h1>
+     <span id="msg"></span>
      <div id="mainLoginForm" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-    <input type="text" name="phone" id="adminloginPhone" placeholder="Enter your Phone" required  />   
-    <div class="text-center mt-3">
-    <button type="submit" id="loginBtn" class="login-btn"  name="submit" >Continue</button>
-    </div>
+     <input type="text" name="adminUname" id="adminUname" placeholder="Username" required  /> 
+     <div style="position: relative;display: flex;align-items: center;">
+       
+        <input type="password" name="adminPass" id="adminPass" placeholder="Password" required /> 
+        <i class="fas fa-eye" style="position: absolute;right: 25px; cursor: pointer;" onclick="toggleEye()"></i>  
+     </div>
+     <div class="text-center mt-3">
+     <button type="submit" id="loginBtn" class="login-btn"  name="submit" >Login</button>
+     </div>
   </div>
   </form>
 
-    <div class="adminloginVerify" style="display: none; flex-direction: column; justify-content: center; align-items: center;">
-      <div id="recaptcha-container"></div>
-      <input type="text" id="adminloginOTP" name="adminloginOTP" placeholder="OTP" required  /> 
-      <button type="submit"  id="verifyAdminLoginOtp" class="login-btn"  name="submit" >Verify</button>
-    </div>
-
-     <small class="text-center">This site is protected by reCAPTCHA and the Google <br>
-      <a href="https://policies.google.com/privacy">Privacy Policy</a> and
-      <a href="https://policies.google.com/terms">Terms of Service</a> apply.
-    </small>
+  
   
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
 <script src="<?php echo SITE_PATH; ?>asset/firebase.js"></script>
+<script src="<?php echo SITE_PATH; ?>asset/js_user/script.js"></script>
 
 
 </body>

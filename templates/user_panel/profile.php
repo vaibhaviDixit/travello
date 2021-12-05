@@ -106,6 +106,12 @@ if(isset($_POST['submit'])){
                         <th scope="row">Phone Number</th>
                         <td><?php   echo $row['mobile']; ?></td>
                       </tr>
+
+                       <tr>
+                        <th scope="row">Email</th>
+                        <td><?php   echo $row['email']; ?></td>
+                      </tr>
+
                        <tr>
                         <th scope="row">Address</th>
                         <td><?php   echo $row['address']; ?></td>

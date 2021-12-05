@@ -3,9 +3,8 @@
 
 include ('top.php');
 
-$sql="select booking.*,package.packageName from booking,package where booking.packageId=package.id order by bookonline.id desc";
+$sql="select booking.*,package.packageName from booking,package where booking.packageId=package.id order by booking.id desc";
 $res=mysqli_query($con,$sql);
-
 
 ?>
 <!-- </div>-->
@@ -48,6 +47,7 @@ $res=mysqli_query($con,$sql);
 					<tbody>
 
 						<?php  
+
 
 							if(mysqli_num_rows($res) > 0){
 								$i=1;

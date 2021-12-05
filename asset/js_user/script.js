@@ -47,17 +47,37 @@ jQuery(document).ready(function(){
 
 })
 
+function menuToggle(){
+  $('.nav-menu').toggle("slide");
+  $(".fa-bars").toggleClass('fa-times');
+}
 
+function toggleEye(){
+    const password = document.querySelector('#adminPass');
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye / eye slash icon
+    $(".fa-eye").toggleClass('fa-eye-slash');
+}
 
 //favorites
 function manageFav(id,operation){
-
+   if(operation=="add")
+   {
+     ur="templates/addToFav";
+   }
+ if(operation=="remove")
+   {
+     ur="addToFav";
+   }
 
    jQuery.ajax({
-    url:'templates/addToFav',
+    url:ur,
     type:'post',
     data:{id : id,operation:operation},
     success:function(result){
+console.log(result);
       msg=jQuery.parseJSON(result);
       if(msg.action=="remove"){
           window.location.href=window.location.href;

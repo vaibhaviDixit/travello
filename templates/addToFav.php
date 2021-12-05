@@ -50,7 +50,6 @@ if($operation=="remove"){
 			foreach ($_SESSION['favourites'] as $key => $value) {
 
 				if($value['pckgId']==$pkgId){
-					echo $value['pckgId'].$pckgId;
 					unset($_SESSION['favourites'][$key]);
 
 				}

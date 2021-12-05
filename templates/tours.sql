@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3309
--- Generation Time: Nov 23, 2021 at 03:04 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Host: 127.0.0.1
+-- Generation Time: Dec 05, 2021 at 12:10 PM
+-- Server version: 10.5.12-MariaDB-cll-lve
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tours`
+-- Database: `u282558932_tours`
 --
 
 -- --------------------------------------------------------
@@ -30,6 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `pass` varchar(255) NOT NULL,
   `profile` varchar(100) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -46,8 +48,8 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `name`, `profile`, `phone`, `email`, `address`, `location`, `website`, `fb`, `insta`, `whatsapp`, `youtube`) VALUES
-(1, 'Admin', '466020427_pic-3.png', '9284552192', 'admin@gmail.com', 'Mumbai                                            ', 'Solapur', 'https://www.youtube.com/', 'https://www.facebook.com/', 'https://www.instagram.com/', '9284552192', 'https://www.youtube.com/channel/UC9TgvYNUsMBPl6J2xbL-4qg');
+INSERT INTO `admin` (`id`, `name`, `pass`, `profile`, `phone`, `email`, `address`, `location`, `website`, `fb`, `insta`, `whatsapp`, `youtube`) VALUES
+(1, 'admin2021', '$2y$10$QX1Qdu3CxiWXgmIDUPDdPuuwiXNkYhMP9LZJq3a1uLuLnsxqjyGcy', '466020427_pic-3.png', '9284552192', 'admin@gmail.com', 'Mumbai                                            ', 'Solapur', 'https://www.youtube.com/', 'https://www.facebook.com/', 'https://www.instagram.com/', '9284552192', 'https://www.youtube.com/channel/UC9TgvYNUsMBPl6J2xbL-4qg');
 
 -- --------------------------------------------------------
 
@@ -83,8 +85,8 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`id`, `bookId`, `name`, `phone`, `address`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `payMode`, `adults`, `children`, `subTotal`, `discount`, `distype`, `total`, `paid`, `rem`, `bookedOn`) VALUES
 (4, 'yeabv', 'Shrawani Dixit', '9865986585', 'Solapur', 3, 37000, '2021-10-24', '2021-10-26', 'UPI', 2, 2, 222000, 5000, 'cash', 217000, 10000, 207000, '2021-10-31'),
-(5, 'ijdbc', 'Shriyansh Mahamuni', '876743102', 'Vasud Road, Sangola                                       ', 5, 7000, '2021-11-01', '2021-11-03', 'OnlineTransfer', 2, 1, 35000, 5, 'per', 33250, 250, 33000, '2021-11-21'),
-(6, 'eysjj', 'Mitali Salunkhe', '8764595498', 'Ajinkya plaza,Sangola                                           ', 17, 6400, '2021-10-30', '2021-11-02', 'UPI', 2, 0, 38400, 2, 'per', 37632, 37632, 0, '2021-10-31');
+(5, 'ijdbc', 'Shriyansh Mahamuni', '876743102', 'Vasud Road, Sangola					       								       ', 5, 7000, '2021-11-01', '2021-11-03', 'OnlineTransfer', 2, 1, 35000, 5, 'per', 33250, 250, 33000, '2021-11-21'),
+(6, 'eysjj', 'Mitali Salunkhe', '8764595498', 'Ajinkya plaza,Sangola 							       								       ', 17, 6400, '2021-10-30', '2021-11-02', 'UPI', 2, 0, 38400, 2, 'per', 37632, 37632, 0, '2021-10-31');
 
 -- --------------------------------------------------------
 
@@ -150,10 +152,19 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `description`, `status`) VALUES
-(2, 'SideSeeing', '', 1),
-(3, 'Religious Places', '', 1),
-(4, 'Day Tours', '', 1),
-(5, 'Camping', '', 1);
+(2, 'Bungee Jumping', '  ', 1),
+(3, 'Skiing', '  ', 1),
+(4, 'Dirt biking', '  ', 1),
+(5, 'Scuba diving', '  ', 1),
+(13, 'Zorbing', '', 1),
+(14, 'Mountain biking', '  ', 1),
+(15, 'Rock climbing', '  ', 1),
+(16, 'Hang Gliding', '  ', 1),
+(17, 'Hiking', '  ', 1),
+(18, 'Rafting', '  ', 1),
+(19, 'Heli-Skiing', '  ', 1),
+(20, 'Caving', '  ', 1),
+(21, 'Desert camping', '  ', 1);
 
 -- --------------------------------------------------------
 
@@ -201,7 +212,8 @@ INSERT INTO `favourites` (`id`, `userId`, `pckgId`) VALUES
 (2, 2, 2),
 (3, 2, 4),
 (5, 1, 18),
-(6, 1, 16);
+(6, 1, 16),
+(7, 2, 13);
 
 -- --------------------------------------------------------
 
@@ -225,19 +237,18 @@ CREATE TABLE `package` (
 --
 
 INSERT INTO `package` (`id`, `packageName`, `packageDesc`, `packagePrice`, `discount`, `disType`, `packageType`, `packagePhoto`) VALUES
-(1, 'Mumbai', 'Mumbai is the perfect blend of culture, customs and lifestyles. Mumbai is India\'s most cosmopolitan city, its financial powerhouse and the nerve center of India\'s fashion industry.', 3400, 200, 'cash', 2, '521659650_download (7).jpg'),
-(2, 'Tokyo', 'Tokyo (東京, Tōkyō) is Japan\'s capital and the world\'s most populous metropolis. It is also one of Japan\'s 47 prefectures.', 55000, 2, 'per', 2, '382915934_download (8).jpg'),
-(3, 'Tirupati', 'The very name Tirupati is enough to evoke strong spiritual feelings, and while the name ‘God’s Abode’ indeed does justice to the place.', 37000, 0, 'per', 3, '839544455_TIRUPATI.jpg'),
-(4, 'Vaishno Devi', 'This town is the holy cave temple of Mata Vaishnodevi, with spirituality and vibrancy lingering in the atmosphere. ', 5000, 5, 'per', 3, '136245396_download (9).jpg'),
-(5, 'Spiti Valley, Himachal Pradesh', 'First on our list is, Spiti Valley nestled in the Keylong district of Himachal Pradesh. It is one of the best camping sites in India. ', 7000, 2, 'per', 5, '471898054_spiti-valley-himachal-pradesh.jpg'),
-(6, 'Solang Valley, Manali', 'One of the best camping sites in India, Solang Valley in Manali attracts visitors from the far ends of the world. ', 4000, 300, 'cash', 5, '302561381_solang-valley-manali.jpg'),
-(13, 'Hollant Beach:Goa', ' A Picture-Perfect Destination! The curvy bay lined with rustic boats, the clean, golden sand, the colorful shacks on one side.', 7500, 0, 'per', 4, '244305377_Goa-Beach-Hollant.jpg'),
-(14, 'Mahabaleshwar', 'Mahabaleshwar is a hill station located in the Western Ghats, in Satara district of Maharashtra', 5860, 500, 'cash', 2, '162534935_MAHABALESHWAR.jpg'),
-(15, 'Shirdi', 'Located at a distance of 122 Km from Nasik in the Ahmednagar district of Maharashtra, Shirdi is the home of Sai Baba.', 4300, 6, 'per', 3, '391234510_SHIRDI.jpg'),
-(16, 'Ajantha &amp; Ellora Caves', 'Ajanta and Ellora caves, considered to be one of the finest examples of ancient rock-cut caves, are located near Aurangabad in Maharashtra, India.', 7530, 200, 'cash', 5, '613178458_AJANTA-AND-ELLORA-CAVES.jpg'),
-(17, 'Lavasa', 'Known as India\'s newest hill station, the Lavasa Corporation is constructing this private city.', 6400, 6, 'per', 4, '409387949_LAVASA.jpg'),
-(18, 'Pachgani', 'Deriving its name from the five hills surrounding it, Panchgani is a popular hill station near Mahabaleshwar in Maharashtra.', 3000, 3, 'per', 4, '285277791_PANCHGANI.jpg'),
-(19, 'Ganpatipule', 'Ganpatipule is mainly known for its 400 years old Ganapati Temple which is the prime attraction in Ganpatipule tour packages.', 2000, 0, 'per', 3, '862634137_520468845Ganpatipule_Main_thumb.jpg');
+(1, 'Bungee Jumping in Lonavala', 'Bungee Jumping takes place in an adventure park called Della Adventures. The equipment is attached at a height of 150 ft and lasts for about 7-10 minutes. People above the age of 10, with a body weight of above 35 kgs are allowed to take the jump.', 3000, 0, 'cash', 2, '632367775_bungee.jpg'),
+(2, 'Bungee Jumping in Delhi', 'Wanderlust is the provider for this sport. All the equipment is imported from Japan and all the staff are also trained from Germany so people don\'t fear you are safe', 3500, 2, 'per', 2, '733746183_bungee2.jpg'),
+(3, 'Bungee Jumping in Goa', 'One of the most thrilling and adventurous sport apart from all the watersports that you should definitely not miss while in Goa is Bungee jumping. A relatively new concept that has taken its first steps in Goa, Bungee jumping is not just a thrilling activ', 3000, 0, 'per', 2, '507524597_bungee3.jpg'),
+(4, 'Belum Caves', 'Belum caves are naturally made underground caves, which extend over 3km and are 46 meters deep. This cave system is open to public and is known for stalactites and stalagmites that are formed by the underground flowing water, over thousands of years.', 5000, 5, 'per', 20, '547985760_belum.jpg'),
+(5, 'Spiti Valley, Himachal Pradesh', 'First on our list is, Spiti Valley nestled in the Keylong district of Himachal Pradesh. It is one of the best camping sites in India. ', 7000, 2, 'per', 21, '471898054_spiti-valley-himachal-pradesh.jpg'),
+(6, 'Solang Valley, Manali', 'One of the best camping sites in India, Solang Valley in Manali attracts visitors from the far ends of the world. ', 4000, 300, 'cash', 21, '302561381_solang-valley-manali.jpg'),
+(13, 'Hollant Beach:Goa', ' A Picture-Perfect Destination! The curvy bay lined with rustic boats, the clean, golden sand, the colorful shacks on one side.', 7500, 0, 'per', 3, '244305377_Goa-Beach-Hollant.jpg'),
+(15, 'Damodara Desert Camp', 'If you are looking for a camping experience that is a bit more peaceful and away from the crowd, Damodara Desert Camp will cater to your needs.', 4300, 0, 'per', 21, '210460589_DSCN0440.jpg'),
+(16, 'Ajantha &amp; Ellora Caves', 'Ajanta and Ellora caves, considered to be one of the finest examples of ancient rock-cut caves, are located near Aurangabad in Maharashtra, India.', 7530, 200, 'cash', 20, '613178458_AJANTA-AND-ELLORA-CAVES.jpg'),
+(17, 'Lavasa', 'Known as India\'s newest hill station, the Lavasa Corporation is constructing this private city.', 6400, 6, 'per', 3, '409387949_LAVASA.jpg'),
+(18, 'Pachgani', 'Deriving its name from the five hills surrounding it, Panchgani is a popular hill station near Mahabaleshwar in Maharashtra.', 3000, 3, 'per', 3, '285277791_PANCHGANI.jpg'),
+(19, 'Pachmarhi Caves', 'Pachmari caves are believed to be the caves that were once used as shelter by the Pandava brothers and their wife Draupadi during their exile period. These caves date back to 6th century and the interiors consist of various ancient inscriptions. Many Budd', 3000, 0, 'per', 20, '829179071_Pachmarhi-Caves.jpg');
 
 -- --------------------------------------------------------
 
@@ -247,16 +258,19 @@ INSERT INTO `package` (`id`, `packageName`, `packageDesc`, `packagePrice`, `disc
 
 CREATE TABLE `query` (
   `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `phone` varchar(20) NOT NULL,
-  `query` varchar(200) NOT NULL
+  `query` varchar(200) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `query`
 --
 
-INSERT INTO `query` (`id`, `phone`, `query`) VALUES
-(1, '9284552192', 'Please add some historical places for tours.');
+INSERT INTO `query` (`id`, `name`, `phone`, `query`, `date`) VALUES
+(1, '', '9284552192', 'Please add some historical places for tours.', '2021-11-29 07:25:49'),
+(4, 'Samina Mulani', '9875621546', ' Nothing', '2021-11-30 03:51:11');
 
 -- --------------------------------------------------------
 
@@ -361,19 +375,19 @@ CREATE TABLE `viewdetails` (
 --
 
 INSERT INTO `viewdetails` (`id`, `packageId`, `location`, `description`, `photoone`, `phototwo`, `photthree`, `photofour`, `link`, `checkin`, `checkout`) VALUES
-(1, 2, 'japan', 'Tokyo (東京, Tōkyō) is Japan\'s capital and the world\'s most populous metropolis. It is also one of Japan\'s 47 prefectures, consisting of 23 central city wards and multiple cities, towns and villages west of the city center. The Izu and Ogasawara Islands are', '712144922_download (3).jpg', '919435937_download (1).jpg', '507743692_Goa-Beach-Hollant.jpg', '408284347_download (7).jpg', 'https://www.youtube.com/watch?v=OKAYqzOfLjY', '05:00', '22:00'),
-(2, 3, 'Pune', 'Tirupati has one of the most visited tourist attraction as well as religious shrine and the second richest temple in the world, the Tirumala Venkateswara Temple. This temple is one of the holiest Hindu pilgrimage sites. Because of this temple, Tirupati is', '225703541_download (1).jpg', '524502061_download (1).jpg', '524796940_download (1).jpg', '507743692_Goa-Beach-Hollant.jpg', 'https://www.youtube.com/watch?v=i1PRlMkpUgM', '06:00', '22:00'),
-(3, 1, 'Mumbai', 'Mumbai is the commercial capital of India. It is also known as the city that never sleeps. Mumbai is the perfect blend of culture, customs and lifestyles. Mumbai is India\'s most cosmopolitan city, its financial powerhouse and the nerve center of India\'s f', '758104889_520468845Ganpatipule_Main_thumb.jpg', '113935880_ALIBAG.jpg', '408284347_download (7).jpg', '292499670_ALIBAG.jpg', 'https://www.youtube.com/watch?v=rwGKmcRoeYQ', '06:00', '21:00'),
-(4, 4, 'katra', 'The Vaishno Devi Temple is an important Hindu temple dedicated to Vaishno Devi located in Katra at the Trikuta Mountains within the Indian Union territory of Jammu and Kashmir. The temple is one of the 108 Shakti Peethas dedicated to Durga, who is worship', '264752709_download (1).jpg', '195590735_520468845Ganpatipule_Main_thumb.jpg', '292499670_ALIBAG.jpg', '269754446_download (8).jpg', 'https://www.youtube.com/watch?v=OQg-SnqvHZg', '05:56', '21:56'),
-(5, 5, 'Lahul', 'Spiti Valley (pronounced as Piti in Bhoti Language) is a cold desert mountain valley located high in the Himalayas in the north-eastern part of the northern Indian state of Himachal Pradesh. The name &quot;Spiti&quot; means &quot;The middle land&quot;, i.', '219621047_download (7).jpg', '809013692_download (9).jpg', '269754446_download (8).jpg', '851591990_Goa-Beach-Hollant.jpg', 'https://www.youtube.com/watch?v=9SafHATb1AQ', '02:58', '21:58'),
-(6, 6, 'manali', 'Solang Valley also known as the \'snow point\' is an alluring snow clad utopia near Manali and lies between Solang village and Beas Kund. Situated at an altitude of 8,500 feet above sea level, it offers a spectacular scenery of enchanting glaciers and snow ', '621606382_download.jpg', '221959017_MAHABALESHWAR.jpg', '851591990_Goa-Beach-Hollant.jpg', '999340734_download (9).jpg', 'https://www.youtube.com/watch?v=6fMzwVkK1qw', '11:00', '22:00'),
-(7, 13, 'Goa', 'Located south of Bogmalo beach, this is the only beach in Goa where one can witness a beautiful sunrise (considering Goa is on the West Coast of India). Nestled along the foothills of the lush Western Ghats, Hollant Beach offers visitors beautiful views.', '672467979_520468845Ganpatipule_Main_thumb.jpg', '321477881_AJANTA-AND-ELLORA-CAVES.jpg', '999340734_download (9).jpg', '689252310_download (1).jpg', 'https://www.youtube.com/watch?v=0ECHkEfGMVg', '18:01', '22:01'),
+(1, 2, 'Delhi', 'Bungee Jumping is available in Delhi too. Wanderlust is the provider for this sport. All the equipment is imported from Japan and all the staff are also trained from Germany so people don\'t fear you are safe. The equipment is attached to a 130 feet high c', '697594299_bungeeL.jpg', '385598733_bLonavala.jpg', '139389906_bungee2.jpg', '135678471_bungee3.jpg', 'https://www.youtube.com/watch?v=ucZRYdoXUF4', '07:00', '16:00'),
+(2, 3, 'Goa', 'One of the most thrilling and adventurous sport apart from all the watersports that you should definitely not miss while in Goa is Bungee jumping. A relatively new concept that has taken its first steps in Goa, Bungee jumping is not just a thrilling activ', '827272960_bLonavala.jpg', '538467266_bungee.jpg', '944012299_bungee2.jpg', '259854511_bungee3.jpg', 'https://www.youtube.com/watch?v=vqsojDj6j_s', '08:08', '19:08'),
+(3, 1, 'Lonavala', 'Bungee Jumping takes place in an adventure park called Della Adventures. The equipment is attached at a height of 150 ft and lasts for about 7-10 minutes. People above the age of 10, with a body weight of above 35 kgs are allowed to take the jump. The exp', '844002562_bungeeL.jpg', '760488155_bLonavala.jpg', '735126647_lonavlaB.jpg', '371574847_bungee3.jpg', 'https://www.youtube.com/watch?v=wqraeikKu0E', '07:06', '18:00'),
+(4, 4, 'Andhra Pradesh', 'Belum caves are naturally made underground caves, which extend over 3km and are 46 meters deep. This cave system is open to public and is known for stalactites and stalagmites that are formed by the underground flowing water, over thousands of years.', '129145295_be3.jpg', '823799841_be4.jpg', '116237561_be2.jpg', '312164224_be1.jpg', 'https://www.youtube.com/watch?v=kiOPoxyVAuU', '05:42', '20:42'),
+(5, 5, 'Lahul', 'Spiti Valley is a cold desert mountain valley located high in the Himalayas in the north-eastern part of the northern Indian state of Himachal Pradesh.', '390501261_sp.jpg', '493813567_sp4.jpg', '434847287_sp3.jpg', '653483702_sp2.jpg', 'https://www.youtube.com/watch?v=aP3RrWUT4sw', '07:17', '20:17'),
+(6, 6, 'Manali', 'Be it summers or be it winters, Solang Valley is one of the most gorgeous and adventurous places to visit in Manali. It’s not just another skiing paradise, but a lot more than that when it comes to the unique experiences it offers. ', '668467268_sv.jpg', '338501825_sv4.jpg', '987632994_sv2.jpg', '437122405_sv3.jpg', 'https://www.youtube.com/watch?v=6fMzwVkK1qw', '08:23', '22:23'),
+(7, 13, 'Goa', 'Located south of Bogmalo beach, this is the only beach in Goa where one can witness a beautiful sunrise (considering Goa is on the West Coast of India). Nestled along the foothills of the lush Western Ghats, Hollant Beach offers visitors beautiful views.', '733180302_hb.jpg', '169668840_hb2.jpg', '865713072_h3.jpg', '704016952_h4.jpg', 'https://www.youtube.com/watch?v=0ECHkEfGMVg', '18:01', '22:01'),
 (8, 14, 'Mahabaleshwar', 'Mahableshwar is the best hill station of Maharashtra. It is situated about 4500 ft. above sea level on the Sahyadri spurs. It was the erstwhile summer capital of Old Bombay Presidency. The tourists are enthralled by its exotic greenery, beautiful gardens ', '196798648_download (7).jpg', '500053569_520468845Ganpatipule_Main_thumb.jpg', '689252310_download (1).jpg', '999340734_download (9).jpg', 'https://www.youtube.com/watch?v=GOw-sAXMYek', '07:03', '22:03'),
-(9, 15, 'Shirdi', 'Shirdi is a small village situated in the Ahmednagar district of Maharashtra. Shirdi is one of the holiest places in India and is a very popular pilgrimage spot. This place is famous for the shrine of \'Sai Baba\', which is the main attraction for the devot', '345114086_SHIRDI.jpg', '838540109_520468845Ganpatipule_Main_thumb.jpg', '432473946_AJANTA-AND-ELLORA-CAVES.jpg', '998042567_download (1).jpg', 'https://www.youtube.com/watch?v=ExBuOY3tmwM', '08:04', '20:04'),
-(10, 16, 'Aurangabad', 'Approximately 67 miles (107 km) to the north of Aurangabad in the Indhyadri range of Western Ghats lie the caves of Ajanta. The 30 caves, famous for their early Buddhist temple architecture and many delicately drawn murals, are located in a 76 m high, hor', '391318409_520468845Ganpatipule_Main_thumb.jpg', '318798851_AJANTA-AND-ELLORA-CAVES.jpg', '998042567_download (1).jpg', '154604369_images (1).jpg', 'https://www.youtube.com/watch?v=kgu6vcNLEC0', '17:06', '22:06'),
-(11, 17, 'Pune', 'Known as India\'s newest hill station, the Lavasa Corporation is constructing this private city. The city is a beautiful project, stylistically based on the Italian town Portofino. Spreading across 7 hills, covering an area of 25000 acres, Lavasa is a perf', '359073603_LAVASA.jpg', '155079000_download (7).jpg', '209304443_520468845Ganpatipule_Main_thumb.jpg', '154604369_images (1).jpg', 'https://www.youtube.com/watch?v=kajJgaWGaFk', '18:08', '21:13'),
-(12, 18, 'Satara', 'The \'Land of Five Hills\', or Panchgani, is a distinguished hill station in Maharashtra. Located far away from the bustling city of Mumbai, Panchgani promises its visitors a trip they could cherish for life. The name Panchgani literally means \'five hills\'.', '995476233_520468845Ganpatipule_Main_thumb.jpg', '947646606_download.jpg', '154604369_images (1).jpg', '117605943_520468845Ganpatipule_Main_thumb.jpg', 'https://www.youtube.com/watch?v=-K9jbvI3Qg0', '17:10', '22:10'),
-(13, 19, 'Ratnagiri', 'Ganpatipule (Gaṇpatīpuḷē) is a small town located 25 km north of the city of Ratnagiri in Ratnagiri district on the Konkan coast of Maharashtra, in the sub-continent of India. The town of Chiplun is located to its north.', '923011216_images (3).jpg', '117605943_520468845Ganpatipule_Main_thumb.jpg', '556425386_AJANTA-AND-ELLORA-CAVES.jpg', '359073603_LAVASA.jpg', 'https://www.youtube.com/watch?v=wix1DZtrzCs', '18:11', '23:11');
+(9, 15, 'Damodara, Rajasthan', 'There are 10 swiss-style tents and all rents are roomy and well maintained. In addition, air conditioner and heater facilities are available. A night’s stay in such a camp can truly change your perspective of desert camping', '192137915_dm.jpg', '712803223_dm4.jpg', '418508874_dm3.jpg', '647492600_dm2.jpg', 'https://www.youtube.com/watch?v=iX7-UB1xJz4', '06:01', '22:02'),
+(10, 16, 'Aurangabad', 'The Buddhist Caves in Ajanta are approximately 30 rock-cut Buddhist cave monuments dating from the 2nd century BCE to about 480 CE in the Aurangabad district of Maharashtra state in India.', '178897627_aj1.jpg', '509043199_aj2.jpg', '444669469_aj3.jpg', '973707133_aj4.jpg', 'https://www.youtube.com/watch?v=kgu6vcNLEC0', '05:30', '21:19'),
+(11, 17, 'Pune', 'Located at a distance of about 65 km from Pune, the beautifully planned city of Lavasa is surrounded by the majestic Western Ghats. The city is constructed in the Mulshi Valley and covers a sprawling 25,000 acres. With such mesmerizing views of hills, val', '499760421_lv1.jpg', '706400480_lv2.jpg', '698326253_lv4.jpg', '617340416_lv3.jpg', 'https://www.youtube.com/watch?v=kajJgaWGaFk', '17:29', '22:29'),
+(12, 18, 'Satara', 'The \'Land of Five Hills\', or Panchgani, is a distinguished hill station in Maharashtra. Located far away from the bustling city of Mumbai, Panchgani promises its visitors a trip they could cherish for life. ', '156227408_p4.jpg', '446938098_p2.jpg', '742366445_p3.jpg', '286475262_p1.jpg', 'https://www.youtube.com/watch?v=-K9jbvI3Qg0', '17:25', '21:25'),
+(13, 19, 'Madhya Pradesh', 'Pachmari caves are believed to be the caves that were once used as shelter by the Pandava brothers and their wife Draupadi during their exile period. These caves date back to 6th century and the interiors consist of various ancient inscriptions. Many Budd', '184264140_pc1.jpg', '336634745_pc2.jpg', '840849467_pc3.jpg', '509595801_p4.jpg', 'https://www.youtube.com/watch?v=hwb2hDUc0zI', '08:33', '19:33');
 
 --
 -- Indexes for dumped tables
@@ -479,7 +493,7 @@ ALTER TABLE `bookonline`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `coupon`
@@ -491,7 +505,7 @@ ALTER TABLE `coupon`
 -- AUTO_INCREMENT for table `favourites`
 --
 ALTER TABLE `favourites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `package`
@@ -503,7 +517,7 @@ ALTER TABLE `package`
 -- AUTO_INCREMENT for table `query`
 --
 ALTER TABLE `query`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `reviews`

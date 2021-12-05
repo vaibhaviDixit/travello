@@ -1,11 +1,11 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyAQnzPtKPwi5JCg527qO0kN5-FoWk-YBHw",
-    authDomain: "travello-6867b.firebaseapp.com",
-    projectId: "travello-6867b",
-    storageBucket: "travello-6867b.appspot.com",
-    messagingSenderId: "552226138946",
-    appId: "1:552226138946:web:6a6da1a677ce51c821f6db",
-    measurementId: "G-5NJM3VEJST"
+    apiKey: "AIzaSyBphi0YaFKtMxrNi8owYJL_bpcMszkIIN8",
+    authDomain: "imperioustours-a5e00.firebaseapp.com",
+    projectId: "imperioustours-a5e00",
+    storageBucket: "imperioustours-a5e00.appspot.com",
+    messagingSenderId: "55255626054",
+    appId: "1:55255626054:web:a8ff1d66783cc42d787547",
+    measurementId: "G-59BM4NFJ0K"
   };
 
 
@@ -213,7 +213,7 @@ $("#verifybtn").on("click",function(e){
                      if(msg.status=="success"){
 
                        $("#msg").html("<div class='alert alert-success' role='alert'>"+msg.msg+"</div>");
-                       window.location.href="http://localhost/Travello/";
+                       window.location.href="http://imperioustours.com/";
                         $("#signbtn").attr('disabled',false);
                         $("#signbtn").html("Sign Up");
                       
@@ -260,7 +260,7 @@ $("#verifyLoginOtp").on("click",function(e){
                       msg=jQuery.parseJSON(result);
 
                      if(msg.status=="success"){
-                        window.location.href="http://localhost/Travello/";
+                        window.location.href="http://imperioustours.com/";
                         $("#signbtn").attr('disabled',false);
                         $("#signbtn").html("Sign Up");
                       
@@ -289,54 +289,40 @@ $("#verifyLoginOtp").on("click",function(e){
 
 
 
+
        $("#adminloginForm").on("submit",function(e){
      
             $("#msg").html("");
-              phone=$("#adminloginPhone").val();
-            
-          if(isNaN(phone)){
-               $(this).find("#msg").html("<div class='alert alert-success' role='alert'>Invalid Mobile</div>");
-          }else{
-
+              adminUname=$("#adminUname").val();
+              adminPass=$("#adminPass").val();
+     
               $("#loginBtn").attr('disabled',true);
               $("#loginBtn").html("Loading...");
 
                  $.ajax({  
                    type:"POST",  
                    url:"register_login",  
-                   data:"mobile="+phone+"&type=checkAdminMobile",
+                   data:"uname="+adminUname+"&pass="+adminPass+"&type=adminlogin",
                    success:function(result){
-                       
                       msg=jQuery.parseJSON(result);
 
                      if(msg.status=="success"){
                         $("#loginBtn").attr('disabled',false);
-                        $("#loginBtn").html("Sign In");
-                        $(".adminloginVerify").css("display","flex");
-                        $("#mainLoginForm").hide();
-                        //send otp here
-                        cverify=window.recaptchaVerifier;
-
-                        firebase.auth().signInWithPhoneNumber("+91"+phone,cverify).then(function(response){
-                          window.confirmationResult = response;
-                          $("#msg").html("<div class='alert alert-success' role='alert'>Enter OTP sent to "+phone+"</div>");
-                          
-                        }).catch(function(error){
-                          
-                        })
+                        $("#loginBtn").html("Login");
+                        window.location.href="admin_panel/index";
                       
                      }
                      if(msg.status=="fail"){
                         $("#msg").html("<div class='alert alert-danger' role='alert'>"+msg.msg+"</div>");
                         $("#loginBtn").attr('disabled',false);
-                        $("#loginBtn").html("Sign In");
+                        $("#loginBtn").html("Login");
                      }
                      
                    }
                    
                   });
 
-          }
+          
 
           
 
@@ -344,52 +330,7 @@ $("#verifyLoginOtp").on("click",function(e){
 
        });
 // ---------------------
- // verify admin login otp
-$("#verifyAdminLoginOtp").on("click",function(e){  
-
-  $("#verifyAdminLoginOtp").attr("disabled",true);
-  $("#verifyAdminLoginOtp").html("Loading..");
-  phone=$("#adminloginPhone").val();
-  otp=$("#adminloginOTP").val();
-
-  confirmationResult.confirm(otp).then(function(response){
-      
-         
-           $.ajax({  
-                   type:"POST",  
-                   url:"register_login",  
-                   data:"mobile="+phone+"&type=adminlogin",
-                   success:function(result){
-                      msg=jQuery.parseJSON(result);
-
-                     if(msg.status=="success"){
-                        window.location.href="admin_panel/index";
-                        $("#signbtn").attr('disabled',false);
-                        $("#signbtn").html("Sign Up");
-                      
-                     }
-                     if(msg.status=="fail"){
-
-                       $("#msg").html("<div class='alert alert-danger' role='alert'>"+msg.msg+"</div>");
-                        $("#signbtn").attr('disabled',false);
-                        $("#signbtn").html("Sign Up");
-                     }
-                     
-                     
-                   }
-                   
-          });
-         
-  }).catch(function(error){
-    $("#msg").html("<div class='alert alert-danger' role='alert'>Invalid OTP</div>");
-    $("#signbtn").attr('disabled',false);
-    $("#signbtn").html("Sign Up");
-
-  })
-  e.preventDefault();
-
-});
-
+ 
 function gmailLogIn(userInfo){
     userProfile=userInfo.getBasicProfile();
            $.ajax({  
@@ -400,7 +341,7 @@ function gmailLogIn(userInfo){
                       msg=jQuery.parseJSON(result);
 
                      if(msg.status=="success"){
-                        window.location.href="http://localhost/Travello/";
+                        window.location.href="http://imperioustours.com/";
                     
                      }
                      if(msg.status=="fail"){

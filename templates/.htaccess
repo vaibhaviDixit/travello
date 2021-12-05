@@ -1,4 +1,3 @@
-
 RewriteEngine On
 
 RewriteRule ^bookTour/(.*)$ bookTour.php?id=$1 [QSA]
