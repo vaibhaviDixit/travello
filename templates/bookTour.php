@@ -13,10 +13,6 @@
     redirect(SITE_PATH);
    }
 
-   if(isset($_POST['book'])){
-      $_SESSION['bookingArray']=$_POST;
-      redirect(SITE_PATH."templates/checkout");
-   }
  
 
    ?>
@@ -36,7 +32,7 @@
       <div class="content">
           <div class="booking-form">
 
-            <form method="post">
+            <form method="post" action="<?php echo SITE_PATH.'templates/checkout'; ?>" >
 
             <p id="red-msg">Please select valid check-in and check-out date</p>
             <div class="dates">
@@ -62,6 +58,7 @@
             </div>
             <div class="display-total">
                 <p>Sub Total: <span id="bookingPrice"> </span></p>
+                <p><span id="msgUser" class="text-danger"> </span></p>
                 <input type="text" name="total" id="total" hidden value="" required>
                 <input type="text" name="days" id="days" hidden value="" required>
                 <input type="text" name="adultPrice" id="adultPrice" hidden value="" required>
@@ -83,6 +80,7 @@
 
     $("#check-in-date").on("change",function(){
      bookingData();
+     dateMan();
      })
     $("#check-out-date").on("change",function(){
       bookingData();
@@ -123,12 +121,22 @@
         adultPrice=parseInt(packagePrice)*parseInt(Difference_In_Days)*parseInt(adults);
         Total=adultPrice+chPrice;
       }
+      
+      if(Total<=0){
+        swal("Please select valid checkin checkout dates");
+        $("#msgUser").html("Please select valid checkin checkout dates");
+         $("#bookingPrice").html("0");
+        $("#book-btn").attr("disabled",true);
 
-      $("#bookingPrice").html(Total);
-      $("#total").val(Total);
-      $("#adultPrice").val(adultPrice);
-      $("#childrenPrice").val(chPrice);
-      $("#days").val(Difference_In_Days);
+      }else{
+        $("#book-btn").attr("disabled",false);
+        $("#msgUser").html("");
+        $("#bookingPrice").html(Total);
+        $("#total").val(Total);
+        $("#adultPrice").val(adultPrice);
+        $("#childrenPrice").val(chPrice);
+        $("#days").val(Difference_In_Days); 
+      }
          
 
   
@@ -138,9 +146,13 @@
 
 //disable past dates
 $(document).ready(function(){
+  dateMan();
+  bookingData();
+})
+  
+function dateMan(){
 
   date = new Date();
-
   y=date.getFullYear();
   m=date.getMonth()+1;
   d=date.getDate();
@@ -153,11 +165,28 @@ $(document).ready(function(){
   }
   
    mindt=y+"-"+m+"-"+d;
-  $("#check-in-date").attr("min",mindt);
-  $("#check-out-date").attr("min",mindt);
 
-})
+  dbt=new Date($("#check-in-date").val());
+  dbt.setDate(dbt.getDate() + 1);
+
+  yy=dbt.getFullYear();
+  mm=dbt.getMonth()+1;
+  dd=dbt.getDate();
+ 
+  if(dd<10){
+    dd='0'+dd;
+  }
+  if(mm<10){
+    mm='0'+mm;
+  }
   
+   chkOutMin=yy+"-"+mm+"-"+dd;
+
+  $("#check-in-date").attr("min",mindt);
+  $("#check-out-date").attr("min",chkOutMin);
+  console.log(mindt+" "+chkOutMin);
+
+}
 
 
 </script>

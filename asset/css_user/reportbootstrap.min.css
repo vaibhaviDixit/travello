@@ -2935,7 +2935,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endCo
 	background-color: #000000;
 }
 .modal-backdrop.fade {
-	opacity: 0;
+	/* opacity: 0; */
 }
 .modal-backdrop, .modal-backdrop.fade.in {
 	opacity: 0.8;

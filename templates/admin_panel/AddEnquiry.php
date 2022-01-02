@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
 						<div class="row">
 								     <div class="col-sm-12 mb-3">
 								     	<label for="query" class="form-label">Query<span class="redStar">*</span></label>
-							       		<textarea class="form-control"  id="query" required name="query" ><?php echo $couponValue; ?> </textarea>
+							       		<textarea class="form-control"  id="query" required name="query" ><?php echo $query; ?> </textarea>
 								      		
 								    </div>
 

@@ -38,22 +38,6 @@ $paramList["CALLBACK_URL"] = SITE_PATH."templates/pgResponse";
 //Here checksum string will return by getChecksumFromArray() function.
 $checkSum = getChecksumFromArray($paramList,PAYTM_MERCHANT_KEY);
 
-$name=$_POST['name'];
-$phone=$_POST['mobile'];
-$adrs=$_POST['adrs'];
-$check_in=$_POST['check_in'];
-$check_out=$_POST['check_out'];
-$adults=$_POST['adults'];
-$children=$_POST['children'];
-$subTotal=$_POST['total'];
-$packageId=$_POST['package'];
-$packagePrice=$_POST['packagePrice'];
-$dis=$_POST['dis'];
-$disType=$_POST['disType'];
-$coupon=$_POST['coupon'];
-$uid=explode("_", $CUST_ID)[1];
-
-mysqli_query($con,"INSERT INTO `bookonline`(`uid`, `bookId`, `name`, `phone`, `address`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `adults`, `children`, `subTotal`, `discount`, `disType`, `coupon`, `total`, `paymentStatus`) VALUES ('$uid','$ORDER_ID','$name','$phone','$adrs','$packageId','$packagePrice','$check_in','$check_out','$adults','$children','$subTotal','$dis','$disType','$coupon','$TXN_AMOUNT','pending')");
 
 ?>
 <html>
@@ -75,9 +59,34 @@ mysqli_query($con,"INSERT INTO `bookonline`(`uid`, `bookId`, `name`, `phone`, `a
 			<input type="hidden" name="CHECKSUMHASH" value="<?php echo $checkSum ?>">
 			</tbody>
 		</table>
-		<script type="text/javascript">
-			document.f1.submit();
-		</script>
 	</form>
 </body>
 </html>
+
+<?php
+$name=$_POST['name'];
+$phone=$_POST['mobile'];
+$adrs=$_POST['adrs'];
+$check_in=$_POST['check_in'];
+$check_out=$_POST['check_out'];
+$adults=$_POST['adults'];
+$children=$_POST['children'];
+$subTotal=$_POST['total'];
+$packageId=$_POST['package'];
+$packagePrice=$_POST['packagePrice'];
+$dis=$_POST['dis'];
+$disType=$_POST['disType'];
+$coupon=$_POST['coupon'];
+$uid=explode("_", $CUST_ID)[1];
+
+$q=mysqli_query($con,"INSERT INTO `bookonline`(`uid`, `bookId`, `name`, `phone`, `address`, `packageId`, `packagePrice`, `checkIn`, `checkOut`, `adults`, `children`, `subTotal`, `discount`, `disType`, `coupon`, `total`, `paymentStatus`) VALUES ('$uid','$ORDER_ID','$name','$phone','$adrs','$packageId','$packagePrice','$check_in','$check_out','$adults','$children','$subTotal','$dis','$disType','$coupon','$TXN_AMOUNT','pending')");
+
+if($q){
+	?>
+	<script type="text/javascript">
+			document.f1.submit();
+		</script>
+	<?php
+
+}
+?>

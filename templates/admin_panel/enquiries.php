@@ -38,7 +38,7 @@ $res=mysqli_query($con,"select * from query order by id desc");
 
 						<tr>
 						<td scope="col"> <?php  echo $i; ?></td>
-						<td scope="col"> <?php  echo $row['name']; ?></td>
+						<td scope="col"> <?php  if(isset($row['name'])){echo $row['name'];} ?></td>
 						<td scope="col"> <?php  echo $row['phone']; ?></td>
 						<td scope="col"> <?php  echo $row['query']; ?></td>
 						<td scope="col"> <?php  echo date("d/m/Y h:i:s A",strtotime($row['date'])); ?></td>

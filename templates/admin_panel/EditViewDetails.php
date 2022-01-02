@@ -20,7 +20,7 @@
    if (isset($_POST['submit'])) {
         $placeId=getSafeVal( $_POST['placeId'] ) ;
      	$location=getSafeVal( $_POST['placelocation'] ) ;
-   	$placedesc=getSafeVal( $_POST['placedesc'] ) ;
+   	$placedesc=$_POST['placedesc'];
    	$link=getSafeVal($_POST['link'] ) ;
         $checkin=getSafeVal($_POST['checkin'] );
         $checkout=getSafeVal($_POST['checkout'] );
@@ -254,7 +254,7 @@
       </div>
       <div class="row">
          <div class="col mb-3">
-<label for="placedesc" class="form-label">Description (About Place)<span class="redStar">*</span></label>
+<label for="placedesc" class="form-label">Description<span class="redStar">*</span></label>
             <textarea class="form-control" rows="3" id="placedesc" name="placedesc" required><?php echo $placedesc; ?></textarea>
          </div>
       </div>

@@ -60,6 +60,8 @@ if(isset($_FILES['adminProfile'])){
       <main class="content">
         <div class="container-fluid p-0">
 
+
+
           <div class="mb-3">
             <h1 class="h3 d-inline align-middle">Profile</h1>
           
@@ -90,13 +92,17 @@ if(isset($_FILES['adminProfile'])){
                     <input class="form-control form-control-sm" type="file" id="adminProfile" name="adminProfile" accept="image/*">
                      <label for="adminProfile"><button type="submit" class="btn btn-success btn-sm mt-3 p-1"><span data-feather="user"></span> Change Profile</button> </label>
 
-                  </form>  
+                  </form> 
+<br>
+                  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><span data-feather="key"></span> Change Password
+</button>
+
+
                 </div>
-                
-                
-                
               </div>
             </div>
+
 
             <div class="col-md-8 col-xl-9">
               <div class="card mb-3">
@@ -141,6 +147,39 @@ if(isset($_FILES['adminProfile'])){
 
           
             </div>
+            <!-- Change pass modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <span id="passMsg" class="text-danger"></span>
+        <form id="changePassFrom">
+          <div class="mb-3">
+            <label for="oldPass" class="col-form-label">Old Password:</label>
+            <input type="text" class="form-control" id="oldPass">
+          </div>
+          <span id="repassMsg" class="text-danger"></span>
+          <div class="mb-3">
+            <label for="newPass" class="col-form-label">New Password:</label>
+            <input class="form-control" id="newPass">
+          </div>
+
+          <div class="mb-3">
+            <label for="renewp" class="col-form-label">Repeat Password:</label>
+            <input class="form-control" id="renewp">
+          </div>
+
+        <button type="submit" class="btn btn-primary">Change Password</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
           </div>
     <div class="col-md-8 col-xl-12">
@@ -216,6 +255,7 @@ if(isset($_FILES['adminProfile'])){
                       <!-- card ends -->
 
 </div>
+
 
 
       

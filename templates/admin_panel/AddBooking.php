@@ -352,14 +352,14 @@
    		tp=$("#submitBtn").attr("oper");
  
    		$.ajax({
-   			url:<?php echo SITE_PATH.'templates/admin_panel/'; ?>'bookDb',
+   			url:"<?php echo SITE_PATH; ?>templates/admin_panel/bookDb",
    			method:'post',
    			data:$(this).serialize()+"&type="+tp,
    			success:function(response){
    				if(response=="success"){
    					$("#submitBtn").val("Submit");
 	   				swal("Thanks!", "Booking Successfull!" ,"success");
-	   				window.location.href=<?php echo SITE_PATH.'templates/admin_panel/'; ?>"ListBooking";
+	   				window.location.href="<?php echo SITE_PATH; ?>templates/admin_panel/ListBooking";
 
    				}
    			}
@@ -441,7 +441,7 @@
 			pcname=$("#pc").val();
 			 $.ajax({  
                    type:"POST",  
-                   url:<?php echo SITE_PATH.'templates/admin_panel/'; ?>"getPckPrice",  
+                   url:"<?php echo SITE_PATH; ?>templates/admin_panel/getPckPrice",  
                    data:"id="+pcname,
                    success:function(result){
 

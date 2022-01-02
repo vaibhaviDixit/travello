@@ -1,9 +1,9 @@
 <?php
    session_start();
    
-      include ($_SERVER['DOCUMENT_ROOT'].'/templates/include/database.inc.php');
-      include ($_SERVER['DOCUMENT_ROOT'].'/templates/include/functions.inc.php');
-      include ($_SERVER['DOCUMENT_ROOT'].'/templates/include/constants.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/Travello/templates/include/database.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/Travello/templates/include/functions.inc.php');
+      include ($_SERVER['DOCUMENT_ROOT'].'/Travello/templates/include/constants.inc.php');
      
       $row=getAdminDetails();
 
@@ -31,8 +31,7 @@
       <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
       <!-- cdn for data table -->
       <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css">
-      <link href="<?php echo SITE_PATH; ?>asset/css_user/reportbootstrap.min.css" rel="stylesheet">
-      <link href="<?php echo SITE_PATH; ?>asset/css_user/reportbootstrap-responsive.min.css" rel="stylesheet">
+     
       <!-- font awesome cdn link  -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -40,16 +39,11 @@
       <link href="<?php echo SITE_PATH; ?>asset/css_admin/custom.css" rel="stylesheet">
        
       <link rel="preconnect" href="https://fonts.gstatic.com">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-      <!-- font awesome cdn link  -->
-      <link href="<?php echo SITE_PATH; ?>asset/css_user/reportbootstrap.min.css" rel="stylesheet">
-      <link href="<?php echo SITE_PATH; ?>asset/css_user/reportbootstrap-responsive.min.css" rel="stylesheet">
+
+   <link href="<?php echo SITE_PATH; ?>asset/bootstrap.min.css" rel="stylesheet">
+
       <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
-      <!-- <link href="<?php echo SITE_PATH; ?>asset/css_user/reportfont-awesome.css" rel="stylesheet"> -->
-      <!-- <link href="<?php echo SITE_PATH; ?>asset/css_user/reportstyle.css" rel="stylesheet"> -->
-      <link href="<?php echo SITE_PATH; ?>asset/bootstrap.min.css" rel="stylesheet">
-      <!-- <link href="<?php echo SITE_PATH; ?>asset/css_user/reports.css" rel="stylesheet"> -->
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link rel="shortcut icon" href="<?php echo SITE_PATH; ?>asset/img_user/icon-48x48.png" />
       <link rel="canonical" href="https://demo-basic.adminkit.io/" />
@@ -69,17 +63,22 @@
   <!-- Push notification js -->
    <script src="<?php echo SITE_PATH; ?>asset/push.min.js"></script>
    <script src="<?php echo SITE_PATH; ?>asset/serviceWorker.min.js"></script>
+
+   <style type="text/css">
+      .linkActive{
+         background-color: darkgoldenrod;
+         color: white;
+      }
+
+   </style>
    
    </head>
    <body>
       <div class="wrapper">
       <nav id="sidebar" class="sidebar js-sidebar">
          <div class="sidebar-content js-simplebar">
-            <a class="sidebar-brand" href="<?php echo SITE_PATH; ?>"><span class="align-middle">Home</span></a>
+            <a class="sidebar-brand" href="<?php echo SITE_PATH; ?>"><span class="align-middle">Imperious</span></a>
             <ul class="sidebar-nav">
-               <li class="sidebar-header">
-                  Pages
-               </li>
                <li class="sidebar-item ">
                   <a class="sidebar-link" href="<?php echo SITE_PATH.'templates/admin_panel/index'; ?>">
                   <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
@@ -186,7 +185,6 @@
          <a class="sidebar-toggle js-sidebar-toggle">
          <i class="hamburger align-self-center"></i>
          </a>
-         <?php echo "Today is ".date("d/m/Y"); ?>
          <div style=" position: absolute !important; right: 4rem;">
             <ul class="navbar-nav navbar-align">
                <li class="nav-item">
@@ -197,6 +195,9 @@
                   </a>
                   <div class="card"  id="userDrop" style=" position: absolute !important; top: 2rem; display: none;">
                      <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item"><a target="_blank" class="dropdown-item" href="<?php echo SITE_PATH.'templates/admin_panel/' ?>adminHelp">Help</a></li>
+
                         <li class="list-group-item"><a class="dropdown-item" href="<?php echo SITE_PATH.'templates/admin_panel/' ?>logout">Log out</a></li>
                      </ul>
                   </div>

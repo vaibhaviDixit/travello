@@ -1,6 +1,5 @@
 <?php
 
-
 function redirect ($path)
 {
     ?>
@@ -155,13 +154,7 @@ function cnfBook(){
   return $bookings;
 
 }
-function earnings(){
-  global $con;
-  $earn=mysqli_fetch_assoc(mysqli_query($con,"SELECT sum(paid) from `booking`"));
-  $earn2=mysqli_fetch_assoc(mysqli_query($con,"SELECT sum(total) from `bookonline`"));
-  return intval($earn['sum(paid)'])+intval($earn2['sum(total)']);
 
-}
 function packages(){
   global $con;
   $pkg=mysqli_num_rows(mysqli_query($con,"select * from package"));
@@ -170,8 +163,8 @@ function packages(){
 }
 function payDues(){
   global $con;
-  $rem=mysqli_num_rows(mysqli_query($con,"SELECT count(rem) FROM `booking` WHERE rem <> 0"));
-  return $rem;
+  $rem=mysqli_fetch_assoc(mysqli_query($con,"SELECT count(rem) FROM `booking` WHERE rem>0"));
+  return $rem['count(rem)'];
 
 }
 function userReceipt($id){

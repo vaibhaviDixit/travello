@@ -10,20 +10,19 @@
 ?>
 <div class="mt-5 pt-4">
 <section class="packages mt-3" id="packages">
-   <?php
-            $packages=mysqli_query($con,"select * from package where package.packageType=$id;");
 
-             if(mysqli_num_rows($packages)>0){
-	
-                $r=mysqli_fetch_assoc($packages);
-                $cat=mysqli_fetch_assoc(mysqli_query($con,"select * from category where id=$id;"));
+  <?php 
+
+                $cat=mysqli_fetch_assoc(mysqli_query($con,"select * from category where id=$id"));
                 $cateName=$cat['name'];
                 echo "<h1 class='heading'><span class='bullet'>".$cateName."</span></h1>";
+  ?>
 
-            ?>
    <div class="box-container mt-5">
-      
-          <?php
+       <?php
+            $packages=mysqli_query($con,"select * from package where package.packageType=$id");
+
+             if(mysqli_num_rows($packages)>0){
 
                while ($pckgRow=mysqli_fetch_assoc($packages)) {
                 ?>
@@ -77,12 +76,9 @@
           <?php
       
                 }
-?>
-        </div>
-<?php
               }
           ?>
-
+        </div>
           <!-- box container ends -->
 </section>
 

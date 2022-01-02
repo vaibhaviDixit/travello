@@ -13,6 +13,7 @@ include ('include/constants.inc.php');
 <head>
   <!-- google sign in -->
   <meta name="google-signin-client_id" content="19666336114-r81ci252rgmv8ee73ikpjb6i4j8o7uf9.apps.googleusercontent.com">
+  
   <script src="https://apis.google.com/js/platform.js" async defer></script>
 
   <meta charset="UTF-8">

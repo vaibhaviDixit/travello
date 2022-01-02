@@ -8,26 +8,26 @@ if(!isset($_SESSION['CURRENT_USER_ID'])){
 	redirect(SITE_PATH);
 }
 
-if(isset($_SESSION['bookingArray'])){
+if(isset($_POST['book'])){
 
 	$oid="IMPERIOUS".rand(10000,99999999)."_".$_SESSION['CURRENT_USER_ID'];
 
-	$check_in=$_SESSION['bookingArray']['check-in-date'];
-    $check_out=$_SESSION['bookingArray']['check-out-date'];
-    $adults=$_SESSION['bookingArray']['adults'];
-    $children=$_SESSION['bookingArray']['children'];
-    $total=$_SESSION['bookingArray']['total'];
-    $package=$_SESSION['bookingArray']['package'];
-    $adultPrice=$_SESSION['bookingArray']['adultPrice'];
-    $childrenPrice=$_SESSION['bookingArray']['childrenPrice'];
-    $days=$_SESSION['bookingArray']['days'];
+	$check_in=$_POST['check-in-date'];
+    $check_out=$_POST['check-out-date'];
+    $adults=$_POST['adults'];
+    $children=$_POST['children'];
+    $total=$_POST['total'];
+    $package=$_POST['package'];
+    $adultPrice=$_POST['adultPrice'];
+    $childrenPrice=$_POST['childrenPrice'];
+    $days=$_POST['days'];
 
     $pck=mysqli_query($con,"select * from package where id='$package' ");
     $packageRow=mysqli_fetch_assoc($pck);
 
     $dis=floatval(($packageRow['discount']));
     $disType=$packageRow['disType'];
-    $payAmt=$_SESSION['bookingArray']['total'];
+    $payAmt=$_POST['total'];
     if($dis >0){
     	if($disType=="cash"){
     		$payAmt=intval($payAmt)-$dis;
@@ -51,22 +51,13 @@ else{
 ?>
 <section id="bookingProcess" style="padding-top: 10% !important;" class="container-fluid">
 	
-	<div class="outer row ">
-		<div class="innerLeft col-md-8">
+	<div class="outer d-flex justify-content-evenly  flex-wrap" style="width: 100%;">
+		<div class="innerLeft ">
 			<h5>Booking Submission</h5>
 			<hr>
-<div class="accordion accordion-flush" id="accordionExample">
-
 <!-- Address Details starts -->
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-        Address Details
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
-      <div class="accordion-body">
-        <form method="post" id="checkOutForm" action="<?php echo SITE_PATH; ?>templates/pgRedirect">
+  <div class="">
+        <form method="post" id="checkOutForm" name="checkOutForm" action="<?php echo SITE_PATH; ?>templates/pgRedirect">
 
 		<input id="ORDER_ID" tabindex="1" maxlength="20" size="20"
 						name="ORDER_ID" autocomplete="off"
@@ -96,16 +87,27 @@ else{
 							 </div>
 
 							 <div class="col-sm-6 mb-3">
-							    	<label for="mobile" class="form-label">Phone<span class="redStar">*</span></label>
-							       <input type="text" class="form-control" rows="3" id="mobile" required name="mobile" value="<?php echo $currentUserDetails['mobile']; ?>">
+							    	<label for="email" class="form-label">Email<span class="redStar">*</span></label>
+							       <input type="email" class="form-control" rows="3" id="email" required name="email" value="<?php echo $currentUserDetails['email']; ?>">
 							 </div>
 
 						</div>
 						<div class="row">
+
 							 <div class="col-sm-6 mb-3">
-							    	<label for="email" class="form-label">Email<span class="redStar">*</span></label>
-							       <input type="text" class="form-control" rows="3" id="email" required name="email" value="<?php echo $currentUserDetails['email']; ?>">
+							    	<label for="mobile" class="form-label">Phone<span class="redStar">*</span></label>
+							    	<span id="bookPhoneVerifyMsg" class="text-danger">(Not Verified)</span>
+							       <input type="text" class="form-control" rows="3" id="mobile" name="mobile" required name="mobile" value="<?php echo $currentUserDetails['mobile']; ?>">
+							       <div id="recaptcha-container"></div><br>
+                  					<button id="sendOTPWhileBooking" class="btn btn-primary btn-sm" >Send OTP</button>
+							</div>
+                  					 <div class="col-sm-6 mb-3 mt-4" id="changePhUserOtp" style="display: none;">
+                                  		<input type="text" class="form-control" name="userOTP" id="userOTP" placeholder="Enter OTP"><br>
+                                  		<button id="verifyOTPWhileBookBtn" class="btn btn-primary btn-sm ">Verify</button>
+                                	</div>
+
 							 </div>
+							 
 						</div>
 
 						<div class="row">
@@ -113,7 +115,7 @@ else{
 								
 								<div class="col-sm-12 mb-3">
 										<label for="adrs" class="form-label">Address<span class="redStar">*</span></label>
-										<textarea class="form-control" rows="3"  id="adrs" name="adrs" required><?php echo $currentUserDetails['address']; ?></textarea>
+										<textarea class="form-control" rows="3"  id="adrs" name="adrs" required><?php echo trim($currentUserDetails['address']); ?></textarea>
 									      	
 								</div>
 								
@@ -126,20 +128,15 @@ else{
 							    	<button class="btn btn-sm btn-primary" type="button" onclick="applyCoupon()">Apply Coupon</button>
 								</div>
 							</div>
-
-							<input type="submit" name="payNow" class="btn btn-success" value="Proceed To Payment">
+							<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="Please Verify mobile and then continue to payment">
+           					 <button name="payNow" type="submit" id="paymentButton" class="btn  btn-success  mb-5" disabled >Proceed to Payment</button>
+        					</span>
 
 
 			</form>
       </div>
-    </div>
-  </div>
 <!-- Address Details ends -->
-</div>
-				
-		</div>
-
-		<div class="innerRight col-md-3">
+		<div class="innerRight">
 			<h5>Your Booking</h5>
 			<hr>
 			<div class="card bookingInfo" >
@@ -241,9 +238,6 @@ include 'user_footer.php';
 <script type="text/javascript">
   
   if ( window.history.replaceState ) {
-  	<?php
-  		unset($_SESSION['bookingArray']); 
-  	?>
-  window.history.replaceState( null, null, window.location.href );
+   window.history.replaceState( null, null, window.location.href );
 }
 </script>

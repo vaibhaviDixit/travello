@@ -213,7 +213,7 @@ $("#verifybtn").on("click",function(e){
                      if(msg.status=="success"){
 
                        $("#msg").html("<div class='alert alert-success' role='alert'>"+msg.msg+"</div>");
-                       window.location.href="http://imperioustours.com/";
+                       window.location.href="http://localhost/Travello/"
                         $("#signbtn").attr('disabled',false);
                         $("#signbtn").html("Sign Up");
                       
@@ -260,7 +260,7 @@ $("#verifyLoginOtp").on("click",function(e){
                       msg=jQuery.parseJSON(result);
 
                      if(msg.status=="success"){
-                        window.location.href="http://imperioustours.com/";
+                        window.location.href="http://localhost/Travello/";
                         $("#signbtn").attr('disabled',false);
                         $("#signbtn").html("Sign Up");
                       
@@ -322,10 +322,6 @@ $("#verifyLoginOtp").on("click",function(e){
                    
                   });
 
-          
-
-          
-
          e.preventDefault();
 
        });
@@ -341,7 +337,7 @@ function gmailLogIn(userInfo){
                       msg=jQuery.parseJSON(result);
 
                      if(msg.status=="success"){
-                        window.location.href="http://imperioustours.com/";
+                        window.location.href="http://localhost/Travello/";
                     
                      }
                      if(msg.status=="fail"){
@@ -355,3 +351,178 @@ function gmailLogIn(userInfo){
                    
           });
 }
+
+
+jQuery('#changeUserProfileForm #sendOTPWalaBtn').on('click',function(e){
+  e.preventDefault();
+  userPhone=$("#changeUserProfileForm #userPhone").val();
+
+  const regexExp = /^[6-9]\d{9}$/gi;
+  if(!regexExp.test(userPhone) && userPhone.trim().length>0){
+    swal("Phone Number is not valid", "", "error");
+  }
+  else{
+   jQuery.ajax({
+
+    url:'changeUserDetails.php',
+    type:'post',
+    data:"userPhone="+userPhone+"&action=check",
+    success:function(result){
+        msg=jQuery.parseJSON(result);
+      
+        if(msg.status=="error"){
+          swal(msg.msg,"", "error");
+        }
+        if(msg.status=="success"){
+                        phnum="+91"+userPhone;
+                        firebase.auth().signInWithPhoneNumber(phnum, window.recaptchaVerifier)
+                        .then(function(confirmationResult){
+                          window.confirmationResult = confirmationResult;
+                          coderesult=confirmationResult;
+                          swal("OTP has been sent to "+phnum+"", "success");
+                          $("#changeUserProfileForm #changePhUserOtp").show();
+                          swal("OTP has been sent...","", "success");
+                          $("#changeUserProfileForm #userPhone").attr('disabled',true);
+                          $("#changeUserProfileForm #userOTP").focus();
+                          jQuery("#phVerifyMsg").html("<span class='text-danger'>Not Verified..!</span>");
+
+                        }).catch(function(error){
+                          swal("Something went wrong!","", "error");
+                        });
+        }
+    }
+
+  });
+}
+});
+
+
+jQuery('#changeUserProfileForm').on('submit',function(e){
+  e.preventDefault();
+  userName=$("#changeUserProfileForm #userName").val();
+  userAddress=$("#changeUserProfileForm #userAddress").val();
+  userPhone=$("#changeUserProfileForm #userPhone").val();
+
+  checkVerified=$("#changeUserProfileForm #checkVerified").val();
+  const regexExp = /^[6-9]\d{9}$/gi;
+  if(!regexExp.test(userPhone)){
+    swal("Phone Number is not valid", "", "error");
+  }
+  else{
+    
+    if(userPhone.trim().length>0 && checkVerified=="1"){
+      jQuery.ajax({
+        url:'changeUserDetails.php',
+        type:'post',
+        data:"userName="+userName+"&userAddress="+userAddress+"&userPhone="+userPhone+"&action=update",
+        success:function(result){
+        
+            msg=jQuery.parseJSON(result);
+            if(msg.status=="success"){
+              swal("Profile Updated successfully","", "success").then((rs) => {if (rs){location.reload();} });
+            }
+            else{
+              swal("Something went wrong!","", "error");
+            }
+        }
+    });
+  }
+  else{
+    swal("Phone number not verified!","", "error");
+  }
+   
+}
+
+});
+
+jQuery('#changeUserProfileForm #verifyOTPWalaBtn').on('click',function(e){
+  e.preventDefault();
+  changePhOTP=$("#changeUserProfileForm #userOTP").val();
+   confirmationResult.confirm(changePhOTP).then((result) => {
+      // User signed in successfully.
+       jQuery("#phVerifyMsg").html("<span class='text-success'>Verified!</span>");
+      $("#changeUserProfileForm #changeSaveBtn").attr("disabled",false);
+        $("#changeUserProfileForm #changePhUserOtp").hide();
+        $("#changeUserProfileForm #checkVerified").val("1");
+      // ...
+    }).catch((error) => {
+       swal("Invalid OTP!","", "error");
+      $("#verifyOTPWalaBtn").attr("disabled",false);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+jQuery('#checkOutForm #sendOTPWhileBooking').on('click',function(e){
+  e.preventDefault();
+  userPhone=$("#checkOutForm #mobile").val();
+
+  const regexExp = /^[6-9]\d{9}$/gi;
+  if(!regexExp.test(userPhone) && userPhone.trim().length>0){
+    swal("Phone Number is not valid", "", "error");
+  }
+  else{
+   jQuery.ajax({
+
+    url:'user_panel/changeUserDetails.php',
+    type:'post',
+    data:"userPhone="+userPhone+"&action=check",
+    success:function(result){
+        msg=jQuery.parseJSON(result);
+      
+        if(msg.status=="error"){
+          swal(msg.msg,"", "error");
+        }
+        if(msg.status=="success"){
+                        otpNum="+91"+userPhone;
+                        firebase.auth().signInWithPhoneNumber(otpNum, window.recaptchaVerifier)
+                        .then(function(confirmationResult){
+                          window.confirmationResult = confirmationResult;
+                          coderesult=confirmationResult;
+                          swal("OTP has been sent to "+otpNum+"", "success");
+                          swal("OTP has been sent...","", "success");
+
+
+                          $("#checkOutForm #changePhUserOtp").show();
+                          $("#checkOutForm #mobile").attr('disabled',true);
+                          $("#checkOutForm #userOTP").focus();
+
+
+                        }).catch(function(error){
+                          swal("Something went wrong!","", "error");
+                        });
+        }
+    }
+
+  });
+}
+});
+
+
+jQuery('#checkOutForm #verifyOTPWhileBookBtn').on('click',function(e){
+  e.preventDefault();
+  changePhOTP=$("#checkOutForm #userOTP").val();
+   confirmationResult.confirm(changePhOTP).then((result) => {
+      // User signed in successfully.
+       jQuery("#checkOutForm #bookPhoneVerifyMsg").text("Verified!");
+      $("#paymentButton").attr('disabled',false);
+        $("#checkOutForm #changePhUserOtp").hide();
+        $("#checkOutForm #sendOTPWhileBooking").hide();
+      // ...
+    }).catch((error) => {
+       swal("Invalid OTP!","", "error");
+      $("#verifyOTPWhileBookBtn").attr("disabled",false);
+    });
+});

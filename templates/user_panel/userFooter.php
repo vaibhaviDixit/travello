@@ -5,6 +5,8 @@
 <script src="<?php echo SITE_PATH; ?>asset/js_admin/app.js"></script>
 <script src="<?php echo SITE_PATH; ?>asset/js_user/script.js"></script>
 <script src="<?php echo SITE_PATH; ?>asset/bootstrap.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+<script src="<?php echo SITE_PATH; ?>asset/firebase.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" ></script>
 <!-- Push notification js -->
    <script src="<?php echo SITE_PATH; ?>asset/push.min.js"></script>
@@ -240,11 +242,11 @@
 				$(".userdropdown").click(function(){
 				    
 				    $("#userDrop").toggle();
-				});			
-	</script>
+				});	
 
 
 
-            
+
+	</script>            
             </body>
             </html>

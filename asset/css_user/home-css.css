@@ -27,7 +27,8 @@ body{
   vertical-align: middle;
 }
 .navbar{
-  background:linear-gradient(#EB5757,#F2994A);
+  background: #333;
+  backdrop-filter: blur(10px);
   width: 100vw;
   padding: 10px 20px;
   display: flex;
@@ -35,8 +36,6 @@ body{
   top: 0;
   height: auto;
   z-index: 9999;
-  box-shadow: 1px 0 #77a342;
-  box-shadow: 3px 2px 9px #888888;
 }
 .navbar .nav-menu{
   flex: 1;
@@ -50,12 +49,12 @@ body{
 .navbar .nav-menu li{
    display: inline-block;
    margin: 0px 20px;
-   border-radius: 15px;
+   border-radius: 7px;
    padding: 10px;
    list-style-type: none;
 }
 .navbar .nav-menu li a:hover{
-  color:#070f1a;
+  color: #efb308;
 }
 .navbar .nav-menu li a{
   font-family: Poppins;
@@ -266,7 +265,8 @@ font-size:30px}
 
 .swiper-slide .video-container video{
   position: absolute;
-  top:0; left: 0;
+  top:0;
+  left: 0;
   z-index: -1;
   height: 100%;
   width:100%;
@@ -920,7 +920,7 @@ display: none; /* for Chrome, Safari, and Opera */
 
 
 .footer{
-  background:linear-gradient(#F2994A,#EB5757);
+  background: #282a35;
   width: 100%;
   color:white;
   margin-top: 80px;
@@ -1030,18 +1030,20 @@ margin:0;  color:#eee;
     z-index: 9999;
    }
   .navbar .nav-menu{
-     display: none; 
-    position: fixed;
-    height: 100vh;
-    width: auto;
-    top: 96px;
-    right: 0;
-    background: #ed6953;
-    z-index: -1;
+     display: none;
+     position: fixed;
+     height: 100vh;
+     width: 100%;
+     top: 96px;
+     right: 0;
+     background-color: #333;
+     z-index: -1;
   }
   .navbar .nav-menu li{
     display: block;
     margin-top: 1rem;
+    text-align: center;
+    background-color: black;
   }
   
   .bars{
@@ -1049,6 +1051,7 @@ margin:0;  color:#eee;
     font-size: 30px;
     margin-right: 1rem;
     cursor: pointer;
+    color: white;
   }
   .navbar .logo{
     width: 100%;
@@ -1152,20 +1155,20 @@ section .heading{
 
 
 .count{
+ background: #ff005d;
+ padding: 3px;
+ font-size: .6rem;
+ border-radius: 50%;
+ width: 1rem;
+ height: 1rem;
+ line-height: .5rem;
+ text-align: center;
+ color: white;
+ font-weight: bold;
+ top: -10px;
+ right: -14px;
+ font-family:monospace;
  position: absolute;
-    background: #ff005d;
-    padding: 3px;
-    font-size: .6rem;
-    border-radius: 50%;
-    width: 1rem;
-    height: 1rem;
-    line-height: .5rem;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    top: 0;
-    right: -5px;
-    font-family:monospace;
 }
 
 

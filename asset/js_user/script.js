@@ -46,6 +46,10 @@ jQuery(document).ready(function(){
 
 
 })
+$('.navbar .nav-menu li a').click(function(){
+  $('.nav-menu').hide(100);
+  $(".fa-bars").removeClass('fa-times');
+});
 
 function menuToggle(){
   $('.nav-menu').toggle("slide");

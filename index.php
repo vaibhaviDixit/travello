@@ -81,7 +81,8 @@
       
     </div>
     <!-- partial -->
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js'></script><script  src="<?php echo SITE_PATH; ?>asset/js_user/script.js"></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js'></script>
+      <script  src="<?php echo SITE_PATH; ?>asset/js_user/script.js"></script>
   </section>
 
 

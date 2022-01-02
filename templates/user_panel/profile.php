@@ -1,12 +1,8 @@
 	<?php  
 
 	include 'userHeader.php';
-
-
 $msg="";
                           
- 
-
 //update admin profile
 if(isset($_FILES['userProfile'])){
 
@@ -21,25 +17,10 @@ if(isset($_FILES['userProfile'])){
         move_uploaded_file($_FILES['userProfile']['tmp_name'],SERVER_PROFILE_IMAGE.$userProfile);
         $uid=$row['id'];
         mysqli_query($con,"update user set profile='$userProfile' where id='$uid' ");
-        
-           
         redirect(SITE_PATH.'templates/user_panel/profile');
-
       }
-
   
 }
-if(isset($_POST['submit'])){
-  $userName=$_POST['userName'];
-  $userAddress=trim($_POST['userAddress']);
-  $uid=$row['id'];
-  mysqli_query($con,"update user set name='$userName',address='$userAddress' where id='$uid' ");
-  redirect(SITE_PATH.'templates/user_panel/profile');
-
-}
-
-
-
 
 ?>
 
@@ -131,7 +112,7 @@ if(isset($_POST['submit'])){
             </div>
 
           </div>
-    <div class="col-md-8 col-xl-12">
+    <div class="col-xl-12">
       <div class="accordion accordion-flush" id="accordionFlushExample">
 
         <div class="accordion-item">
@@ -142,23 +123,31 @@ if(isset($_POST['submit'])){
             </h2>
             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-            
-
                         <div class="card">
                     
                     <div class="card-body h-100">
 
-                           <form method="post" id="userFrom">
+                           <form method="post" id="changeUserProfileForm" name="changeUserProfileForm">
+                             <div id="recaptcha-container"></div>
                             <div class="row">
                                 <div class="col-sm-6 mb-3">
                                   <label for="userName" class="form-label">Name</label>
                                     <input type="text" class="form-control" name="userName" id="userName" value="<?php   echo $row['name']; ?>">
                                 </div>
-
-                               <!--  <div class="col-sm-6 mb-3">
+                              </div>
+                              <div class="row">
+                                <div class="col-sm-5 mb-3">
                                   <label for="userPhone" class="form-label">Phone</label>
-                                  <input type="text" class="form-control" name="userPhone" id="userPhone" value="<?php   //echo $row['mobile']; ?>">
-                                </div> -->
+                                  <input type="text" class="form-control" name="userPhone" id="userPhone" value="<?php echo $row['mobile']; ?>"><span id="phVerifyMsg"></span>
+                                  <input type="hidden" id="checkVerified" value="0">
+                                </div>
+                                 <div class="col-sm-3 mb-3">
+                                  <button id="sendOTPWalaBtn" class="btn btn-primary btn-sm mt-4">Send OTP</button>
+                                </div>
+                                <div class="col-sm-3 mb-3" id="changePhUserOtp" style="display: none;">
+                                  <input type="text" class="form-control" name="userOTP" id="userOTP" placeholder="Enter OTP"><br>
+                                  <button id="verifyOTPWalaBtn" class="btn btn-primary btn-sm " ><span class="round"></span>Verify</button>
+                                </div>
                              </div>
 
                             <div class="row">
@@ -169,37 +158,21 @@ if(isset($_POST['submit'])){
                                   </textarea>
                                 </div>
                               </div>
-
-
-
-                            <button class="btn btn-success" name="submit" type="submit">Save Changes</button>
-
+                            <button class="btn btn-success" name="submit" type="submit" id="changeSaveBtn">Save Changes</button>
                             </form>
                          </div>
                       </div> 
                       <!-- card ends -->
-
                   </div>
            </div>
          </div>
 
 </div>
-<!--  -->
-
-
-
-
-        
-              
-          </div>
-
-
+<!--  -->   
+</div>
 
 </div>
 </main>
-
-
-
 	<?php  
 
 		include 'userFooter.php';

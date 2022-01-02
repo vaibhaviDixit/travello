@@ -334,7 +334,7 @@ cursor: pointer;
   padding-top: 30%;
 }
 #bookingProcess{
-  margin:30% 1rem;
+  margin:30% 0;
 }
   .fixed-book{
     display: block;

@@ -2,8 +2,8 @@
 
 // define constants here
 define('SITE_NAME','ImperiousTours');
-define('SITE_PATH','http://imperioustours.com/');
-define('SERVER_PATH',$_SERVER['DOCUMENT_ROOT']);
+define('SITE_PATH','http://localhost/Travello/');
+define('SERVER_PATH',$_SERVER['DOCUMENT_ROOT'].'/Travello/');
 
 //path to upload images of packages
 define('SERVER_PACKAGE_IMAGE',SERVER_PATH."/asset/media/package/");

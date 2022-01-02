@@ -51,7 +51,7 @@ $currentUserDetails=getCurrentUserDetails();
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
       <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.1/assets/owl.carousel.min.css'>
       <link rel='stylesheet' href='https://themes.audemedia.com/html/goodgrowth/css/owl.theme.default.min.css'>
-      <link rel="stylesheet" href="<?php echo SITE_PATH; ?>asset\css_user\home-css.css">
+      <link rel="stylesheet" href="<?php echo SITE_PATH; ?>asset/css_user/home-css.css">
    </head>
    <body>
       <nav class="navbar">
@@ -92,7 +92,11 @@ $currentUserDetails=getCurrentUserDetails();
                   ?>
                </a>
             </li>
-            <li class="nav-item" style="position: relative;"><a href="<?php echo SITE_PATH; ?>templates/favourites"> <i class="material-icons is-liked bouncy">favorite</i></a> <span id="favItems" class="count"><?php echo $fav_count; ?></li>
+            <li class="nav-item" >
+              <a  href="<?php echo SITE_PATH; ?>templates/favourites">    <i class="material-icons is-liked bouncy">favorite 
+                <span id="favItems" class="count"><?php echo $fav_count; ?></span></i>
+              </a> 
+              </li>
          </ul>
       </nav>
       <div class="alert alert-success w-20 successMsg" id="addToCartSuccess" role="alert" >
